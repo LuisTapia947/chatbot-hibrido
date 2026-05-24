@@ -400,73 +400,51 @@ st.markdown("---")
 
 st.subheader("💡 Preguntas sugeridas")
 
-ejemplos = random.sample(
-    preguntas,
-    min(8, len(preguntas))
-)
+# GUARDAR SUGERENCIAS SOLO UNA VEZ
+if "sugerencias_fijas" not in st.session_state:
+
+    st.session_state.sugerencias_fijas = random.sample(
+        preguntas,
+        min(8, len(preguntas))
+    )
+
+ejemplos = st.session_state.sugerencias_fijas
 
 col1, col2 = st.columns(2)
 
 for i, ejemplo in enumerate(ejemplos):
 
-    if i % 2 == 0:
+    columna = col1 if i % 2 == 0 else col2
 
-        if col1.button(
-            ejemplo,
-            key=f"sug_{i}"
-        ):
+    if columna.button(
+        ejemplo,
+        key=f"sug_btn_{i}"
+    ):
 
-            st.session_state.chat.append(
-                ("usuario", ejemplo)
-            )
+        # MENSAJE USUARIO
+        st.session_state.chat.append(
+            ("usuario", ejemplo)
+        )
 
-            respuesta, score = buscar_respuesta(
-                ejemplo
-            )
+        # BUSCAR RESPUESTA
+        respuesta, score = buscar_respuesta(
+            ejemplo
+        )
 
-            respuesta_final = (
-                random.choice(introducciones)
-                + "\n\n"
-                + respuesta
-                + "\n\n"
-                + random.choice(continuar)
-            )
+        respuesta_final = (
+            random.choice(introducciones)
+            + "\n\n"
+            + respuesta
+            + "\n\n"
+            + random.choice(continuar)
+        )
 
-            st.session_state.chat.append(
-                ("bot", respuesta_final)
-            )
+        # MENSAJE BOT
+        st.session_state.chat.append(
+            ("bot", respuesta_final)
+        )
 
-            st.rerun()
-
-    else:
-
-        if col2.button(
-            ejemplo,
-            key=f"sug_{i}"
-        ):
-
-            st.session_state.chat.append(
-                ("usuario", ejemplo)
-            )
-
-            respuesta, score = buscar_respuesta(
-                ejemplo
-            )
-
-            respuesta_final = (
-                random.choice(introducciones)
-                + "\n\n"
-                + respuesta
-                + "\n\n"
-                + random.choice(continuar)
-            )
-
-            st.session_state.chat.append(
-                ("bot", respuesta_final)
-            )
-
-            st.rerun()
-
+        st.rerun()
 # =========================================================
 # ERRORES
 # =========================================================
