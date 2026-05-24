@@ -1,0 +1,133 @@
+p:que es programacion ?r:La programación es el proceso de crear instrucciones mediante lenguajes de programación para que un computador pueda ejecutar tareas específicas automáticamente.
+
+p:que es python ?r:Python es un lenguaje de programación de alto nivel utilizado en desarrollo web, inteligencia artificial, automatización y análisis de datos gracias a su sintaxis sencilla y gran cantidad de librerías disponibles.
+
+p:para que sirve python ?r:Python sirve para desarrollar aplicaciones web, automatizar tareas, crear inteligencia artificial, analizar datos y construir programas de diferentes tipos.
+
+p:definicion de python ?r:Python es un lenguaje de programación interpretado y multiplataforma que permite desarrollar software de manera rápida y eficiente.
+
+p:que es java ?r:Java es un lenguaje de programación orientado a objetos ampliamente utilizado para aplicaciones empresariales, móviles y sistemas distribuidos debido a su portabilidad.
+
+p:para que sirve java ?r:Java sirve para desarrollar aplicaciones empresariales, programas de escritorio, sistemas bancarios y aplicaciones móviles para Android.
+
+p:que es c plus plus ?r:C++ es un lenguaje de programación de alto rendimiento utilizado en videojuegos, sistemas operativos y aplicaciones que requieren velocidad y control de memoria.
+
+p:que es javascript ?r:JavaScript es un lenguaje de programación utilizado principalmente en páginas web para crear interactividad, animaciones y comunicación dinámica con el usuario.
+
+p:para que sirve javascript ?r:JavaScript permite agregar funciones dinámicas e interactivas en sitios web como formularios inteligentes, animaciones y validaciones.
+
+p:que es html ?r:HTML es un lenguaje de marcado utilizado para crear y estructurar páginas web mediante etiquetas que organizan textos, imágenes y otros elementos visuales.
+
+p:que es css ?r:CSS es un lenguaje utilizado para diseñar y dar estilo visual a páginas web permitiendo modificar colores, tamaños, posiciones y animaciones de los elementos.
+
+p:que es una variable ?r:Una variable es un espacio en memoria que almacena información temporalmente durante la ejecución de un programa y su valor puede cambiar dependiendo de las instrucciones del código.
+
+p:que es una constante ?r:Una constante es un dato cuyo valor permanece fijo durante toda la ejecución de un programa y no puede modificarse posteriormente.
+
+p:que es un algoritmo ?r:Un algoritmo es una serie ordenada de pasos lógicos que permiten resolver un problema o realizar una tarea específica dentro de un sistema computacional.
+
+p:que es pseudocodigo ?r:El pseudocódigo es una representación textual simplificada de un algoritmo que utiliza lenguaje similar al humano antes de programar.
+
+p:que es una funcion ?r:Una función es un bloque de código reutilizable diseñado para realizar una tarea específica y facilitar la organización y mantenimiento de los programas.
+
+p:que es un procedimiento ?r:Un procedimiento es un conjunto de instrucciones agrupadas que ejecutan una tarea específica dentro de un programa.
+
+p:que es un parametro ?r:Un parámetro es un valor que se envía a una función para que pueda trabajar con información específica durante su ejecución.
+
+p:que es una libreria ?r:Una librería es un conjunto de funciones y herramientas reutilizables que facilitan el desarrollo de aplicaciones en programación.
+
+p:que es una clase ?r:Una clase es una plantilla utilizada en programación orientada a objetos para crear objetos con atributos y comportamientos definidos.
+
+p:que es un objeto ?r:Un objeto es una instancia de una clase que contiene atributos y métodos utilizados para representar elementos dentro de un programa.
+
+p:que es herencia en programacion ?r:La herencia es un principio de programación orientada a objetos que permite que una clase reutilice propiedades y métodos de otra clase.
+
+p:que es encapsulamiento ?r:El encapsulamiento es una técnica que protege los datos internos de un objeto restringiendo el acceso directo desde otras partes del programa.
+
+p:que es polimorfismo ?r:El polimorfismo es una característica de la programación orientada a objetos que permite utilizar un mismo método de diferentes maneras.
+
+p:que es abstraccion ?r:La abstracción es el proceso de simplificar elementos complejos mostrando únicamente las características importantes de un objeto o sistema.
+
+p:que es un ciclo for ?r:El ciclo for es una estructura repetitiva que permite ejecutar varias veces un bloque de código utilizando una secuencia o rango previamente definido.
+
+p:que es un ciclo while ?r:El ciclo while es una estructura repetitiva que ejecuta instrucciones mientras una condición determinada sea verdadera.
+
+p:que es una condicion if ?r:La estructura if permite tomar decisiones dentro de un programa ejecutando instrucciones únicamente cuando se cumple una condición específica.
+
+p:que es un arreglo ?r:Un arreglo es una estructura de datos que almacena múltiples valores del mismo tipo organizados en posiciones consecutivas de memoria.
+
+p:que es una lista ?r:Una lista es una estructura de datos dinámica que permite almacenar múltiples elementos y modificarlos fácilmente durante la ejecución del programa.
+
+p:que es una matriz ?r:Una matriz es una estructura bidimensional formada por filas y columnas utilizada para organizar grandes cantidades de datos relacionados.
+
+p:que es una base de datos ?r:Una base de datos es un sistema organizado para almacenar, administrar y recuperar información de manera eficiente mediante software especializado.
+
+p:que es sql ?r:SQL es un lenguaje utilizado para consultar, insertar, modificar y administrar información almacenada dentro de bases de datos relacionales.
+
+p:que es mysql ?r:MySQL es un sistema de gestión de bases de datos relacional ampliamente utilizado en aplicaciones web y sistemas empresariales.
+
+p:que es un compilador ?r:Un compilador es un programa que traduce código fuente escrito en un lenguaje de programación a lenguaje máquina ejecutable.
+
+p:que es un interprete ?r:Un intérprete es un programa que ejecuta instrucciones de código fuente línea por línea sin necesidad de compilación previa.
+
+p:que es depuracion ?r:La depuración es el proceso de identificar, analizar y corregir errores presentes dentro de un programa informático.
+
+p:que es un bug ?r:Un bug es un error o fallo dentro de un programa que provoca comportamientos incorrectos o inesperados durante su ejecución.
+
+p:que es git ?r:Git es un sistema de control de versiones utilizado para registrar cambios en proyectos de programación y facilitar el trabajo colaborativo.
+
+p:que es github ?r:GitHub es una plataforma basada en Git que permite almacenar proyectos de programación, colaborar en equipo y gestionar versiones de código.
+
+p:que es visual studio code ?r:Visual Studio Code es un editor de código ligero y potente utilizado por programadores para desarrollar aplicaciones en múltiples lenguajes.
+
+p:que es programacion orientada a objetos ?r:La programación orientada a objetos es un paradigma basado en clases y objetos que facilita la reutilización y organización del código.
+
+p:que es programacion estructurada ?r:La programación estructurada es una metodología que organiza el código utilizando secuencias, decisiones y ciclos para mejorar claridad.
+
+p:que es un lenguaje de programacion ?r:Un lenguaje de programación es un conjunto de reglas y símbolos utilizados para escribir instrucciones comprensibles por una computadora.
+
+p:que es un dato entero ?r:Un dato entero es un tipo de dato numérico que representa valores sin decimales dentro de un programa.
+
+p:que es un dato flotante ?r:Un dato flotante es un tipo de dato utilizado para representar números con decimales en programación.
+
+p:que es un dato booleano ?r:Un dato booleano es un tipo de dato lógico que únicamente puede almacenar valores verdadero o falso.
+
+p:que es una cadena de texto ?r:Una cadena de texto es un conjunto de caracteres utilizados para representar palabras, frases o símbolos dentro de un programa.
+
+p:que es un operador logico ?r:Un operador lógico permite combinar o comparar condiciones dentro de expresiones utilizadas en estructuras de decisión.
+
+p:que es un operador aritmetico ?r:Un operador aritmético permite realizar operaciones matemáticas como suma, resta, multiplicación y división dentro de programas.
+
+p:que es un IDE ?r:Un IDE es un entorno de desarrollo integrado que proporciona herramientas para escribir, ejecutar y depurar programas fácilmente.
+
+p:que es recursion ?r:La recursión es una técnica de programación donde una función se llama a sí misma para resolver problemas repetitivos o divididos.
+
+p:que es desarrollo web ?r:El desarrollo web es el proceso de crear sitios y aplicaciones web utilizando tecnologías como HTML, CSS y JavaScript.
+
+p:que es backend ?r:El backend es la parte de una aplicación encargada de procesar datos, manejar servidores y realizar operaciones internas del sistema.
+
+p:que es frontend ?r:El frontend es la parte visual de una aplicación web con la que interactúan directamente los usuarios mediante interfaces gráficas.
+
+p:que es una api ?r:Una API es un conjunto de reglas y funciones que permite la comunicación e intercambio de información entre diferentes aplicaciones.
+
+p:que es json ?r:JSON es un formato ligero de intercambio de datos ampliamente utilizado para transmitir información entre aplicaciones y servidores.
+
+p:que es xml ?r:XML es un lenguaje de marcado utilizado para almacenar y transportar información de manera estructurada entre sistemas.
+
+p:que es un servidor web ?r:Un servidor web es un sistema encargado de almacenar y entregar páginas web a los usuarios mediante internet.
+
+p:que es programacion movil ?r:La programación móvil consiste en desarrollar aplicaciones para dispositivos como teléfonos inteligentes y tabletas electrónicas.
+
+p:que es android studio ?r:Android Studio es el entorno oficial utilizado para desarrollar aplicaciones móviles para el sistema operativo Android.
+
+p:que es kotlin ?r:Kotlin es un lenguaje de programación moderno utilizado principalmente para desarrollar aplicaciones Android de forma eficiente y segura.
+
+p:que es un framework ?r:Un framework es una estructura de herramientas y bibliotecas que facilita el desarrollo rápido y organizado de aplicaciones.
+
+p:que es django ?r:Django es un framework de Python utilizado para desarrollar aplicaciones web rápidas, seguras y escalables.
+
+p:que es react ?r:React es una biblioteca de JavaScript utilizada para construir interfaces de usuario dinámicas y reutilizables en aplicaciones web.
+
+p:que es node js ?r:Node.js es un entorno de ejecución que permite utilizar JavaScript en servidores para desarrollar aplicaciones rápidas y escalables.
+
+p:que es firebase ?r:Firebase es una plataforma de desarrollo que proporciona servicios como bases de datos, autenticación y almacenamiento para aplicaciones móviles y web.

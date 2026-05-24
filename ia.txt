@@ -1,0 +1,123 @@
+p:que es inteligencia artificial ?r:La inteligencia artificial es una rama de la informática que desarrolla sistemas capaces de realizar tareas que normalmente requieren inteligencia humana.
+
+p:definicion de inteligencia artificial ?r:La inteligencia artificial consiste en crear programas y máquinas capaces de aprender, analizar información y tomar decisiones automáticamente.
+
+p:para que sirve la inteligencia artificial ?r:La inteligencia artificial sirve para automatizar tareas, analizar datos, reconocer patrones y mejorar procesos en diferentes áreas tecnológicas.
+
+p:que es machine learning ?r:Machine learning es una técnica de inteligencia artificial que permite a los sistemas aprender automáticamente a partir de datos sin ser programados explícitamente.
+
+p:que es aprendizaje automatico ?r:El aprendizaje automático es una rama de la inteligencia artificial enfocada en desarrollar sistemas que mejoran mediante experiencia y datos.
+
+p:que es deep learning ?r:Deep learning es una técnica avanzada de aprendizaje automático que utiliza múltiples capas neuronales para analizar grandes cantidades de información.
+
+p:que es una red neuronal ?r:Una red neuronal es un modelo computacional inspirado en el cerebro humano que procesa información mediante capas de neuronas artificiales conectadas.
+
+p:que es una neurona artificial ?r:Una neurona artificial es una unidad matemática utilizada en redes neuronales para procesar y transmitir información digitalmente.
+
+p:que es procesamiento de lenguaje natural ?r:El procesamiento de lenguaje natural es un área de inteligencia artificial enfocada en permitir que las computadoras comprendan y generen lenguaje humano.
+
+p:que es vision artificial ?r:La visión artificial es una rama de la inteligencia artificial que permite a las máquinas interpretar imágenes y videos automáticamente.
+
+p:que es reconocimiento facial ?r:El reconocimiento facial es una tecnología que identifica personas mediante el análisis de características únicas presentes en el rostro humano.
+
+p:que es reconocimiento de voz ?r:El reconocimiento de voz es una tecnología que permite a los sistemas interpretar y procesar palabras habladas por seres humanos.
+
+p:que es un chatbot ?r:Un chatbot es un programa diseñado para simular conversaciones humanas mediante respuestas automáticas basadas en reglas o inteligencia artificial.
+
+p:que es chatgpt ?r:ChatGPT es un modelo de inteligencia artificial desarrollado para mantener conversaciones, responder preguntas y generar contenido textual automáticamente.
+
+p:que es openai ?r:OpenAI es una empresa dedicada a la investigación y desarrollo de inteligencia artificial avanzada enfocada en crear sistemas útiles y seguros para las personas.
+
+p:que es un modelo predictivo ?r:Un modelo predictivo es un sistema matemático o computacional diseñado para anticipar resultados futuros utilizando datos históricos y estadísticas.
+
+p:que es ciencia de datos ?r:La ciencia de datos es un área interdisciplinaria que utiliza programación, matemáticas y estadística para analizar grandes volúmenes de información.
+
+p:que es mineria de datos ?r:La minería de datos es el proceso de analizar grandes conjuntos de información para descubrir patrones, relaciones y tendencias ocultas.
+
+p:que es inteligencia artificial generativa ?r:La inteligencia artificial generativa es una tecnología capaz de crear textos, imágenes, música y otros contenidos automáticamente.
+
+p:que es un modelo de lenguaje ?r:Un modelo de lenguaje es un sistema de inteligencia artificial entrenado para comprender y generar texto de manera coherente.
+
+p:que es entrenamiento de modelos ?r:El entrenamiento de modelos es el proceso mediante el cual una inteligencia artificial aprende patrones utilizando grandes cantidades de datos.
+
+p:que es un dataset ?r:Un dataset es un conjunto organizado de datos utilizado para entrenar, validar y evaluar sistemas de inteligencia artificial.
+
+p:que es big data ?r:Big Data hace referencia al manejo y análisis de enormes cantidades de información que superan las capacidades de procesamiento tradicionales.
+
+p:que es automatizacion inteligente ?r:La automatización inteligente combina inteligencia artificial y automatización para realizar procesos complejos con mínima intervención humana.
+
+p:que es un algoritmo de ia ?r:Un algoritmo de inteligencia artificial es un conjunto de instrucciones matemáticas utilizadas para procesar datos y generar resultados inteligentes.
+
+p:que es aprendizaje supervisado ?r:El aprendizaje supervisado es un método donde la inteligencia artificial aprende utilizando datos previamente etiquetados correctamente.
+
+p:que es aprendizaje no supervisado ?r:El aprendizaje no supervisado es una técnica donde la inteligencia artificial identifica patrones sin utilizar datos etiquetados.
+
+p:que es aprendizaje por refuerzo ?r:El aprendizaje por refuerzo es un método donde la inteligencia artificial aprende mediante recompensas y castigos durante la interacción.
+
+p:que es un asistente virtual ?r:Un asistente virtual es un sistema de inteligencia artificial diseñado para ayudar usuarios mediante voz o texto automáticamente.
+
+p:que es alexa ?r:Alexa es un asistente virtual desarrollado por Amazon capaz de responder preguntas y controlar dispositivos inteligentes mediante voz.
+
+p:que es siri ?r:Siri es el asistente virtual de Apple diseñado para responder preguntas y ejecutar acciones utilizando comandos de voz.
+
+p:que es google assistant ?r:Google Assistant es un asistente virtual desarrollado por Google capaz de realizar búsquedas, responder preguntas y controlar dispositivos.
+
+p:que es automatizacion ?r:La automatización consiste en utilizar tecnología para ejecutar tareas automáticamente reduciendo la necesidad de intervención humana constante.
+
+p:que es robotica ?r:La robótica es una disciplina tecnológica enfocada en diseñar y construir robots capaces de realizar tareas automáticamente.
+
+p:que es un robot inteligente ?r:Un robot inteligente es una máquina capaz de percibir información del entorno y tomar decisiones mediante inteligencia artificial.
+
+p:que es etica en inteligencia artificial ?r:La ética en inteligencia artificial analiza el impacto social y moral del uso de sistemas inteligentes en la vida cotidiana.
+
+p:que es sesgo en inteligencia artificial ?r:El sesgo en inteligencia artificial ocurre cuando un sistema produce resultados injustos debido a datos incorrectos o desbalanceados.
+
+p:que es automatizacion industrial ?r:La automatización industrial utiliza sistemas inteligentes y máquinas para optimizar procesos de producción en fábricas y empresas.
+
+p:que es reconocimiento de imagenes ?r:El reconocimiento de imágenes es una tecnología de inteligencia artificial que identifica objetos, personas o elementos visuales automáticamente.
+
+p:que es inteligencia artificial debil ?r:La inteligencia artificial débil es aquella diseñada para realizar tareas específicas sin poseer conciencia ni razonamiento general.
+
+p:que es inteligencia artificial fuerte ?r:La inteligencia artificial fuerte es una teoría que plantea sistemas capaces de razonar y pensar como seres humanos.
+
+p:que es un sistema experto ?r:Un sistema experto es un programa diseñado para imitar decisiones humanas utilizando reglas y bases de conocimiento especializadas.
+
+p:que es un agente inteligente ?r:Un agente inteligente es un sistema capaz de percibir el entorno y actuar automáticamente para alcanzar objetivos específicos.
+
+p:que es una prediccion automatica ?r:Una predicción automática es un resultado generado por inteligencia artificial utilizando patrones y análisis de datos históricos.
+
+p:que es una recomendacion inteligente ?r:Una recomendación inteligente es una sugerencia personalizada generada por algoritmos mediante análisis de comportamiento y preferencias.
+
+p:que es inteligencia artificial en medicina ?r:La inteligencia artificial en medicina ayuda a diagnosticar enfermedades, analizar imágenes médicas y mejorar tratamientos clínicos.
+
+p:que es inteligencia artificial en educacion ?r:La inteligencia artificial en educación permite personalizar el aprendizaje y automatizar procesos académicos de manera eficiente.
+
+p:que es inteligencia artificial en videojuegos ?r:La inteligencia artificial en videojuegos controla personajes y comportamientos automáticos para mejorar la experiencia del jugador.
+
+p:que es inteligencia artificial en seguridad ?r:La inteligencia artificial en seguridad permite detectar amenazas, analizar riesgos y mejorar la protección digital automáticamente.
+
+p:que es una computadora inteligente ?r:Una computadora inteligente es un sistema capaz de analizar información y ejecutar tareas complejas utilizando inteligencia artificial.
+
+p:que es analisis predictivo ?r:El análisis predictivo utiliza datos y algoritmos de inteligencia artificial para anticipar comportamientos o resultados futuros.
+
+p:que es clasificacion en inteligencia artificial ?r:La clasificación es un proceso donde la inteligencia artificial organiza datos en categorías según características similares.
+
+p:que es regresion en inteligencia artificial ?r:La regresión es una técnica utilizada en inteligencia artificial para estimar valores numéricos a partir de datos históricos.
+
+p:que es tensorflow ?r:TensorFlow es una biblioteca de código abierto desarrollada por Google utilizada para crear modelos de inteligencia artificial y aprendizaje automático.
+
+p:que es pytorch ?r:PyTorch es una biblioteca de programación utilizada para desarrollar redes neuronales y modelos avanzados de inteligencia artificial.
+
+p:que es una ia conversacional ?r:Una inteligencia artificial conversacional es un sistema diseñado para interactuar mediante lenguaje natural con usuarios humanos.
+
+p:que es procesamiento inteligente de datos ?r:El procesamiento inteligente de datos utiliza inteligencia artificial para analizar información rápidamente y obtener resultados útiles.
+
+p:que es automatizacion de procesos ?r:La automatización de procesos consiste en utilizar software y sistemas inteligentes para ejecutar tareas repetitivas eficientemente.
+
+p:que es una decision automatica ?r:Una decisión automática es una acción tomada por un sistema inteligente utilizando reglas y análisis de datos previamente aprendidos.
+
+p:que es aprendizaje profundo ?r:El aprendizaje profundo es una técnica avanzada de inteligencia artificial basada en redes neuronales con múltiples capas de procesamiento.
+
+p:que es reconocimiento de patrones ?r:El reconocimiento de patrones permite identificar relaciones y similitudes dentro de grandes cantidades de información digital.
+
+p:que es inteligencia computacional ?r:La inteligencia computacional es un conjunto de técnicas inspiradas en procesos naturales utilizadas para resolver problemas complejos.

@@ -1,0 +1,123 @@
+p:que es una red informatica ?r:Una red informática es un conjunto de dispositivos conectados entre sí para compartir información, recursos y servicios mediante protocolos de comunicación.
+
+p:definicion de red informatica ?r:Una red informática permite la comunicación entre computadores y dispositivos para intercambiar datos de manera rápida y segura.
+
+p:para que sirve una red informatica ?r:Una red informática sirve para compartir archivos, impresoras, conexión a internet y facilitar la comunicación entre dispositivos.
+
+p:que es internet ?r:Internet es una red global que conecta millones de dispositivos alrededor del mundo permitiendo el intercambio de información y comunicación digital.
+
+p:que es una direccion ip ?r:Una dirección IP es un identificador único asignado a cada dispositivo conectado a una red para permitir su comunicación dentro de internet.
+
+p:que es ipv4 ?r:IPv4 es la cuarta versión del protocolo de internet utilizada para identificar dispositivos mediante direcciones numéricas de 32 bits.
+
+p:que es ipv6 ?r:IPv6 es una versión moderna del protocolo de internet diseñada para proporcionar una mayor cantidad de direcciones IP disponibles.
+
+p:que es un router ?r:Un router es un dispositivo de red encargado de dirigir paquetes de datos entre diferentes redes y permitir acceso a internet.
+
+p:que es un switch ?r:Un switch es un dispositivo utilizado en redes locales para conectar varios equipos y enviar datos únicamente al dispositivo destinatario correcto.
+
+p:que es un hub ?r:Un hub es un dispositivo de red que distribuye información a todos los equipos conectados sin distinguir destinatarios específicos.
+
+p:que es wifi ?r:WiFi es una tecnología inalámbrica que permite conectar dispositivos electrónicos a una red local o internet sin necesidad de cables físicos.
+
+p:que es bluetooth ?r:Bluetooth es una tecnología inalámbrica utilizada para transferir información entre dispositivos cercanos mediante señales de radio.
+
+p:que es una lan ?r:Una LAN es una red de área local utilizada para conectar dispositivos dentro de un espacio reducido como oficinas, hogares o instituciones educativas.
+
+p:que es una wan ?r:Una WAN es una red de área amplia que conecta múltiples redes locales ubicadas en diferentes ciudades o países utilizando infraestructura pública o privada.
+
+p:que es una man ?r:Una MAN es una red metropolitana diseñada para conectar diferentes redes locales dentro de una ciudad o región específica.
+
+p:que es un servidor ?r:Un servidor es un equipo o software diseñado para ofrecer servicios, archivos o recursos a otros dispositivos conectados en una red.
+
+p:que es un cliente en redes ?r:Un cliente es un dispositivo o programa que solicita servicios o recursos proporcionados por un servidor dentro de una red.
+
+p:que es el protocolo tcp ip ?r:TCP/IP es un conjunto de protocolos de comunicación utilizados para transmitir datos de forma confiable a través de internet y redes informáticas.
+
+p:que es tcp ?r:TCP es un protocolo de comunicación encargado de garantizar el envío correcto y ordenado de datos entre dispositivos conectados.
+
+p:que es udp ?r:UDP es un protocolo de comunicación rápido que transmite datos sin verificar completamente su entrega o integridad.
+
+p:que es dns ?r:DNS es un sistema que traduce nombres de dominios web en direcciones IP comprensibles para las computadoras.
+
+p:que es dhcp ?r:DHCP es un protocolo encargado de asignar automáticamente direcciones IP a dispositivos conectados en una red.
+
+p:que es una mascara de red ?r:La máscara de red es un valor utilizado para identificar qué parte de una dirección IP pertenece a la red y cuál al dispositivo.
+
+p:que es una puerta de enlace ?r:La puerta de enlace es el dispositivo encargado de conectar una red local con otras redes externas como internet.
+
+p:que es una topologia de red ?r:Una topología de red es la forma física o lógica en la que se organizan y conectan los dispositivos dentro de una red.
+
+p:que es topologia estrella ?r:La topología estrella conecta todos los dispositivos a un punto central facilitando administración y mantenimiento de la red.
+
+p:que es topologia bus ?r:La topología bus utiliza un único cable principal para conectar varios dispositivos dentro de una red informática.
+
+p:que es topologia anillo ?r:La topología anillo conecta dispositivos formando un circuito cerrado donde los datos circulan en una dirección específica.
+
+p:que es fibra optica ?r:La fibra óptica es un medio de transmisión que utiliza luz para enviar datos a gran velocidad y largas distancias.
+
+p:que es cable utp ?r:El cable UTP es un tipo de cable de red utilizado comúnmente para conectar dispositivos en redes locales Ethernet.
+
+p:que es ethernet ?r:Ethernet es una tecnología de red utilizada para conectar dispositivos mediante cables y transmitir información rápidamente.
+
+p:que es ancho de banda ?r:El ancho de banda representa la cantidad máxima de datos que puede transmitirse por una red en un tiempo determinado.
+
+p:que es latencia ?r:La latencia es el tiempo que tarda un paquete de datos en viajar desde un origen hasta un destino dentro de una red.
+
+p:que es ping ?r:Ping es una herramienta utilizada para comprobar la conectividad y medir el tiempo de respuesta entre dispositivos en una red.
+
+p:que es una vpn ?r:Una VPN es una red privada virtual que protege la conexión a internet cifrando los datos transmitidos entre dispositivos.
+
+p:que es un paquete de datos ?r:Un paquete de datos es una unidad de información enviada a través de una red para facilitar la comunicación digital.
+
+p:que es direccion mac ?r:La dirección MAC es un identificador físico único asignado a las tarjetas de red de los dispositivos electrónicos.
+
+p:que es una red inalambrica ?r:Una red inalámbrica permite conectar dispositivos sin utilizar cables físicos mediante tecnologías como WiFi o Bluetooth.
+
+p:que es una red cableada ?r:Una red cableada conecta dispositivos utilizando cables físicos para transmitir información de manera estable y segura.
+
+p:que es una intranet ?r:Una intranet es una red privada utilizada dentro de organizaciones para compartir información y recursos internos.
+
+p:que es extranet ?r:Una extranet es una red privada que permite acceso limitado a usuarios externos autorizados de una organización.
+
+p:que es un modem ?r:Un módem es un dispositivo encargado de convertir señales digitales y analógicas para permitir acceso a internet.
+
+p:que es un access point ?r:Un access point es un dispositivo que amplía o proporciona acceso inalámbrico a una red local mediante WiFi.
+
+p:que es seguridad de red ?r:La seguridad de red consiste en proteger sistemas y datos contra accesos no autorizados y amenazas digitales.
+
+p:que es firewall en redes ?r:Un firewall es un sistema de seguridad que controla y filtra el tráfico de datos entre redes y dispositivos.
+
+p:que es una red publica ?r:Una red pública es una red accesible para cualquier usuario como las conexiones WiFi disponibles en lugares públicos.
+
+p:que es una red privada ?r:Una red privada es una red restringida utilizada únicamente por usuarios autorizados dentro de una organización o hogar.
+
+p:que es subnetting ?r:Subnetting es una técnica utilizada para dividir redes grandes en subredes más pequeñas y eficientes.
+
+p:que es una subred ?r:Una subred es una división lógica de una red informática utilizada para mejorar organización y rendimiento.
+
+p:que es transferencia de datos ?r:La transferencia de datos es el proceso de enviar información digital entre dispositivos conectados en una red.
+
+p:que es streaming ?r:Streaming es una tecnología que permite reproducir audio o video directamente desde internet sin descargar completamente el archivo.
+
+p:que es un dominio ?r:Un dominio es el nombre único utilizado para identificar sitios web y recursos disponibles en internet.
+
+p:que es hosting ?r:Hosting es un servicio que proporciona espacio y recursos en servidores para almacenar sitios web y aplicaciones.
+
+p:que es cloud computing ?r:Cloud computing es un modelo tecnológico que permite acceder a servicios y almacenamiento mediante internet.
+
+p:que es computacion en la nube ?r:La computación en la nube permite utilizar recursos tecnológicos y almacenamiento remoto sin depender de equipos locales.
+
+p:que es velocidad de internet ?r:La velocidad de internet indica la rapidez con la que se transmiten datos entre dispositivos y servidores.
+
+p:que es un protocolo de red ?r:Un protocolo de red es un conjunto de reglas que permite la comunicación correcta entre dispositivos conectados.
+
+p:que es ftp ?r:FTP es un protocolo utilizado para transferir archivos entre computadores conectados a una red o internet.
+
+p:que es http ?r:HTTP es un protocolo utilizado para transferir páginas web y recursos entre servidores y navegadores de internet.
+
+p:que es https ?r:HTTPS es una versión segura de HTTP que utiliza cifrado para proteger la información transmitida en internet.
+
+p:que es una red peer to peer ?r:Una red peer to peer permite que los dispositivos compartan recursos directamente entre sí sin necesidad de un servidor central.
+
+p:que es una red cliente servidor ?r:Una red cliente servidor utiliza servidores centrales para proporcionar recursos y servicios a múltiples clientes conectados.

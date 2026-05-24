@@ -1,0 +1,127 @@
+p:que es ciberseguridad ?r:La ciberseguridad es el conjunto de prácticas y tecnologías destinadas a proteger sistemas, redes y datos frente a ataques digitales.
+
+p:definicion de ciberseguridad ?r:La ciberseguridad consiste en proteger dispositivos, información y sistemas informáticos contra amenazas y accesos no autorizados.
+
+p:para que sirve la ciberseguridad ?r:La ciberseguridad sirve para proteger datos personales, redes y sistemas frente a ataques informáticos y robo de información.
+
+p:que es un virus informatico ?r:Un virus informático es un programa malicioso diseñado para dañar sistemas, robar información o alterar el funcionamiento de dispositivos electrónicos.
+
+p:que es malware ?r:El malware es cualquier software malicioso creado para infiltrarse en dispositivos y causar daños o robo de información sin autorización.
+
+p:que es ransomware ?r:El ransomware es un tipo de malware que bloquea archivos o sistemas y exige un pago económico para restaurar el acceso.
+
+p:que es spyware ?r:El spyware es un software malicioso diseñado para espiar actividades de usuarios y recopilar información sin consentimiento.
+
+p:que es adware ?r:El adware es un software que muestra publicidad no deseada y puede afectar el rendimiento de dispositivos electrónicos.
+
+p:que es phishing ?r:El phishing es una técnica de fraude digital que intenta engañar a las personas para obtener contraseñas, datos bancarios o información privada.
+
+p:que es pharming ?r:El pharming es un ataque informático que redirige usuarios hacia sitios falsos para robar información confidencial.
+
+p:que es ingenieria social ?r:La ingeniería social es una técnica utilizada por atacantes para manipular personas y obtener información sensible.
+
+p:que es hacking etico ?r:El hacking ético consiste en realizar pruebas autorizadas de seguridad para detectar vulnerabilidades y mejorar la protección de sistemas.
+
+p:que es un hacker ?r:Un hacker es una persona con conocimientos avanzados en informática capaz de identificar vulnerabilidades en sistemas digitales.
+
+p:que es un cracker ?r:Un cracker es una persona que vulnera sistemas informáticos ilegalmente con fines maliciosos o delictivos.
+
+p:que es un firewall ?r:Un firewall es un sistema de seguridad que controla el tráfico de red permitiendo o bloqueando conexiones según reglas establecidas.
+
+p:que es antivirus ?r:Un antivirus es un programa diseñado para detectar, bloquear y eliminar amenazas informáticas presentes en dispositivos electrónicos.
+
+p:que es una contraseña segura ?r:Una contraseña segura es una combinación compleja de letras, números y símbolos diseñada para dificultar accesos no autorizados.
+
+p:que es autenticacion de dos factores ?r:La autenticación de dos factores es un mecanismo de seguridad que requiere dos métodos distintos para verificar la identidad del usuario.
+
+p:que es cifrado de datos ?r:El cifrado de datos es un proceso que convierte información en un formato ilegible para protegerla contra accesos no autorizados.
+
+p:que es una vpn ?r:Una VPN es una red privada virtual que protege la conexión a internet cifrando los datos transmitidos entre dispositivos.
+
+p:que es seguridad informatica ?r:La seguridad informática es el conjunto de medidas utilizadas para proteger sistemas, redes y datos digitales frente a amenazas.
+
+p:que es un ataque ddos ?r:Un ataque DDoS consiste en saturar un servidor o red con múltiples solicitudes falsas para interrumpir el funcionamiento normal del servicio.
+
+p:que es un ataque de fuerza bruta ?r:Un ataque de fuerza bruta intenta descubrir contraseñas probando múltiples combinaciones automáticamente hasta encontrar la correcta.
+
+p:que es un exploit ?r:Un exploit es un programa o técnica utilizada para aprovechar vulnerabilidades presentes en sistemas o aplicaciones.
+
+p:que es una vulnerabilidad ?r:Una vulnerabilidad es una debilidad en software o hardware que puede ser aprovechada por atacantes informáticos.
+
+p:que es un troyano ?r:Un troyano es un programa malicioso que aparenta ser legítimo para engañar usuarios e infiltrarse en sistemas.
+
+p:que es un gusano informatico ?r:Un gusano informático es un malware capaz de replicarse automáticamente y propagarse a través de redes.
+
+p:que es una amenaza informatica ?r:Una amenaza informática es cualquier acción o software capaz de comprometer la seguridad de sistemas digitales.
+
+p:que es seguridad de red ?r:La seguridad de red consiste en proteger la infraestructura y comunicación de datos frente a accesos indebidos y ataques.
+
+p:que es seguridad digital ?r:La seguridad digital incluye medidas tecnológicas destinadas a proteger información y actividades realizadas en entornos digitales.
+
+p:que es un certificado digital ?r:Un certificado digital es un archivo electrónico utilizado para verificar identidades y proteger comunicaciones digitales.
+
+p:que es https ?r:HTTPS es un protocolo seguro utilizado para proteger la transmisión de datos entre navegadores y sitios web mediante cifrado.
+
+p:que es autenticacion biometrica ?r:La autenticación biométrica utiliza características físicas como huellas o reconocimiento facial para verificar identidades.
+
+p:que es control de acceso ?r:El control de acceso es un sistema que limita el ingreso de usuarios autorizados a recursos y datos específicos.
+
+p:que es un backup ?r:Un backup es una copia de seguridad realizada para recuperar información en caso de pérdida o daño de datos.
+
+p:que es recuperacion de datos ?r:La recuperación de datos consiste en restaurar información perdida o dañada mediante herramientas especializadas.
+
+p:que es ciberataque ?r:Un ciberataque es una acción maliciosa realizada contra sistemas informáticos con el objetivo de robar o dañar información.
+
+p:que es proteccion de datos ?r:La protección de datos incluye medidas y políticas utilizadas para asegurar la privacidad y confidencialidad de la información.
+
+p:que es privacidad digital ?r:La privacidad digital consiste en proteger información personal y controlar cómo se utiliza en internet y sistemas digitales.
+
+p:que es identidad digital ?r:La identidad digital es el conjunto de datos e información que representan a una persona en entornos digitales.
+
+p:que es una brecha de seguridad ?r:Una brecha de seguridad ocurre cuando información protegida es accedida, robada o divulgada sin autorización.
+
+p:que es seguridad en la nube ?r:La seguridad en la nube protege datos y aplicaciones almacenados en servicios de computación remota mediante internet.
+
+p:que es cibercrimen ?r:El cibercrimen incluye actividades ilegales realizadas mediante sistemas informáticos y redes digitales.
+
+p:que es una politica de seguridad ?r:Una política de seguridad es un conjunto de normas y procedimientos utilizados para proteger sistemas e información.
+
+p:que es seguridad web ?r:La seguridad web consiste en proteger sitios y aplicaciones web frente a vulnerabilidades y ataques cibernéticos.
+
+p:que es un keylogger ?r:Un keylogger es un software malicioso diseñado para registrar las teclas presionadas por un usuario sin autorización.
+
+p:que es spoofing ?r:El spoofing es una técnica utilizada para falsificar identidades digitales y engañar sistemas o usuarios.
+
+p:que es criptografia ?r:La criptografía es una disciplina que protege información mediante técnicas matemáticas y algoritmos de cifrado.
+
+p:que es cifrado simetrico ?r:El cifrado simétrico utiliza una misma clave para cifrar y descifrar información protegida digitalmente.
+
+p:que es cifrado asimetrico ?r:El cifrado asimétrico utiliza dos claves diferentes, una pública y otra privada, para proteger datos digitales.
+
+p:que es una firma digital ?r:Una firma digital es un mecanismo criptográfico utilizado para verificar autenticidad e integridad de documentos electrónicos.
+
+p:que es seguridad en aplicaciones ?r:La seguridad en aplicaciones busca proteger programas y sistemas frente a vulnerabilidades y accesos indebidos.
+
+p:que es auditoria de seguridad ?r:La auditoría de seguridad consiste en evaluar sistemas informáticos para identificar riesgos y mejorar protección.
+
+p:que es un pentesting ?r:El pentesting es una prueba de penetración utilizada para evaluar la seguridad de sistemas mediante ataques controlados.
+
+p:que es seguridad en redes wifi ?r:La seguridad en redes WiFi protege conexiones inalámbricas contra accesos no autorizados y robo de información.
+
+p:que es un ataque man in the middle ?r:Un ataque Man in the Middle intercepta comunicaciones entre usuarios para espiar o modificar información transmitida.
+
+p:que es seguridad en dispositivos moviles ?r:La seguridad en dispositivos móviles protege teléfonos y tabletas contra malware, robo de datos y accesos indebidos.
+
+p:que es seguridad en correos electronicos ?r:La seguridad en correos electrónicos protege mensajes y archivos frente a fraudes, malware y robo de información.
+
+p:que es proteccion contra malware ?r:La protección contra malware incluye herramientas y prácticas destinadas a detectar y eliminar software malicioso.
+
+p:que es seguridad empresarial ?r:La seguridad empresarial protege infraestructura tecnológica y datos corporativos frente a amenazas internas y externas.
+
+p:que es seguridad en internet ?r:La seguridad en internet consiste en aplicar medidas para navegar y comunicarse de manera segura en entornos digitales.
+
+p:que es autenticacion ?r:La autenticación es el proceso de verificar la identidad de usuarios antes de permitir acceso a sistemas digitales.
+
+p:que es autorizacion ?r:La autorización determina qué recursos y acciones puede utilizar un usuario dentro de un sistema informático.
+
+p:que es un sistema seguro ?r:Un sistema seguro es aquel diseñado para proteger información y resistir amenazas o accesos no autorizados.

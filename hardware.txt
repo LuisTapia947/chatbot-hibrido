@@ -1,0 +1,127 @@
+p:que es hardware ?r:El hardware corresponde a todos los componentes físicos de un computador como procesador, memoria, disco duro, teclado y monitor.
+
+p:definicion de hardware ?r:El hardware es el conjunto de partes físicas y dispositivos electrónicos que conforman un sistema informático funcional.
+
+p:para que sirve el hardware ?r:El hardware sirve para ejecutar programas, almacenar información y permitir el funcionamiento físico de sistemas computacionales.
+
+p:que es una cpu ?r:La CPU es el procesador principal de un computador encargado de ejecutar instrucciones y realizar operaciones lógicas y matemáticas.
+
+p:que es un procesador ?r:Un procesador es el componente encargado de interpretar instrucciones y coordinar las operaciones internas de un computador.
+
+p:que es memoria ram ?r:La memoria RAM es un componente que almacena temporalmente los datos y programas que están siendo utilizados por el sistema operativo.
+
+p:para que sirve la memoria ram ?r:La memoria RAM permite acceder rápidamente a información temporal utilizada por programas y procesos activos del computador.
+
+p:que es un disco duro ?r:Un disco duro es un dispositivo de almacenamiento utilizado para guardar permanentemente archivos, programas y sistemas operativos en un computador.
+
+p:que es un ssd ?r:Un SSD es una unidad de almacenamiento de estado sólido más rápida y eficiente que los discos duros tradicionales mecánicos.
+
+p:diferencia entre hdd y ssd ?r:Los discos SSD son más rápidos y silenciosos que los HDD tradicionales debido a que no utilizan componentes mecánicos internos.
+
+p:que es una tarjeta madre ?r:La tarjeta madre es la placa principal de un computador donde se conectan y comunican todos los componentes internos del sistema.
+
+p:que es motherboard ?r:Motherboard es el nombre en inglés de la tarjeta principal encargada de conectar y coordinar los componentes del computador.
+
+p:que es una gpu ?r:La GPU es una unidad de procesamiento gráfico especializada en realizar cálculos relacionados con imágenes, videojuegos y procesamiento visual.
+
+p:que es una tarjeta grafica ?r:Una tarjeta gráfica es un componente encargado de procesar gráficos y mejorar el rendimiento visual de aplicaciones y videojuegos.
+
+p:que es una fuente de poder ?r:La fuente de poder es el componente encargado de suministrar energía eléctrica estable a todos los dispositivos internos del computador.
+
+p:que es refrigeracion liquida ?r:La refrigeración líquida es un sistema utilizado para disminuir la temperatura de componentes electrónicos mediante circulación de líquido refrigerante.
+
+p:que es un disipador ?r:Un disipador es un componente metálico diseñado para reducir el calor generado por procesadores y otros dispositivos electrónicos.
+
+p:que es un ventilador de pc ?r:Un ventilador de computador es un dispositivo utilizado para expulsar aire caliente y mantener temperaturas adecuadas en el sistema.
+
+p:que es un gabinete ?r:Un gabinete es la estructura física donde se instalan y protegen los componentes internos de un computador.
+
+p:que es una bios ?r:La BIOS es un sistema básico que inicia y verifica el funcionamiento del hardware antes de cargar el sistema operativo.
+
+p:que es uefi ?r:UEFI es un sistema moderno que reemplaza la BIOS tradicional ofreciendo mayor velocidad y funciones avanzadas de arranque.
+
+p:que es un monitor ?r:Un monitor es un dispositivo de salida utilizado para visualizar imágenes, videos y la interfaz gráfica de un computador.
+
+p:que es un teclado ?r:Un teclado es un periférico de entrada utilizado para escribir texto e introducir comandos en un computador.
+
+p:que es un mouse ?r:Un mouse es un dispositivo apuntador utilizado para controlar el cursor y seleccionar elementos en la pantalla.
+
+p:que es un teclado mecanico ?r:Un teclado mecánico es un periférico que utiliza interruptores individuales en cada tecla ofreciendo mayor precisión y durabilidad.
+
+p:que es un teclado membrana ?r:Un teclado de membrana utiliza capas flexibles para registrar pulsaciones y suele ser más silencioso y económico.
+
+p:que es una impresora ?r:Una impresora es un dispositivo periférico utilizado para producir documentos e imágenes físicas en papel.
+
+p:que es un escaner ?r:Un escáner es un dispositivo utilizado para digitalizar documentos e imágenes físicas y almacenarlas en formato digital.
+
+p:que es un periferico ?r:Un periférico es un dispositivo externo conectado al computador para facilitar entrada, salida o almacenamiento de información.
+
+p:que es un periferico de entrada ?r:Un periférico de entrada permite introducir datos al computador mediante dispositivos como teclado, mouse o micrófono.
+
+p:que es un periferico de salida ?r:Un periférico de salida permite mostrar información generada por el computador mediante pantallas, impresoras o parlantes.
+
+p:que es un puerto usb ?r:Un puerto USB es una interfaz utilizada para conectar dispositivos externos y transferir datos o energía eléctrica.
+
+p:que es hdmi ?r:HDMI es una interfaz digital utilizada para transmitir audio y video de alta calidad entre dispositivos electrónicos.
+
+p:que es un puerto vga ?r:El puerto VGA es una conexión utilizada para transmitir señales de video analógicas entre computadores y monitores.
+
+p:que es un puerto ethernet ?r:El puerto Ethernet permite conectar un computador a una red local mediante cables de comunicación.
+
+p:que es almacenamiento externo ?r:El almacenamiento externo consiste en dispositivos utilizados para guardar información fuera del computador principal.
+
+p:que es una memoria usb ?r:Una memoria USB es un dispositivo portátil utilizado para almacenar y transportar archivos digitales fácilmente.
+
+p:que es una tarjeta sd ?r:Una tarjeta SD es un dispositivo de almacenamiento pequeño utilizado en cámaras, teléfonos y otros dispositivos electrónicos.
+
+p:que es un microprocesador ?r:Un microprocesador es un circuito integrado encargado de ejecutar instrucciones y operaciones dentro de dispositivos electrónicos.
+
+p:que es arquitectura de computadores ?r:La arquitectura de computadores estudia el diseño, organización y funcionamiento interno de sistemas computacionales.
+
+p:que es hardware de entrada ?r:El hardware de entrada incluye dispositivos utilizados para introducir datos e instrucciones al sistema informático.
+
+p:que es hardware de salida ?r:El hardware de salida incluye dispositivos encargados de mostrar o transmitir información procesada por el computador.
+
+p:que es hardware de almacenamiento ?r:El hardware de almacenamiento comprende dispositivos utilizados para guardar información temporal o permanentemente.
+
+p:que es hardware interno ?r:El hardware interno corresponde a los componentes ubicados dentro del gabinete principal del computador.
+
+p:que es hardware externo ?r:El hardware externo incluye dispositivos conectados externamente al computador como impresoras, teclados y monitores.
+
+p:que es una laptop ?r:Una laptop es un computador portátil diseñado para facilitar movilidad y funcionamiento mediante batería integrada.
+
+p:que es un computador de escritorio ?r:Un computador de escritorio es un sistema informático diseñado para utilizarse en un lugar fijo como oficinas o hogares.
+
+p:que es una workstation ?r:Una workstation es un computador de alto rendimiento utilizado para diseño gráfico, ingeniería y procesamiento profesional.
+
+p:que es un servidor fisico ?r:Un servidor físico es un computador especializado diseñado para ofrecer servicios y recursos a otros equipos conectados.
+
+p:que es overclocking ?r:El overclocking consiste en aumentar manualmente la velocidad de funcionamiento de componentes para mejorar rendimiento.
+
+p:que es temperatura del cpu ?r:La temperatura del CPU indica el nivel de calor generado por el procesador durante su funcionamiento normal.
+
+p:que es mantenimiento preventivo ?r:El mantenimiento preventivo consiste en limpiar y revisar componentes para evitar daños y mejorar rendimiento del hardware.
+
+p:que es mantenimiento correctivo ?r:El mantenimiento correctivo se realiza para reparar fallos o reemplazar componentes dañados en sistemas informáticos.
+
+p:que es una bateria de laptop ?r:La batería de laptop es un componente recargable que suministra energía eléctrica portátil al computador.
+
+p:que es una webcam ?r:Una webcam es una cámara digital utilizada para capturar video e imágenes en tiempo real mediante un computador.
+
+p:que es un microfono ?r:Un micrófono es un dispositivo de entrada utilizado para capturar sonido y transmitirlo al computador.
+
+p:que son parlantes ?r:Los parlantes son dispositivos de salida encargados de reproducir sonido generado por sistemas electrónicos.
+
+p:que es una pantalla led ?r:Una pantalla LED utiliza diodos emisores de luz para mostrar imágenes con mayor brillo y eficiencia energética.
+
+p:que es una pantalla lcd ?r:Una pantalla LCD utiliza cristales líquidos para representar imágenes y texto en dispositivos electrónicos.
+
+p:que es una fuente modular ?r:Una fuente modular permite conectar únicamente los cables necesarios mejorando organización y flujo de aire interno.
+
+p:que es un chipset ?r:Un chipset es un conjunto de circuitos encargados de controlar la comunicación entre componentes del computador.
+
+p:que es memoria cache ?r:La memoria caché es un almacenamiento rápido utilizado por el procesador para acceder rápidamente a datos frecuentes.
+
+p:que es un socket ?r:Un socket es el conector físico de la tarjeta madre donde se instala el procesador principal del computador.
+
+p:que es compatibilidad de hardware ?r:La compatibilidad de hardware determina si diferentes componentes pueden funcionar correctamente juntos dentro de un sistema.
