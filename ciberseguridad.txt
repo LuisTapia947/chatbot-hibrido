@@ -125,3 +125,124 @@ p:que es autenticacion ?r:La autenticación es el proceso de verificar la identi
 p:que es autorizacion ?r:La autorización determina qué recursos y acciones puede utilizar un usuario dentro de un sistema informático.
 
 p:que es un sistema seguro ?r:Un sistema seguro es aquel diseñado para proteger información y resistir amenazas o accesos no autorizados.
+p:que es phishing ?r:El phishing es un ataque de ciberseguridad donde delincuentes intentan robar información mediante correos o sitios web falsos.
+
+p:que es ransomware ?r:El ransomware es un malware que cifra archivos y exige un pago económico para recuperar el acceso a la información.
+
+p:que es malware ?r:El malware es software malicioso diseñado para dañar, espiar o alterar sistemas informáticos sin autorización.
+
+p:que es spyware ?r:El spyware es un programa malicioso utilizado para recopilar información del usuario sin su conocimiento.
+
+p:que es un ataque ddos ?r:Un ataque DDoS busca saturar servidores o redes mediante tráfico masivo para interrumpir servicios digitales.
+
+p:que es un firewall ?r:Un firewall es un sistema de seguridad que controla y filtra el tráfico de red para proteger dispositivos.
+
+p:que es un antivirus ?r:Un antivirus es un programa diseñado para detectar, bloquear y eliminar amenazas informáticas en dispositivos.
+
+p:que es autenticacion multifactor ?r:La autenticación multifactor mejora la seguridad utilizando dos o más métodos de verificación de identidad.
+
+p:que es una vulnerabilidad ?r:Una vulnerabilidad es una debilidad en sistemas o programas que puede ser aprovechada por atacantes.
+
+p:que es un exploit ?r:Un exploit es una técnica o programa utilizado para aprovechar vulnerabilidades en sistemas informáticos.
+
+p:que es ingenieria social ?r:La ingeniería social manipula psicológicamente a las personas para obtener información confidencial o acceso no autorizado.
+
+p:que es cifrado de datos ?r:El cifrado de datos convierte información en formatos ilegibles para protegerla de accesos no autorizados.
+
+p:que es una contraseña segura ?r:Una contraseña segura combina letras, números y símbolos para dificultar ataques de acceso no autorizado.
+
+p:que es seguridad informatica ?r:La seguridad informática protege sistemas, redes y datos frente a amenazas digitales y accesos ilegales.
+
+p:que es hacking etico ?r:El hacking ético consiste en evaluar sistemas informáticos legalmente para identificar y corregir vulnerabilidades.
+
+p:que es un hacker de sombrero blanco ?r:Un hacker de sombrero blanco utiliza conocimientos de seguridad para proteger sistemas y encontrar fallos legalmente.
+
+p:que es un hacker de sombrero negro ?r:Un hacker de sombrero negro realiza actividades ilegales para robar información o dañar sistemas informáticos.
+
+p:que es un ataque de fuerza bruta ?r:Un ataque de fuerza bruta intenta descubrir contraseñas probando múltiples combinaciones automáticamente.
+
+p:que es un troyano ?r:Un troyano es un malware que aparenta ser legítimo mientras realiza acciones maliciosas ocultas.
+
+p:que es un gusano informatico ?r:Un gusano informático es un malware capaz de propagarse automáticamente a través de redes y dispositivos.
+
+p:que es un keylogger ?r:Un keylogger registra las pulsaciones del teclado para capturar contraseñas y datos confidenciales.
+
+p:que es spoofing ?r:El spoofing consiste en falsificar identidades digitales para engañar usuarios o sistemas informáticos.
+
+p:que es seguridad en redes ?r:La seguridad en redes protege conexiones y comunicaciones frente a accesos no autorizados y ataques digitales.
+
+p:que es un certificado digital ?r:Un certificado digital verifica identidades electrónicas y garantiza comunicaciones seguras en internet.
+
+p:que es https ?r:HTTPS es un protocolo seguro utilizado para proteger la transmisión de datos entre navegadores y servidores web.
+
+p:que es un ataque man in the middle ?r:Un ataque Man in the Middle intercepta comunicaciones entre dos partes para robar o modificar información.
+
+p:que es ciberespionaje ?r:El ciberespionaje consiste en obtener información confidencial mediante ataques informáticos encubiertos.
+
+p:que es una brecha de seguridad ?r:Una brecha de seguridad ocurre cuando información sensible es expuesta debido a fallos de protección.
+
+p:que es control de acceso ?r:El control de acceso limita qué usuarios pueden ingresar o utilizar recursos digitales específicos.
+
+p:que es un sistema ids ?r:Un IDS es un sistema capaz de detectar actividades sospechosas o ataques dentro de redes informáticas.
+
+p:que es un sistema ips ?r:Un IPS detecta y bloquea automáticamente amenazas y actividades maliciosas en redes digitales.
+
+p:que es seguridad en la nube ?r:La seguridad en la nube protege datos y servicios almacenados en plataformas digitales remotas.
+
+p:que es ciberataque ?r:Un ciberataque es una acción maliciosa dirigida contra sistemas informáticos, redes o información digital.
+
+p:que es anonimato digital ?r:El anonimato digital protege la identidad de usuarios durante actividades realizadas en internet.
+
+p:que es una vpn ?r:Una VPN crea conexiones seguras y privadas mediante cifrado del tráfico de internet.
+
+p:que es dark web ?r:La Dark Web es una parte oculta de internet accesible mediante herramientas especiales y frecuentemente relacionada con anonimato.
+
+p:que es seguridad biometrica ?r:La seguridad biométrica utiliza características físicas como huellas o rostro para autenticar usuarios.
+
+p:que es un token de seguridad ?r:Un token de seguridad es un dispositivo o código utilizado para verificar identidades digitales.
+
+p:que es analisis forense digital ?r:El análisis forense digital investiga evidencias electrónicas relacionadas con incidentes de ciberseguridad.
+
+p:que es un pentesting ?r:El pentesting evalúa sistemas mediante pruebas controladas para detectar vulnerabilidades de seguridad.
+
+p:que es seguridad perimetral ?r:La seguridad perimetral protege redes y sistemas mediante barreras de control y monitoreo externo.
+
+p:que es una amenaza interna ?r:Una amenaza interna proviene de usuarios autorizados que comprometen información o sistemas deliberadamente o por error.
+
+p:que es seguridad de aplicaciones ?r:La seguridad de aplicaciones protege programas y software frente a vulnerabilidades y ataques digitales.
+
+p:que es un ataque sql injection ?r:La inyección SQL es un ataque que manipula bases de datos mediante consultas maliciosas en aplicaciones web.
+
+p:que es xss ?r:El ataque XSS inserta código malicioso en páginas web para afectar usuarios y robar información.
+
+p:que es seguridad de endpoints ?r:La seguridad de endpoints protege dispositivos conectados a redes como computadores y teléfonos inteligentes.
+
+p:que es una botnet ?r:Una botnet es una red de dispositivos infectados controlados remotamente para realizar ataques masivos.
+
+p:que es una politica de seguridad ?r:Una política de seguridad establece normas y procedimientos para proteger información y sistemas digitales.
+
+p:que es una copia de seguridad ?r:Una copia de seguridad es una duplicación de datos utilizada para recuperar información ante fallos o ataques.
+
+p:que es un ataque zero day ?r:Un ataque Zero Day aprovecha vulnerabilidades desconocidas antes de que exista una solución de seguridad.
+
+p:que es ciberseguridad empresarial ?r:La ciberseguridad empresarial protege información y sistemas críticos dentro de organizaciones y empresas.
+
+p:que es un rootkit ?r:Un rootkit es un malware diseñado para ocultarse profundamente dentro del sistema operativo.
+
+p:que es seguridad movil ?r:La seguridad móvil protege teléfonos inteligentes y tabletas frente a amenazas digitales y robo de información.
+
+p:que es un honeypot ?r:Un honeypot es un sistema señuelo utilizado para atraer y analizar ataques informáticos.
+
+p:que es un ataque de denegacion de servicio ?r:Un ataque de denegación de servicio busca interrumpir servicios digitales saturando recursos del sistema.
+
+p:que es autenticacion biometrica ?r:La autenticación biométrica verifica identidades mediante características físicas únicas de las personas.
+
+p:que es ciberseguridad industrial ?r:La ciberseguridad industrial protege sistemas de automatización y control utilizados en industrias y fábricas.
+
+p:que es una auditoria de seguridad ?r:Una auditoría de seguridad evalúa el nivel de protección y cumplimiento de sistemas informáticos.
+
+p:que es seguridad digital ?r:La seguridad digital incluye medidas y tecnologías destinadas a proteger datos y dispositivos electrónicos.
+
+p:que es un sandbox en ciberseguridad ?r:Un sandbox es un entorno aislado utilizado para ejecutar archivos sospechosos de forma segura.
+
+p:que es hardening ?r:El hardening consiste en fortalecer sistemas eliminando configuraciones inseguras y vulnerabilidades potenciales.
