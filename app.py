@@ -52,7 +52,7 @@ div.stButton > button {
 # TITULO
 # =========================================================
 
-st.title("🤖 Chatbot Híbrido Educativo")
+st.title("🤖 Chatbot Híbrido")
 
 st.markdown("""
 ### Temáticas disponibles
@@ -160,16 +160,7 @@ with st.sidebar:
 
     st.success(f"Preguntas cargadas: {len(preguntas)}")
 
-    st.markdown("---")
-
-    st.subheader("🤖 Características")
-
-    st.write("✔️ Coincidencias inteligentes")
-    st.write("✔️ Sugerencias automáticas")
-    st.write("✔️ Interfaz moderna")
-    st.write("✔️ Streamlit Cloud")
-
-    st.markdown("---")
+    
 
     if st.button("🗑️ Limpiar conversación"):
 
