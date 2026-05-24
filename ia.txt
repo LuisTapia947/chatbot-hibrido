@@ -121,3 +121,125 @@ p:que es aprendizaje profundo ?r:El aprendizaje profundo es una técnica avanzad
 p:que es reconocimiento de patrones ?r:El reconocimiento de patrones permite identificar relaciones y similitudes dentro de grandes cantidades de información digital.
 
 p:que es inteligencia computacional ?r:La inteligencia computacional es un conjunto de técnicas inspiradas en procesos naturales utilizadas para resolver problemas complejos.
+
+p:que es inteligencia artificial ?r:La inteligencia artificial es una rama de la informática que desarrolla sistemas capaces de realizar tareas similares a las del razonamiento humano.
+
+p:para que sirve la inteligencia artificial ?r:La inteligencia artificial sirve para automatizar procesos, analizar datos y mejorar la toma de decisiones en diferentes áreas tecnológicas.
+
+p:que es machine learning ?r:Machine Learning es una técnica de inteligencia artificial que permite a las máquinas aprender patrones a partir de datos.
+
+p:que es deep learning ?r:Deep Learning es una rama del aprendizaje automático basada en redes neuronales profundas capaces de procesar grandes cantidades de información.
+
+p:que es una red neuronal ?r:Una red neuronal es un modelo computacional inspirado en el cerebro humano utilizado para reconocer patrones y aprender automáticamente.
+
+p:que es procesamiento de lenguaje natural ?r:El procesamiento de lenguaje natural permite a las computadoras comprender, interpretar y generar lenguaje humano de forma automática.
+
+p:que es vision artificial ?r:La visión artificial es una tecnología de inteligencia artificial que permite interpretar imágenes y videos mediante algoritmos especializados.
+
+p:que es un chatbot ?r:Un chatbot es un programa diseñado para simular conversaciones humanas utilizando inteligencia artificial y procesamiento de lenguaje natural.
+
+p:que es automatizacion inteligente ?r:La automatización inteligente combina inteligencia artificial y automatización para ejecutar tareas complejas sin intervención humana constante.
+
+p:que es ciencia de datos ?r:La ciencia de datos es una disciplina que analiza grandes volúmenes de información utilizando estadísticas e inteligencia artificial.
+
+p:que es un algoritmo de ia ?r:Un algoritmo de inteligencia artificial es un conjunto de instrucciones diseñado para resolver problemas y aprender de datos.
+
+p:que es aprendizaje supervisado ?r:El aprendizaje supervisado es un método de inteligencia artificial donde el sistema aprende utilizando datos previamente etiquetados.
+
+p:que es aprendizaje no supervisado ?r:El aprendizaje no supervisado permite a los sistemas identificar patrones y relaciones en datos sin etiquetas previas.
+
+p:que es aprendizaje por refuerzo ?r:El aprendizaje por refuerzo es una técnica donde un agente aprende mediante recompensas y penalizaciones según sus acciones.
+
+p:que es una ia generativa ?r:La inteligencia artificial generativa es capaz de crear contenido nuevo como textos, imágenes, música o videos automáticamente.
+
+p:que es chatgpt ?r:ChatGPT es un modelo de lenguaje basado en inteligencia artificial diseñado para responder preguntas y mantener conversaciones naturales.
+
+p:que es un modelo de lenguaje ?r:Un modelo de lenguaje es un sistema de inteligencia artificial entrenado para comprender y generar texto humano.
+
+p:que es entrenamiento de ia ?r:El entrenamiento de inteligencia artificial consiste en alimentar modelos con datos para que aprendan patrones y comportamientos.
+
+p:que es big data ?r:Big Data se refiere al procesamiento y análisis de grandes volúmenes de datos mediante tecnologías avanzadas.
+
+p:que es mineria de datos ?r:La minería de datos es el proceso de descubrir patrones y relaciones útiles dentro de grandes conjuntos de información.
+
+p:que es reconocimiento facial ?r:El reconocimiento facial es una tecnología de inteligencia artificial utilizada para identificar personas mediante rasgos faciales.
+
+p:que es reconocimiento de voz ?r:El reconocimiento de voz permite a las computadoras interpretar y procesar comandos hablados por usuarios.
+
+p:que es un asistente virtual ?r:Un asistente virtual es un software basado en inteligencia artificial capaz de interactuar y ayudar a usuarios mediante voz o texto.
+
+p:que es ia debil ?r:La inteligencia artificial débil está diseñada para realizar tareas específicas sin poseer conciencia ni razonamiento general.
+
+p:que es ia fuerte ?r:La inteligencia artificial fuerte es un concepto teórico donde las máquinas podrían tener razonamiento similar al humano.
+
+p:que es un dataset ?r:Un dataset es un conjunto organizado de datos utilizado para entrenar y evaluar modelos de inteligencia artificial.
+
+p:que es una prediccion en ia ?r:Una predicción en inteligencia artificial es el resultado estimado generado por un modelo basado en datos analizados.
+
+p:que es un modelo predictivo ?r:Un modelo predictivo utiliza inteligencia artificial y datos históricos para anticipar eventos o comportamientos futuros.
+
+p:que es inteligencia artificial conversacional ?r:La inteligencia artificial conversacional permite crear sistemas capaces de interactuar naturalmente mediante lenguaje humano.
+
+p:que es clasificacion en ia ?r:La clasificación es una técnica de inteligencia artificial utilizada para agrupar datos en categorías específicas.
+
+p:que es regresion en ia ?r:La regresión es un método de aprendizaje automático utilizado para predecir valores numéricos continuos.
+
+p:que es reconocimiento de patrones ?r:El reconocimiento de patrones permite identificar similitudes y estructuras en datos mediante algoritmos inteligentes.
+
+p:que es un modelo entrenado ?r:Un modelo entrenado es un sistema de inteligencia artificial que ya aprendió patrones a partir de datos.
+
+p:que es un agente inteligente ?r:Un agente inteligente es un sistema capaz de percibir su entorno y tomar decisiones automáticamente.
+
+p:que es etica en ia ?r:La ética en inteligencia artificial analiza el impacto social y moral del uso de sistemas inteligentes.
+
+p:que es sesgo en inteligencia artificial ?r:El sesgo en inteligencia artificial ocurre cuando un modelo produce resultados injustos debido a datos desequilibrados.
+
+p:que es una red neuronal convolucional ?r:Una red neuronal convolucional es un modelo especializado en procesamiento y análisis de imágenes digitales.
+
+p:que es una red neuronal recurrente ?r:Una red neuronal recurrente es un modelo diseñado para procesar secuencias de datos como texto o audio.
+
+p:que es inteligencia artificial en medicina ?r:La inteligencia artificial en medicina ayuda a diagnosticar enfermedades y analizar datos clínicos rápidamente.
+
+p:que es inteligencia artificial en educacion ?r:La inteligencia artificial en educación permite personalizar el aprendizaje y automatizar procesos académicos.
+
+p:que es inteligencia artificial en empresas ?r:La inteligencia artificial en empresas optimiza procesos, reduce costos y mejora la toma de decisiones.
+
+p:que es inteligencia artificial en videojuegos ?r:La inteligencia artificial en videojuegos permite crear personajes y comportamientos más realistas e interactivos.
+
+p:que es inteligencia artificial en robots ?r:La inteligencia artificial en robots permite que máquinas realicen tareas autónomas y adapten su comportamiento.
+
+p:que es robotica inteligente ?r:La robótica inteligente combina robots y sistemas de inteligencia artificial para automatizar tareas complejas.
+
+p:que es aprendizaje automatico ?r:El aprendizaje automático es una técnica que permite a las máquinas aprender y mejorar mediante experiencia y datos.
+
+p:que es inteligencia computacional ?r:La inteligencia computacional estudia métodos inspirados en procesos biológicos para resolver problemas complejos.
+
+p:que es una api de inteligencia artificial ?r:Una API de inteligencia artificial permite integrar funciones inteligentes en aplicaciones y sistemas digitales.
+
+p:que es procesamiento de imagenes ?r:El procesamiento de imágenes utiliza inteligencia artificial para analizar, modificar e interpretar imágenes digitales.
+
+p:que es deteccion de objetos ?r:La detección de objetos es una técnica de visión artificial utilizada para identificar elementos dentro de imágenes o videos.
+
+p:que es analisis predictivo ?r:El análisis predictivo utiliza inteligencia artificial y estadísticas para anticipar tendencias y comportamientos futuros.
+
+p:que es un modelo de clasificacion ?r:Un modelo de clasificación es un sistema entrenado para identificar categorías específicas en datos analizados.
+
+p:que es inteligencia artificial en seguridad ?r:La inteligencia artificial en seguridad ayuda a detectar amenazas y prevenir ataques informáticos automáticamente.
+
+p:que es un sistema experto ?r:Un sistema experto es un programa que utiliza conocimiento especializado para resolver problemas complejos automáticamente.
+
+p:que es una decision automatizada ?r:Una decisión automatizada es una acción tomada por sistemas inteligentes basados en reglas y análisis de datos.
+
+p:que es inteligencia artificial explicable ?r:La inteligencia artificial explicable busca que los modelos sean comprensibles y transparentes para los usuarios.
+
+p:que es una gpu en ia ?r:Una GPU es un procesador especializado utilizado para acelerar cálculos complejos en inteligencia artificial.
+
+p:que es entrenamiento supervisado ?r:El entrenamiento supervisado utiliza datos etiquetados para enseñar a modelos de inteligencia artificial a reconocer patrones.
+
+p:que es un token en ia ?r:Un token es una unidad de texto utilizada por modelos de inteligencia artificial para procesar lenguaje natural.
+
+p:que es inferencia en ia ?r:La inferencia en inteligencia artificial es el proceso donde un modelo utiliza conocimientos aprendidos para generar respuestas o predicciones.
+
+p:que es inteligencia artificial moderna ?r:La inteligencia artificial moderna combina aprendizaje automático, big data y procesamiento avanzado para resolver problemas complejos.
+
+p:que es automatizacion con ia ?r:La automatización con inteligencia artificial permite ejecutar tareas repetitivas mediante sistemas inteligentes adaptativos.
