@@ -125,3 +125,124 @@ p:que es memoria cache ?r:La memoria caché es un almacenamiento rápido utiliza
 p:que es un socket ?r:Un socket es el conector físico de la tarjeta madre donde se instala el procesador principal del computador.
 
 p:que es compatibilidad de hardware ?r:La compatibilidad de hardware determina si diferentes componentes pueden funcionar correctamente juntos dentro de un sistema.
+p:que es computacion cuantica ?r:La computación cuántica es una tecnología avanzada que utiliza principios de mecánica cuántica para resolver problemas complejos rápidamente.
+
+p:que es una tpu ?r:Una TPU es un procesador especializado diseñado para acelerar operaciones de inteligencia artificial y aprendizaje profundo.
+
+p:que es una motherboard gamer ?r:Una motherboard gamer es una tarjeta madre optimizada para alto rendimiento, videojuegos y compatibilidad avanzada de hardware.
+
+p:que es un puerto ethernet ?r:Un puerto Ethernet permite conectar dispositivos a redes cableadas para transferir datos de manera estable y rápida.
+
+p:que es una tarjeta capturadora ?r:Una tarjeta capturadora permite grabar y transmitir contenido de video desde consolas o cámaras hacia un computador.
+
+p:que es una docking station ?r:Una docking station es un dispositivo que amplía la conectividad de laptops mediante múltiples puertos y conexiones.
+
+p:que es memoria virtual ?r:La memoria virtual es una técnica que utiliza espacio del disco duro como extensión temporal de la memoria RAM.
+
+p:que es un ups ?r:Un UPS es un sistema de energía de respaldo que protege equipos electrónicos frente a cortes eléctricos y variaciones de voltaje.
+
+p:que es una pantalla oled ?r:Una pantalla OLED utiliza diodos orgánicos emisores de luz para mostrar imágenes con mejor contraste y colores intensos.
+
+p:que es una pantalla ips ?r:Una pantalla IPS es un tipo de monitor que ofrece mejores ángulos de visión y calidad de color respecto a otros paneles.
+
+p:que es thunderbolt ?r:Thunderbolt es una tecnología de conexión rápida utilizada para transferir datos, video y energía entre dispositivos electrónicos.
+
+p:que es una memoria ecc ?r:La memoria ECC es un tipo de RAM capaz de detectar y corregir errores automáticamente para mejorar estabilidad.
+
+p:que es un procesador multinucleo ?r:Un procesador multinúcleo contiene varios núcleos internos que permiten ejecutar múltiples tareas simultáneamente.
+
+p:que es una tarjeta aceleradora ?r:Una tarjeta aceleradora es un componente diseñado para mejorar rendimiento en tareas específicas como gráficos o inteligencia artificial.
+
+p:que es un fan cooler ?r:Un fan cooler es un ventilador utilizado para reducir la temperatura de componentes electrónicos mediante circulación de aire.
+
+p:que es una pantalla tactil ?r:Una pantalla táctil permite interactuar directamente con dispositivos mediante toques y gestos sobre la superficie.
+
+p:que es una eeprom ?r:La EEPROM es una memoria capaz de almacenar datos permanentemente incluso cuando el dispositivo se encuentra apagado.
+
+p:que es firmware ?r:El firmware es un software integrado en hardware que controla funciones básicas de dispositivos electrónicos.
+
+p:que es un chipset ?r:El chipset es un conjunto de circuitos encargados de coordinar la comunicación entre componentes del computador.
+
+p:que es una torre full tower ?r:Una torre Full Tower es un gabinete grande diseñado para sistemas con múltiples componentes y alta refrigeración.
+
+p:que es una mini pc ?r:Una mini PC es un computador compacto diseñado para consumir menos espacio y energía manteniendo funciones básicas.
+
+p:que es un panel led ?r:Un panel LED es una pantalla que utiliza diodos emisores de luz para mostrar imágenes con eficiencia energética.
+
+p:que es una pantalla curva ?r:Una pantalla curva ofrece una experiencia visual más inmersiva mediante una ligera curvatura en el monitor.
+
+p:que es una tarjeta wifi ?r:Una tarjeta WiFi es un dispositivo que permite conectar computadores a redes inalámbricas de internet.
+
+p:que es una controladora raid ?r:Una controladora RAID administra múltiples discos duros para mejorar velocidad, seguridad o redundancia de datos.
+
+p:que es un rack de servidores ?r:Un rack de servidores es una estructura metálica diseñada para organizar y alojar equipos informáticos empresariales.
+
+p:que es una unidad nvme ?r:Una unidad NVMe es un dispositivo de almacenamiento extremadamente rápido conectado mediante tecnología PCI Express.
+
+p:que es una memoria ddr5 ?r:La memoria DDR5 es una generación avanzada de RAM con mayor velocidad y eficiencia energética.
+
+p:que es una interfaz sata ?r:La interfaz SATA permite conectar discos duros y unidades SSD a la tarjeta madre del computador.
+
+p:que es una interfaz m2 ?r:La interfaz M.2 es un formato compacto utilizado para conectar unidades SSD modernas de alto rendimiento.
+
+p:que es una impresora laser ?r:Una impresora láser utiliza tecnología de tóner y láser para imprimir documentos rápidamente y con alta calidad.
+
+p:que es una impresora multifuncional ?r:Una impresora multifuncional combina impresión, escaneo, copiado y otras funciones en un solo dispositivo.
+
+p:que es una camara termica ?r:Una cámara térmica detecta radiación infrarroja para visualizar diferencias de temperatura en objetos y personas.
+
+p:que es una smart tv ?r:Una Smart TV es un televisor inteligente con acceso a internet y aplicaciones digitales integradas.
+
+p:que es un joystick ?r:Un joystick es un periférico utilizado para controlar videojuegos y simuladores mediante movimientos manuales.
+
+p:que es un volante gamer ?r:Un volante gamer es un periférico diseñado para simular conducción en videojuegos de carreras.
+
+p:que es una consola de videojuegos ?r:Una consola de videojuegos es un dispositivo electrónico especializado en ejecutar juegos digitales y multimedia.
+
+p:que es un lector biometrico ?r:Un lector biométrico identifica personas mediante huellas, rostro u otras características físicas únicas.
+
+p:que es una pantalla ultrawide ?r:Una pantalla ultrawide posee formato panorámico amplio ideal para productividad y videojuegos inmersivos.
+
+p:que es una camara web hd ?r:Una cámara web HD captura video en alta definición para videollamadas y transmisiones digitales.
+
+p:que es un hub usb ?r:Un hub USB permite conectar múltiples dispositivos utilizando un solo puerto USB del computador.
+
+p:que es una tarjeta sintonizadora ?r:Una tarjeta sintonizadora permite recibir señales de televisión y radio en computadores.
+
+p:que es una laptop convertible ?r:Una laptop convertible puede utilizarse tanto como portátil tradicional como tableta táctil.
+
+p:que es una tablet ?r:Una tablet es un dispositivo portátil con pantalla táctil utilizado para navegación, entretenimiento y productividad.
+
+p:que es una estacion de trabajo movil ?r:Una estación de trabajo móvil es una laptop de alto rendimiento diseñada para tareas profesionales exigentes.
+
+p:que es un proyector ?r:Un proyector es un dispositivo que muestra imágenes y videos ampliados sobre superficies externas.
+
+p:que es una tarjeta fpga ?r:Una tarjeta FPGA contiene circuitos programables capaces de adaptarse a diferentes aplicaciones electrónicas.
+
+p:que es hardware industrial ?r:El hardware industrial está diseñado para operar en ambientes exigentes y procesos automatizados de producción.
+
+p:que es una camara ip ?r:Una cámara IP transmite video mediante redes digitales y se utiliza ampliamente en sistemas de seguridad.
+
+p:que es un lector qr ?r:Un lector QR es un dispositivo capaz de escanear códigos QR para acceder rápidamente a información digital.
+
+p:que es una pantalla 4k ?r:Una pantalla 4K ofrece resolución ultra alta permitiendo visualizar imágenes más detalladas y definidas.
+
+p:que es un sistema nas ?r:Un sistema NAS es un dispositivo de almacenamiento conectado a red utilizado para compartir archivos.
+
+p:que es un switch mecanico ?r:Un switch mecánico es un mecanismo individual presente en teclados gamer que mejora precisión y durabilidad.
+
+p:que es una impresora termica ?r:Una impresora térmica utiliza calor para imprimir recibos y etiquetas sin necesidad de tinta.
+
+p:que es una tarjeta controladora ?r:Una tarjeta controladora administra funciones específicas de hardware dentro de sistemas electrónicos complejos.
+
+p:que es una computadora all in one ?r:Una computadora All in One integra monitor y componentes internos en un solo dispositivo compacto.
+
+p:que es un sistema de refrigeracion pasiva ?r:La refrigeración pasiva disipa calor sin ventiladores utilizando materiales y diseños especializados.
+
+p:que es un microprocesador ?r:Un microprocesador es un circuito integrado encargado de ejecutar instrucciones y operaciones digitales complejas.
+
+p:que es un lector de huellas ?r:Un lector de huellas es un dispositivo biométrico utilizado para autenticar usuarios mediante patrones dactilares.
+
+p:que es una tarjeta de expansion ?r:Una tarjeta de expansión agrega nuevas funciones y capacidades adicionales al computador.
+
+p:que es un monitor gaming ?r:Un monitor gaming está diseñado para videojuegos con altas tasas de refresco y tiempos de respuesta rápidos.
