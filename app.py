@@ -842,6 +842,36 @@ if "tema_actual" not in st.session_state:
         list(temas.keys())
     )
 
+if "chat_cerrado" not in st.session_state:
+
+    st.session_state.chat_cerrado = False
+
+# =========================================================
+# CHAT FINALIZADO
+# =========================================================
+
+if st.session_state.chat_cerrado:
+
+    st.markdown("""
+
+    <div class="chat-bot">
+
+    <h2>👋 Sesión finalizada</h2>
+
+    <p>
+    El chatbot híbrido educativo cerró la conversación correctamente.
+    </p>
+
+    <p>
+    Puedes reiniciar la conversación desde el panel lateral.
+    </p>
+
+    </div>
+
+    """, unsafe_allow_html=True)
+
+    st.stop()
+
 # =========================================================
 # INPUT
 # =========================================================
@@ -867,10 +897,12 @@ if enviar and pregunta:
 
     texto = pregunta.lower().strip()
 
+    # GUARDAR MENSAJE USUARIO
     st.session_state.chat.append(
         ("usuario", pregunta)
     )
 
+    # DETECTAR TEMA
     tema_detectado = detectar_tema(
         texto
     )
@@ -879,34 +911,36 @@ if enviar and pregunta:
         tema_detectado
     )
 
+    # =====================================================
+    # SALIR DEL CHAT
+    # =====================================================
 
-# =====================================================
-# SALIR DEL CHAT
-# =====================================================
-if texto in ["salir", "quiero salir"]:
+    if texto in ["salir", "quiero salir"]:
 
-    st.session_state.chat.append(
-        (
-            "bot",
-            """
-      ### 👋 Sesión finalizada
+        respuesta_final = """
 
-      El chatbot híbrido educativo ha cerrado la conversación correctamente.
+### 👋 Sesión finalizada
 
-       Gracias por utilizar el sistema inteligente de consultas educativas y matemáticas.
+El chatbot híbrido educativo ha cerrado la conversación correctamente.
 
-        Puedes reiniciar la conversación desde el panel lateral si deseas volver a comenzar.
-            """
+Gracias por utilizar el sistema inteligente de consultas educativas y matemáticas.
+
+Puedes reiniciar la conversación desde el panel lateral si deseas volver a comenzar.
+
+        """
+
+        st.session_state.chat.append(
+            ("bot", respuesta_final)
         )
-    )
 
-    st.session_state.chat_cerrado = True
+        st.session_state.chat_cerrado = True
 
-    st.rerun()
+        st.rerun()
 
-
-
+    # =====================================================
     # RESPUESTAS ESPECIALES
+    # =====================================================
+
     elif respuesta_especial(texto):
 
         respuesta_final = (
@@ -915,14 +949,20 @@ if texto in ["salir", "quiero salir"]:
             + random.choice(continuar)
         )
 
-    # MATEMÁTICAS
+    # =====================================================
+    # OPERACIONES MATEMÁTICAS
+    # =====================================================
+
     elif es_operacion_matematica(texto):
 
         respuesta_final = explicar_operacion(
             texto
         )
 
+    # =====================================================
     # RESPUESTAS GENERALES
+    # =====================================================
+
     else:
 
         respuesta, score = buscar_respuesta(
@@ -939,12 +979,23 @@ if texto in ["salir", "quiero salir"]:
                 + random.choice(continuar)
             )
 
+            if score < 1:
+
+                respuesta_final += (
+                    f"\n\n🔎 Coincidencia aproximada: "
+                    f"{score*100:.0f}%"
+                )
+
         else:
 
             respuesta_final = (
                 "No encontré información suficiente "
                 "para responder esa consulta."
             )
+
+    # =====================================================
+    # GUARDAR RESPUESTA
+    # =====================================================
 
     st.session_state.chat.append(
         ("bot", respuesta_final)
