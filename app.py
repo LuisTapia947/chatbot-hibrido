@@ -1,6 +1,5 @@
 # =========================================================
-# CHATBOT HÍBRIDO IA + MATEMÁTICAS + IA SEMÁNTICA
-# STREAMLIT VERSION PROFESIONAL
+# CHATBOT HÍBRIDO 
 # =========================================================
 
 import streamlit as st
@@ -8,12 +7,7 @@ from difflib import get_close_matches
 import random
 import os
 import re
-import numpy as np
 from datetime import datetime
-
-# IA SEMÁNTICA
-from sentence_transformers import SentenceTransformer
-from sklearn.metrics.pairwise import cosine_similarity
 
 # =========================================================
 # CONFIGURACIÓN
@@ -61,11 +55,11 @@ st.markdown("""
 ### Funciones del chatbot
 
 ✅ Preguntas de conocimiento  
-✅ IA semántica inteligente  
+✅ Coincidencias inteligentes  
 ✅ Resolución matemática  
 ✅ Explicación de operaciones  
 ✅ Sugerencias automáticas  
-✅ Coincidencias aproximadas  
+✅ Respuestas educadas  
 """)
 
 # =========================================================
@@ -75,7 +69,7 @@ st.markdown("""
 memoria = {}
 
 # =========================================================
-# CARGAR TXT
+# CARGAR ARCHIVOS TXT
 # =========================================================
 
 carpeta_actual = os.path.dirname(
@@ -127,40 +121,17 @@ for archivo in archivos:
 
                 respuesta = r.strip()
 
-                memoria[pregunta] = respuesta
+                if pregunta and respuesta:
+
+                    memoria[pregunta] = respuesta
 
     except Exception as e:
 
-        errores.append(str(e))
-
-preguntas = list(memoria.keys())
-
-# =========================================================
-# IA SEMÁNTICA
-# =========================================================
-
-st.sidebar.header("🧠 IA Semántica")
-
-with st.spinner("Cargando modelo IA..."):
-
-    fragmentos = []
-
-    for p, r in memoria.items():
-
-        fragmentos.append(
-            f"Pregunta: {p}\nRespuesta: {r}"
+        errores.append(
+            f"Error cargando {archivo}: {e}"
         )
 
-    modelo = SentenceTransformer(
-        'paraphrase-multilingual-MiniLM-L12-v2'
-    )
-
-    embeddings = modelo.encode(
-        fragmentos,
-        show_progress_bar=False
-    )
-
-st.sidebar.success("Modelo IA cargado")
+preguntas = list(memoria.keys())
 
 # =========================================================
 # SIDEBAR
@@ -168,7 +139,7 @@ st.sidebar.success("Modelo IA cargado")
 
 with st.sidebar:
 
-    st.markdown("---")
+    st.header("📚 Información")
 
     st.success(
         f"Preguntas cargadas: {len(preguntas)}"
@@ -176,7 +147,7 @@ with st.sidebar:
 
     st.markdown("---")
 
-    st.subheader("📚 Temáticas")
+    st.subheader("📖 Temáticas")
 
     st.write("💻 Programación")
     st.write("🧠 Inteligencia Artificial")
@@ -186,21 +157,23 @@ with st.sidebar:
 
     st.markdown("---")
 
-    if st.button("🗑️ Limpiar Chat"):
+    if st.button("🗑️ Limpiar conversación"):
 
         st.session_state.chat = []
+
+        st.session_state.cerrado = False
 
         st.rerun()
 
 # =========================================================
-# FRASES
+# FRASES NATURALES
 # =========================================================
 
 introducciones = [
     "Excelente pregunta.",
     "Claro, aquí tienes la información.",
-    "Con gusto responderé.",
-    "Estoy procesando tu consulta."
+    "Con gusto responderé tu consulta.",
+    "Estoy procesando tu pregunta."
 ]
 
 continuar = [
@@ -238,6 +211,21 @@ def respuesta_especial(q):
             "desarrollado en Python y Streamlit."
         )
 
+    if "como estas" in q:
+
+        return (
+            "Estoy funcionando correctamente "
+            "y listo para ayudarte."
+        )
+
+    if "que puedes hacer" in q:
+
+        return (
+            "Puedo responder preguntas sobre "
+            "programación, inteligencia artificial, "
+            "redes, hardware y ciberseguridad."
+        )
+
     return None
 
 # =========================================================
@@ -246,7 +234,7 @@ def respuesta_especial(q):
 
 def es_operacion_matematica(texto):
 
-    patron = r'^[0-9\\+\\-\\*\\/\\.\\(\\) ]+$'
+    patron = r'^[0-9\+\-\*\/\.\(\) ]+$'
 
     return re.match(
         patron,
@@ -256,13 +244,13 @@ def es_operacion_matematica(texto):
 def explicar_operacion(expresion, resultado):
 
     explicacion = (
-        f"La operación matemática ingresada fue: "
+        f"La operación matemática ingresada fue "
         f"{expresion}. "
-        f"Después de resolverla paso a paso, "
-        f"el resultado obtenido es {resultado}. "
-        f"El sistema evaluó correctamente los "
-        f"operadores matemáticos y realizó el "
-        f"cálculo respetando el orden de prioridad."
+        f"Después de resolver correctamente la "
+        f"expresión matemática, el resultado "
+        f"obtenido es {resultado}. "
+        f"El sistema aplicó el orden de prioridad "
+        f"de operadores para calcular el resultado."
     )
 
     return explicacion
@@ -273,12 +261,10 @@ def resolver_operacion(expresion):
 
         resultado = eval(expresion)
 
-        explicacion = explicar_operacion(
+        return explicar_operacion(
             expresion,
             resultado
         )
-
-        return explicacion
 
     except:
 
@@ -288,28 +274,7 @@ def resolver_operacion(expresion):
         )
 
 # =========================================================
-# IA SEMÁNTICA
-# =========================================================
-
-def buscar_semantico(pregunta):
-
-    emb_pregunta = modelo.encode([pregunta])
-
-    similitudes = cosine_similarity(
-        emb_pregunta,
-        embeddings
-    )[0]
-
-    indice = np.argmax(similitudes)
-
-    score = similitudes[indice]
-
-    respuesta = fragmentos[indice]
-
-    return respuesta, score
-
-# =========================================================
-# BÚSQUEDA NORMAL
+# BUSCAR RESPUESTA
 # =========================================================
 
 def buscar_respuesta(
@@ -321,10 +286,12 @@ def buscar_respuesta(
         pregunta_usuario.lower().strip()
     )
 
+    # COINCIDENCIA EXACTA
     if pregunta_usuario in memoria:
 
         return memoria[pregunta_usuario], 1.0
 
+    # COINCIDENCIA APROXIMADA
     coincidencias = get_close_matches(
         pregunta_usuario,
         preguntas,
@@ -385,7 +352,7 @@ pregunta = st.chat_input(
 )
 
 # =========================================================
-# PROCESAR
+# PROCESAR MENSAJE
 # =========================================================
 
 if pregunta:
@@ -441,7 +408,7 @@ if pregunta:
         )
 
     # =====================================================
-    # BÚSQUEDA NORMAL
+    # RESPUESTAS NORMALES
     # =====================================================
 
     else:
@@ -469,28 +436,10 @@ if pregunta:
 
         else:
 
-            # =============================================
-            # IA SEMÁNTICA
-            # =============================================
-
-            respuesta_sem,
-            score_sem = buscar_semantico(texto)
-
-            if score_sem > 0.35:
-
-                respuesta_final = (
-                    "🧠 Respuesta obtenida "
-                    "mediante IA semántica:\n\n"
-                    f"{respuesta_sem}\n\n"
-                    f"Nivel de confianza: "
-                    f"{score_sem:.2f}"
-                )
-
-            else:
-
-                respuesta_final = (
-                    "No encontré información suficiente."
-                )
+            respuesta_final = (
+                "No encontré información suficiente. "
+                "Intenta formular la pregunta de otra manera."
+            )
 
     st.session_state.chat.append(
         ("bot", respuesta_final)
@@ -541,7 +490,7 @@ for i, ejemplo in enumerate(ejemplos):
 
     if columna.button(
         ejemplo,
-        key=f"sug_{i}"
+        key=f"sug_btn_{i}"
     ):
 
         st.session_state.chat.append(
@@ -567,7 +516,7 @@ for i, ejemplo in enumerate(ejemplos):
         st.rerun()
 
 # =========================================================
-# ERRORES
+# MOSTRAR ERRORES
 # =========================================================
 
 if errores:
