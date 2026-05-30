@@ -241,37 +241,97 @@ def es_operacion_matematica(texto):
         texto
     )
 
-def explicar_operacion(expresion, resultado):
+# =========================================================
+# EXPLICAR OPERACIONES MATEMÁTICAS
+# =========================================================
 
-    explicacion = (
-        f"La operación matemática ingresada fue "
-        f"{expresion}. "
-        f"Después de resolver correctamente la "
-        f"expresión matemática, el resultado "
-        f"obtenido es {resultado}. "
-        f"El sistema aplicó el orden de prioridad "
-        f"de operadores para calcular el resultado."
+def explicar_operacion(expresion):
+
+    pasos = []
+
+    pasos.append(
+        f"📌 Expresión original: {expresion}"
     )
-
-    return explicacion
-
-def resolver_operacion(expresion):
 
     try:
 
-        resultado = eval(expresion)
+        # SIN ESPACIOS
+        expr = expresion.replace(" ", "")
 
-        return explicar_operacion(
-            expresion,
-            resultado
+        pasos.append(
+            "✅ Se eliminan espacios innecesarios."
         )
+
+        # PARENTESIS
+        if "(" in expr:
+
+            pasos.append(
+                "🔹 Se detectaron paréntesis, "
+                "por lo tanto se resuelven primero."
+            )
+
+        # MULTIPLICACION
+        if "*" in expr:
+
+            pasos.append(
+                "🔹 Se detectó multiplicación, "
+                "la cual tiene prioridad."
+            )
+
+        # DIVISION
+        if "/" in expr:
+
+            pasos.append(
+                "🔹 Se detectó división, "
+                "la cual tiene prioridad."
+            )
+
+        # SUMA
+        if "+" in expr:
+
+            pasos.append(
+                "🔹 Se detectó suma."
+            )
+
+        # RESTA
+        if "-" in expr[1:]:
+
+            pasos.append(
+                "🔹 Se detectó resta."
+            )
+
+        # RESULTADO
+        resultado = eval(expr)
+
+        pasos.append(
+            f"🧮 Resultado final: {resultado}"
+        )
+
+        pasos.append(
+            "✅ El sistema aplicó correctamente "
+            "el orden de prioridad matemático."
+        )
+
+        return "\n\n".join(pasos)
 
     except:
 
         return (
-            "Ocurrió un error al resolver "
-            "la operación matemática."
+            "❌ Ocurrió un error al "
+            "resolver la operación matemática."
         )
+
+# =========================================================
+# RESOLVER OPERACION
+# =========================================================
+
+def resolver_operacion(expresion):
+
+    return explicar_operacion(
+        expresion
+    )
+
+
 
 # =========================================================
 # BUSCAR RESPUESTA
