@@ -357,42 +357,48 @@ def es_operacion_matematica(texto):
 # CONVERTIR EXPRESIÓN
 # =========================================================
 
+
 def convertir_expresion(expr):
 
+    expr = expr.lower().strip()
+
+    # Potencias
     expr = expr.replace("^", "**")
 
-    reemplazos = {
-        "raiz(": "math.sqrt(",
-        "sqrt(": "math.sqrt(",
-        "log(": "math.log10(",
-        "ln(": "math.log(",
-        "sen(": "math.sin(math.radians(",
-        "sin(": "math.sin(math.radians(",
-        "cos(": "math.cos(math.radians(",
-        "tan(": "math.tan(math.radians(",
-        "factorial(": "math.factorial("
+    # Funciones matemáticas
+    expr = re.sub(
+        r'raiz\(',
+        'sqrt(',
+        expr
+    )
+
+    expr = re.sub(
+        r'sen\(',
+        'sin(',
+        expr
+    )
+
+    # Diccionario seguro
+    funciones = {
+        "sqrt": math.sqrt,
+        "log": math.log10,
+        "ln": math.log,
+        "sin": lambda x: math.sin(math.radians(x)),
+        "cos": lambda x: math.cos(math.radians(x)),
+        "tan": lambda x: math.tan(math.radians(x)),
+        "factorial": math.factorial,
+        "pi": math.pi,
+        "e": math.e,
+        "abs": abs
     }
 
-    for k, v in reemplazos.items():
+    return expr, funciones
 
-        expr = expr.replace(k, v)
 
-    expr = expr.replace(
-        "pi",
-        str(math.pi)
-    )
-
-    expr = expr.replace(
-        "e",
-        str(math.e)
-    )
-
-    return expr
 
 # =========================================================
 # EXPLICACIÓN MATEMÁTICA
 # =========================================================
-
 
 def explicar_operacion(expresion):
 
@@ -402,20 +408,17 @@ def explicar_operacion(expresion):
             expresion
         )
 
-        expr = convertir_expresion(
+        expr, funciones = convertir_expresion(
             original
         )
 
-        if "math.sin(math.radians(" in expr:
-            expr += "))"
-
-        if "math.cos(math.radians(" in expr:
-            expr += "))"
-
-        if "math.tan(math.radians(" in expr:
-            expr += "))"
-
-        resultado = eval(expr)
+        resultado = eval(
+            expr,
+            {
+                "__builtins__": {}
+            },
+            funciones
+        )
 
         explicacion = []
 
@@ -424,10 +427,10 @@ def explicar_operacion(expresion):
             f"`{original}`"
         )
 
-        texto_explicacion = (
+        texto = (
             "Para resolver esta expresión "
-            "se aplicó el orden matemático "
-            "tradicional de operaciones."
+            "el sistema aplicó el orden "
+            "correcto de operaciones matemáticas."
         )
 
         detalles = []
@@ -461,22 +464,22 @@ def explicar_operacion(expresion):
                 "las sumas y restas"
             )
 
-        if "raiz" in original:
+        if "raiz" in original or "sqrt" in original:
 
             detalles.append(
                 "incluyendo el cálculo "
-                "de la raíz cuadrada"
+                "de raíces cuadradas"
             )
 
         if "log" in original:
 
             detalles.append(
-                "aplicando operaciones "
-                "logarítmicas"
+                "aplicando logaritmos"
             )
 
         if (
             "sen" in original
+            or "sin" in original
             or "cos" in original
             or "tan" in original
         ):
@@ -487,14 +490,14 @@ def explicar_operacion(expresion):
 
         if detalles:
 
-            texto_explicacion += (
+            texto += (
                 ", donde "
                 + ", ".join(detalles)
                 + "."
             )
 
         explicacion.append(
-            f"\n\n{texto_explicacion}"
+            f"\n\n{texto}"
         )
 
         explicacion.append(
@@ -503,8 +506,7 @@ def explicar_operacion(expresion):
         )
 
         explicacion.append(
-            "\n\nLa operación fue resuelta "
-            "correctamente por el sistema."
+            "\n\nLa operación fue resuelta correctamente."
         )
 
         return "".join(explicacion)
@@ -516,6 +518,8 @@ def explicar_operacion(expresion):
             "la operación matemática.\n\n"
             f"Detalle del error: {e}"
         )
+
+
 
 
 
@@ -572,11 +576,15 @@ if "chat" not in st.session_state:
 # INPUT
 # =========================================================
 
-pregunta = st.text_input(
-    "💬 Escribe tu pregunta o una operación matemática:"
-)
+with st.form("form_chat", clear_on_submit=True):
 
-enviar = st.button("Enviar consulta")
+    pregunta = st.text_input(
+        "💬 Escribe tu pregunta o una operación matemática:"
+    )
+
+    enviar = st.form_submit_button(
+        "Enviar consulta"
+    )
 
 # =========================================================
 # PROCESAR MENSAJE
