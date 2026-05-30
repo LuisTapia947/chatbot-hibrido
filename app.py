@@ -228,10 +228,14 @@ def respuesta_especial(q):
 
     return None
 
+# =========================================================
+# OPERACIONES MATEMÁTICAS AVANZADAS
+# =========================================================
 
+import math
 
 # =========================================================
-# OPERACIONES MATEMÁTICAS INTELIGENTES
+# EXTRAER OPERACIÓN
 # =========================================================
 
 def extraer_operacion(texto):
@@ -253,83 +257,218 @@ def es_operacion_matematica(texto):
 
     expresion = extraer_operacion(texto)
 
-    patron = r'^[0-9\+\-\*\/\.\(\)\ ]+$'
-
-    return re.match(
-        patron,
-        expresion
+    permitidos = (
+        "0123456789+-*/().,^ "
+        "abcdefghijklmnopqrstuvwxyz"
     )
 
+    for c in expresion:
+
+        if c.lower() not in permitidos:
+
+            return False
+
+    return True
+
 # =========================================================
-# EXPLICACIÓN INTELIGENTE
+# CONVERTIR EXPRESIONES
+# =========================================================
+
+def convertir_expresion(expr):
+
+    expr = expr.replace("^", "**")
+
+    expr = expr.replace(
+        "raiz(",
+        "math.sqrt("
+    )
+
+    expr = expr.replace(
+        "sqrt(",
+        "math.sqrt("
+    )
+
+    expr = expr.replace(
+        "log(",
+        "math.log10("
+    )
+
+    expr = expr.replace(
+        "ln(",
+        "math.log("
+    )
+
+    expr = expr.replace(
+        "sen(",
+        "math.sin(math.radians("
+    )
+
+    expr = expr.replace(
+        "sin(",
+        "math.sin(math.radians("
+    )
+
+    expr = expr.replace(
+        "cos(",
+        "math.cos(math.radians("
+    )
+
+    expr = expr.replace(
+        "tan(",
+        "math.tan(math.radians("
+    )
+
+    expr = expr.replace(
+        "abs(",
+        "abs("
+    )
+
+    expr = expr.replace(
+        "factorial(",
+        "math.factorial("
+    )
+
+    expr = expr.replace(
+        "pi",
+        str(math.pi)
+    )
+
+    expr = expr.replace(
+        "e",
+        str(math.e)
+    )
+
+    # cerrar parentesis extra para trigonometría
+    expr = expr.replace(
+        "math.sin(math.radians(",
+        "math.sin(math.radians("
+    )
+
+    expr = expr.replace(
+        "math.cos(math.radians(",
+        "math.cos(math.radians("
+    )
+
+    expr = expr.replace(
+        "math.tan(math.radians(",
+        "math.tan(math.radians("
+    )
+
+    return expr
+
+# =========================================================
+# EXPLICAR OPERACIÓN
 # =========================================================
 
 def explicar_operacion(expresion):
 
     try:
 
-        expr = extraer_operacion(
+        original = extraer_operacion(
             expresion
-        ).replace(" ", "")
+        )
+
+        expr = convertir_expresion(
+            original
+        )
+
+        # corregir trigonometría
+        if "math.sin(math.radians(" in expr:
+            expr += "))"
+
+        if "math.cos(math.radians(" in expr:
+            expr += "))"
+
+        if "math.tan(math.radians(" in expr:
+            expr += "))"
 
         resultado = eval(expr)
 
         pasos = []
 
         pasos.append(
-            f"📌 La operación ingresada fue:\n\n{expr}"
+            f"📌 La operación ingresada fue:\n\n{original}"
         )
 
         pasos.append(
-            "\n📖 Para resolverla se aplicó "
-            "la jerarquía matemática estándar."
+            "\n📖 El sistema analizó "
+            "la expresión matemática."
         )
 
-        if "(" in expr:
+        if "^" in original:
 
             pasos.append(
-                "\n• Primero se resolvieron "
+                "\n• Se identificó una potencia."
+            )
+
+        if "raiz" in original or "sqrt" in original:
+
+            pasos.append(
+                "\n• Se identificó una raíz cuadrada."
+            )
+
+        if "log" in original:
+
+            pasos.append(
+                "\n• Se identificó un logaritmo base 10."
+            )
+
+        if "ln" in original:
+
+            pasos.append(
+                "\n• Se identificó un logaritmo natural."
+            )
+
+        if (
+            "sen" in original
+            or "sin" in original
+        ):
+
+            pasos.append(
+                "\n• Se identificó una función seno."
+            )
+
+        if "cos" in original:
+
+            pasos.append(
+                "\n• Se identificó una función coseno."
+            )
+
+        if "tan" in original:
+
+            pasos.append(
+                "\n• Se identificó una función tangente."
+            )
+
+        if "factorial" in original:
+
+            pasos.append(
+                "\n• Se identificó un factorial."
+            )
+
+        if "(" in original:
+
+            pasos.append(
+                "\n• Se resolvieron primero "
                 "las operaciones dentro "
                 "de los paréntesis."
             )
 
-        if "**" in expr:
-
-            pasos.append(
-                "\n• Después se calcularon "
-                "las potencias."
-            )
-
-        if "*" in expr or "/" in expr:
-
-            pasos.append(
-                "\n• Luego se realizaron "
-                "las multiplicaciones y divisiones."
-            )
-
-        if "+" in expr or "-" in expr[1:]:
-
-            pasos.append(
-                "\n• Finalmente se resolvieron "
-                "las sumas y restas."
-            )
-
         pasos.append(
-            f"\n\n🧮 El resultado obtenido es:\n\n{resultado}"
+            f"\n\n🧮 Resultado obtenido:\n\n{resultado}"
         )
 
         pasos.append(
             "\n✅ La operación fue procesada "
-            "correctamente por el sistema."
+            "correctamente."
         )
 
         return "".join(pasos)
 
-    except:
+    except Exception as e:
 
         return (
-            "❌ Ocurrió un error al intentar "
-            "resolver la operación matemática."
+            f"❌ Error matemático:\n\n{e}"
         )
 
 # =========================================================
@@ -341,9 +480,6 @@ def resolver_operacion(expresion):
     return explicar_operacion(
         expresion
     )
-
-
-
 
 
 # =========================================================
