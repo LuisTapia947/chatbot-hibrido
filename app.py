@@ -30,74 +30,74 @@ st.markdown("""
 
 html, body, [class*="css"] {
     font-family: 'Segoe UI', sans-serif;
+    background-color: #f5f7fb;
 }
 
 .main {
-    background: linear-gradient(
-        180deg,
-        #0f172a 0%,
-        #111827 100%
-    );
-    color: white;
+    background-color: #f5f7fb;
+    color: #111827;
 }
 
 .block-container {
+    max-width: 950px;
     padding-top: 2rem;
     padding-bottom: 2rem;
-    max-width: 900px;
 }
 
 h1 {
     text-align: center;
-    color: #38bdf8;
+    color: #2563eb;
     font-size: 3rem;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .subtitulo {
     text-align: center;
-    color: #cbd5e1;
+    color: #475569;
     font-size: 1.1rem;
     margin-bottom: 30px;
 }
 
 .chat-user {
-    background-color: #1e293b;
-    padding: 15px;
-    border-radius: 15px;
-    margin-bottom: 10px;
+    background-color: #dbeafe;
+    color: #111827;
+    padding: 16px;
+    border-radius: 18px;
+    margin-bottom: 12px;
+    border-left: 5px solid #2563eb;
 }
 
 .chat-bot {
-    background-color: #0f766e;
-    padding: 15px;
-    border-radius: 15px;
-    margin-bottom: 15px;
+    background-color: white;
+    color: #111827;
+    padding: 16px;
+    border-radius: 18px;
+    margin-bottom: 18px;
+    border-left: 5px solid #10b981;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
 div.stTextInput input {
-    border-radius: 15px;
-    padding: 12px;
-    border: 2px solid #334155;
+    border-radius: 14px;
+    border: 2px solid #cbd5e1;
+    padding: 14px;
+    background-color: white;
+    color: black;
 }
 
 div.stButton > button {
     width: 100%;
-    border-radius: 15px;
-    height: 50px;
+    border-radius: 14px;
+    height: 48px;
     font-size: 16px;
     font-weight: bold;
-    background-color: #0ea5e9;
+    background-color: #2563eb;
     color: white;
     border: none;
 }
 
 div.stButton > button:hover {
-    background-color: #0284c7;
-}
-
-.sidebar .sidebar-content {
-    background-color: #111827;
+    background-color: #1d4ed8;
 }
 
 </style>
@@ -353,6 +353,7 @@ def convertir_expresion(expr):
 # EXPLICACIÓN MATEMÁTICA
 # =========================================================
 
+
 def explicar_operacion(expresion):
 
     try:
@@ -379,55 +380,59 @@ def explicar_operacion(expresion):
         explicacion = []
 
         explicacion.append(
-            f"### 🧮 Operación matemática\n\n"
+            f"### 🧮 Operación ingresada\n\n"
             f"`{original}`"
         )
 
-        explicacion.append(
-            "\n### 📖 Procedimiento aplicado"
+        texto_explicacion = (
+            "Para resolver esta expresión "
+            "se aplicó el orden matemático "
+            "tradicional de operaciones."
         )
+
+        detalles = []
 
         if "(" in original:
 
-            explicacion.append(
-                "\n• Se resolvieron primero "
-                "las operaciones agrupadas "
-                "dentro de paréntesis."
+            detalles.append(
+                "primero se resolvieron "
+                "las operaciones dentro "
+                "de los paréntesis"
             )
 
         if "^" in original:
 
-            explicacion.append(
-                "\n• Se calcularon las potencias "
-                "utilizando prioridad matemática."
+            detalles.append(
+                "después se calcularon "
+                "las potencias"
             )
 
         if "*" in original or "/" in original:
 
-            explicacion.append(
-                "\n• Posteriormente se realizaron "
-                "las multiplicaciones y divisiones."
+            detalles.append(
+                "luego se realizaron "
+                "las multiplicaciones y divisiones"
             )
 
         if "+" in original or "-" in original[1:]:
 
-            explicacion.append(
-                "\n• Finalmente se efectuaron "
-                "las sumas y restas."
+            detalles.append(
+                "y finalmente se efectuaron "
+                "las sumas y restas"
             )
 
         if "raiz" in original:
 
-            explicacion.append(
-                "\n• La expresión contiene "
-                "una raíz cuadrada."
+            detalles.append(
+                "incluyendo el cálculo "
+                "de la raíz cuadrada"
             )
 
         if "log" in original:
 
-            explicacion.append(
-                "\n• Se aplicó un logaritmo "
-                "base 10."
+            detalles.append(
+                "aplicando operaciones "
+                "logarítmicas"
             )
 
         if (
@@ -436,14 +441,30 @@ def explicar_operacion(expresion):
             or "tan" in original
         ):
 
-            explicacion.append(
-                "\n• Se utilizaron funciones "
-                "trigonométricas en grados."
+            detalles.append(
+                "utilizando funciones trigonométricas"
+            )
+
+        if detalles:
+
+            texto_explicacion += (
+                ", donde "
+                + ", ".join(detalles)
+                + "."
             )
 
         explicacion.append(
-            f"\n\n### ✅ Resultado obtenido\n\n"
+            f"\n\n{texto_explicacion}"
+        )
+
+        explicacion.append(
+            f"\n\n### ✅ Resultado final\n\n"
             f"**{resultado}**"
+        )
+
+        explicacion.append(
+            "\n\nLa operación fue resuelta "
+            "correctamente por el sistema."
         )
 
         return "".join(explicacion)
@@ -451,9 +472,12 @@ def explicar_operacion(expresion):
     except Exception as e:
 
         return (
-            f"❌ Ocurrió un error al "
-            f"resolver la operación.\n\n{e}"
+            "❌ No fue posible resolver "
+            "la operación matemática.\n\n"
+            f"Detalle del error: {e}"
         )
+
+
 
 # =========================================================
 # BUSCAR RESPUESTA
