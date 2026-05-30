@@ -883,20 +883,19 @@ if enviar and pregunta:
 # =====================================================
 # SALIR DEL CHAT
 # =====================================================
-
 if texto in ["salir", "quiero salir"]:
 
     st.session_state.chat.append(
         (
             "bot",
             """
-### 👋 Sesión finalizada
+      ### 👋 Sesión finalizada
 
-El chatbot híbrido educativo ha cerrado la conversación correctamente.
+      El chatbot híbrido educativo ha cerrado la conversación correctamente.
 
-Gracias por utilizar el sistema inteligente de consultas educativas y matemáticas.
+       Gracias por utilizar el sistema inteligente de consultas educativas y matemáticas.
 
-Puedes reiniciar la conversación desde el panel lateral si deseas volver a comenzar.
+        Puedes reiniciar la conversación desde el panel lateral si deseas volver a comenzar.
             """
         )
     )
