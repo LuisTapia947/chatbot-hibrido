@@ -302,16 +302,56 @@ def extraer_operacion(texto):
 # =========================================================
 # DETECTAR OPERACIÓN
 # =========================================================
-
 def es_operacion_matematica(texto):
 
     expr = extraer_operacion(texto)
 
-    patron = r'^[0-9\+\-\*\/\.\(\)\,\^\%\ ]+[a-zA-Z]*.*$'
+    expr = expr.lower().strip()
 
-    return bool(
-        re.match(patron, expr)
-    )
+    # símbolos matemáticos
+    simbolos = [
+        "+",
+        "-",
+        "*",
+        "/",
+        "^",
+        "(",
+        ")"
+    ]
+
+    # funciones matemáticas
+    funciones = [
+        "raiz",
+        "sqrt",
+        "log",
+        "ln",
+        "sen",
+        "sin",
+        "cos",
+        "tan",
+        "factorial",
+        "pi",
+        "e"
+    ]
+
+    # detectar símbolos
+    if any(s in expr for s in simbolos):
+
+        return True
+
+    # detectar funciones
+    if any(f in expr for f in funciones):
+
+        return True
+
+    # detectar números simples
+    if re.search(r'\d', expr):
+
+        return True
+
+    return False
+
+
 
 # =========================================================
 # CONVERTIR EXPRESIÓN
