@@ -1,13 +1,15 @@
+```python
 # =========================================================
-# CHATBOT HÍBRIDO 
+# CHATBOT HÍBRIDO EDUCATIVO AVANZADO
 # =========================================================
 
 import streamlit as st
 from difflib import get_close_matches
+from datetime import datetime
 import random
 import os
 import re
-from datetime import datetime
+import math
 
 # =========================================================
 # CONFIGURACIÓN
@@ -20,7 +22,7 @@ st.set_page_config(
 )
 
 # =========================================================
-# CSS
+# ESTILOS
 # =========================================================
 
 st.markdown("""
@@ -30,36 +32,45 @@ st.markdown("""
     background-color: #0f172a;
 }
 
-h1 {
-    text-align: center;
+h1, h2, h3 {
     color: #38bdf8;
+}
+
+.stChatMessage {
+    border-radius: 15px;
+    padding: 10px;
 }
 
 div.stButton > button {
     width: 100%;
-    border-radius: 10px;
+    border-radius: 12px;
     height: 45px;
     font-weight: bold;
+}
+
+textarea {
+    border-radius: 12px !important;
 }
 
 </style>
 """, unsafe_allow_html=True)
 
 # =========================================================
-# TITULO
+# TÍTULO
 # =========================================================
 
 st.title("🤖 Chatbot Híbrido Educativo")
 
 st.markdown("""
-### Funciones del chatbot
+### Funciones del sistema
 
-✅ Preguntas de conocimiento  
-✅ Coincidencias inteligentes  
-✅ Resolución matemática  
-✅ Explicación de operaciones  
+✅ Respuestas educativas  
+✅ Búsqueda inteligente  
+✅ Coincidencias aproximadas  
+✅ Matemática avanzada  
+✅ Explicación de resultados  
+✅ Funciones científicas  
 ✅ Sugerencias automáticas  
-✅ Respuestas educadas  
 """)
 
 # =========================================================
@@ -69,12 +80,8 @@ st.markdown("""
 memoria = {}
 
 # =========================================================
-# CARGAR ARCHIVOS TXT
+# CARGAR BASES DE CONOCIMIENTO
 # =========================================================
-
-carpeta_actual = os.path.dirname(
-    os.path.abspath(__file__)
-)
 
 archivos = [
     "programacion.txt",
@@ -85,6 +92,10 @@ archivos = [
 ]
 
 errores = []
+
+carpeta_actual = os.path.dirname(
+    os.path.abspath(__file__)
+)
 
 for archivo in archivos:
 
@@ -101,25 +112,22 @@ for archivo in archivos:
             encoding="utf-8"
         ) as f:
 
-            txt = f.read().strip()
+            contenido = f.read().strip()
 
-        lineas = [
-            l for l in txt.split("\n")
-            if l
-        ]
+        lineas = contenido.split("\n")
 
-        for l in lineas:
+        for linea in lineas:
 
-            if "?r:" in l:
+            if "?r:" in linea:
 
-                q, r = l.split("?r:")
+                pregunta, respuesta = linea.split("?r:")
 
-                pregunta = q.replace(
+                pregunta = pregunta.replace(
                     "p:",
                     ""
                 ).strip().lower()
 
-                respuesta = r.strip()
+                respuesta = respuesta.strip()
 
                 if pregunta and respuesta:
 
@@ -128,7 +136,7 @@ for archivo in archivos:
     except Exception as e:
 
         errores.append(
-            f"Error cargando {archivo}: {e}"
+            f"{archivo}: {e}"
         )
 
 preguntas = list(memoria.keys())
@@ -173,7 +181,8 @@ introducciones = [
     "Excelente pregunta.",
     "Claro, aquí tienes la información.",
     "Con gusto responderé tu consulta.",
-    "Estoy procesando tu pregunta."
+    "Estoy procesando tu pregunta.",
+    "Encontré información relevante."
 ]
 
 continuar = [
@@ -186,66 +195,65 @@ continuar = [
 # RESPUESTAS ESPECIALES
 # =========================================================
 
-def respuesta_especial(q):
+def respuesta_especial(texto):
 
-    q = q.lower()
+    texto = texto.lower()
 
-    if "hora" in q:
+    if "hora" in texto:
 
         return (
             f"La hora actual es "
             f"{datetime.now().strftime('%H:%M')}."
         )
 
-    if "fecha" in q:
+    if "fecha" in texto:
 
         return (
             f"La fecha actual es "
             f"{datetime.now().strftime('%d/%m/%Y')}."
         )
 
-    if "quien eres" in q:
+    if "quien eres" in texto:
 
         return (
             "Soy un chatbot híbrido educativo "
             "desarrollado en Python y Streamlit."
         )
 
-    if "como estas" in q:
+    if "como estas" in texto:
 
         return (
             "Estoy funcionando correctamente "
             "y listo para ayudarte."
         )
 
-    if "que puedes hacer" in q:
+    if "que puedes hacer" in texto:
 
         return (
-            "Puedo responder preguntas sobre "
-            "programación, inteligencia artificial, "
-            "redes, hardware y ciberseguridad."
+            "Puedo responder preguntas educativas "
+            "y resolver operaciones matemáticas."
         )
 
     return None
 
 # =========================================================
-# OPERACIONES MATEMÁTICAS AVANZADAS
-# =========================================================
-
-import math
-
-# =========================================================
-# EXTRAER OPERACIÓN
+# MATEMÁTICAS
 # =========================================================
 
 def extraer_operacion(texto):
 
     texto = texto.lower()
 
-    texto = texto.replace("cuanto es", "")
-    texto = texto.replace("calcula", "")
-    texto = texto.replace("resuelve", "")
-    texto = texto.replace("resultado de", "")
+    reemplazos = [
+        "cuanto es",
+        "calcula",
+        "resuelve",
+        "resultado de"
+    ]
+
+    for r in reemplazos:
+
+        texto = texto.replace(r, "")
 
     return texto.strip()
 
@@ -255,23 +263,16 @@ def extraer_operacion(texto):
 
 def es_operacion_matematica(texto):
 
-    expresion = extraer_operacion(texto)
+    expr = extraer_operacion(texto)
 
-    permitidos = (
-        "0123456789+-*/().,^ "
-        "abcdefghijklmnopqrstuvwxyz"
+    patron = r'^[0-9\+\-\*\/\.\(\)\,\^\%\ ]+[a-zA-Z]*.*$'
+
+    return bool(
+        re.match(patron, expr)
     )
 
-    for c in expresion:
-
-        if c.lower() not in permitidos:
-
-            return False
-
-    return True
-
 # =========================================================
-# CONVERTIR EXPRESIONES
+# CONVERTIR EXPRESIÓN
 # =========================================================
 
 def convertir_expresion(expr):
@@ -319,11 +320,6 @@ def convertir_expresion(expr):
     )
 
     expr = expr.replace(
-        "abs(",
-        "abs("
-    )
-
-    expr = expr.replace(
         "factorial(",
         "math.factorial("
     )
@@ -336,22 +332,6 @@ def convertir_expresion(expr):
     expr = expr.replace(
         "e",
         str(math.e)
-    )
-
-    # cerrar parentesis extra para trigonometría
-    expr = expr.replace(
-        "math.sin(math.radians(",
-        "math.sin(math.radians("
-    )
-
-    expr = expr.replace(
-        "math.cos(math.radians(",
-        "math.cos(math.radians("
-    )
-
-    expr = expr.replace(
-        "math.tan(math.radians(",
-        "math.tan(math.radians("
     )
 
     return expr
@@ -372,7 +352,6 @@ def explicar_operacion(expresion):
             original
         )
 
-        # corregir trigonometría
         if "math.sin(math.radians(" in expr:
             expr += "))"
 
@@ -387,21 +366,48 @@ def explicar_operacion(expresion):
         pasos = []
 
         pasos.append(
-            f"📌 La operación ingresada fue:\n\n{original}"
+            f"📌 Operación:\n\n{original}"
         )
 
         pasos.append(
-            "\n📖 El sistema analizó "
-            "la expresión matemática."
+            "\n📖 Desarrollo:"
         )
+
+        if "(" in original:
+
+            pasos.append(
+                "\n• Primero se resolvieron "
+                "las operaciones dentro "
+                "de los paréntesis."
+            )
 
         if "^" in original:
 
             pasos.append(
-                "\n• Se identificó una potencia."
+                "\n• Se calcularon las potencias."
             )
 
-        if "raiz" in original or "sqrt" in original:
+        if (
+            "*" in original
+            or "/" in original
+        ):
+
+            pasos.append(
+                "\n• Luego se realizaron "
+                "las multiplicaciones y divisiones."
+            )
+
+        if (
+            "+" in original
+            or "-" in original[1:]
+        ):
+
+            pasos.append(
+                "\n• Finalmente se resolvieron "
+                "las sumas y restas."
+            )
+
+        if "raiz" in original:
 
             pasos.append(
                 "\n• Se identificó una raíz cuadrada."
@@ -410,57 +416,25 @@ def explicar_operacion(expresion):
         if "log" in original:
 
             pasos.append(
-                "\n• Se identificó un logaritmo base 10."
-            )
-
-        if "ln" in original:
-
-            pasos.append(
-                "\n• Se identificó un logaritmo natural."
+                "\n• Se identificó un logaritmo."
             )
 
         if (
             "sen" in original
-            or "sin" in original
+            or "cos" in original
+            or "tan" in original
         ):
 
             pasos.append(
-                "\n• Se identificó una función seno."
-            )
-
-        if "cos" in original:
-
-            pasos.append(
-                "\n• Se identificó una función coseno."
-            )
-
-        if "tan" in original:
-
-            pasos.append(
-                "\n• Se identificó una función tangente."
-            )
-
-        if "factorial" in original:
-
-            pasos.append(
-                "\n• Se identificó un factorial."
-            )
-
-        if "(" in original:
-
-            pasos.append(
-                "\n• Se resolvieron primero "
-                "las operaciones dentro "
-                "de los paréntesis."
+                "\n• Se utilizaron funciones trigonométricas."
             )
 
         pasos.append(
-            f"\n\n🧮 Resultado obtenido:\n\n{resultado}"
+            f"\n\n🧮 Resultado:\n\n{resultado}"
         )
 
         pasos.append(
-            "\n✅ La operación fue procesada "
-            "correctamente."
+            "\n✅ La operación fue resuelta correctamente."
         )
 
         return "".join(pasos)
@@ -481,7 +455,6 @@ def resolver_operacion(expresion):
         expresion
     )
 
-
 # =========================================================
 # BUSCAR RESPUESTA
 # =========================================================
@@ -495,12 +468,10 @@ def buscar_respuesta(
         pregunta_usuario.lower().strip()
     )
 
-    # COINCIDENCIA EXACTA
     if pregunta_usuario in memoria:
 
         return memoria[pregunta_usuario], 1.0
 
-    # COINCIDENCIA APROXIMADA
     coincidencias = get_close_matches(
         pregunta_usuario,
         preguntas,
@@ -510,21 +481,18 @@ def buscar_respuesta(
 
     if coincidencias:
 
-        pregunta_encontrada = coincidencias[0]
+        pregunta = coincidencias[0]
 
         similitud = len(
             set(pregunta_usuario)
             &
-            set(pregunta_encontrada)
+            set(pregunta)
         ) / max(
             len(pregunta_usuario),
-            len(pregunta_encontrada)
+            len(pregunta)
         )
 
-        return (
-            memoria[pregunta_encontrada],
-            similitud
-        )
+        return memoria[pregunta], similitud
 
     return None, 0
 
@@ -540,6 +508,10 @@ if "cerrado" not in st.session_state:
 
     st.session_state.cerrado = False
 
+if "input_usuario" not in st.session_state:
+
+    st.session_state.input_usuario = ""
+
 # =========================================================
 # CERRAR CHAT
 # =========================================================
@@ -552,18 +524,79 @@ if st.session_state.cerrado:
 
     st.stop()
 
-pregunta = st.chat_input(
-     "Escribe una pregunta..."  
+# =========================================================
+# BOTONES MATEMÁTICOS
+# =========================================================
+
+st.markdown("## 🧮 Herramientas Matemáticas")
+
+fila1 = st.columns(6)
+
+if fila1[0].button("√"):
+    st.session_state.input_usuario += "raiz("
+
+if fila1[1].button("^"):
+    st.session_state.input_usuario += "^"
+
+if fila1[2].button("π"):
+    st.session_state.input_usuario += "pi"
+
+if fila1[3].button("log"):
+    st.session_state.input_usuario += "log("
+
+if fila1[4].button("ln"):
+    st.session_state.input_usuario += "ln("
+
+if fila1[5].button("!"):
+    st.session_state.input_usuario += "factorial("
+
+fila2 = st.columns(6)
+
+if fila2[0].button("sen"):
+    st.session_state.input_usuario += "sen("
+
+if fila2[1].button("cos"):
+    st.session_state.input_usuario += "cos("
+
+if fila2[2].button("tan"):
+    st.session_state.input_usuario += "tan("
+
+if fila2[3].button("("):
+    st.session_state.input_usuario += "("
+
+if fila2[4].button(")"):
+    st.session_state.input_usuario += ")"
+
+if fila2[5].button("%"):
+    st.session_state.input_usuario += "/100"
+
+# =========================================================
+# INPUT
+# =========================================================
+
+pregunta = st.text_input(
+    "💬 Escribe tu pregunta:",
+    value=st.session_state.input_usuario
 )
 
-    # =====================================================
-    # SALIR
-    # =====================================================
+enviar = st.button("📨 Enviar")
 
-    if (
-        texto == "salir"
-        or texto == "quiero salir"
-    ):
+# =========================================================
+# PROCESAR MENSAJE
+# =========================================================
+
+if enviar and pregunta:
+
+    st.session_state.input_usuario = ""
+
+    texto = pregunta.lower().strip()
+
+    st.session_state.chat.append(
+        ("usuario", pregunta)
+    )
+
+    # SALIR
+    if texto in ["salir", "quiero salir"]:
 
         respuesta_final = (
             "Hasta luego. "
@@ -578,10 +611,7 @@ pregunta = st.chat_input(
 
         st.rerun()
 
-    # =====================================================
     # RESPUESTAS ESPECIALES
-    # =====================================================
-
     elif respuesta_especial(texto):
 
         respuesta_final = (
@@ -590,20 +620,14 @@ pregunta = st.chat_input(
             + random.choice(continuar)
         )
 
-    # =====================================================
-    # OPERACIONES MATEMÁTICAS
-    # =====================================================
-
+    # MATEMÁTICAS
     elif es_operacion_matematica(texto):
 
         respuesta_final = resolver_operacion(
             texto
         )
 
-    # =====================================================
-    # RESPUESTAS NORMALES
-    # =====================================================
-
+    # PREGUNTAS NORMALES
     else:
 
         respuesta, score = buscar_respuesta(
@@ -620,7 +644,7 @@ pregunta = st.chat_input(
                 + random.choice(continuar)
             )
 
-            if score < 1.0:
+            if score < 1:
 
                 respuesta_final += (
                     f"\n\n🔎 Coincidencia aproximada: "
@@ -657,59 +681,41 @@ for tipo, mensaje in st.session_state.chat:
             st.markdown(mensaje)
 
 # =========================================================
-# SUGERENCIAS FIJAS
+# PREGUNTAS SUGERIDAS
 # =========================================================
 
 st.markdown("---")
 
 st.subheader("💡 Preguntas sugeridas")
 
-if "sugerencias_fijas" not in st.session_state:
+if "sugerencias" not in st.session_state:
 
-    st.session_state.sugerencias_fijas = (
-        random.sample(
-            preguntas,
-            min(8, len(preguntas))
-        )
+    st.session_state.sugerencias = random.sample(
+        preguntas,
+        min(8, len(preguntas))
     )
-
-ejemplos = st.session_state.sugerencias_fijas
 
 col1, col2 = st.columns(2)
 
-for i, ejemplo in enumerate(ejemplos):
+for i, pregunta_sugerida in enumerate(
+    st.session_state.sugerencias
+):
 
-    columna = col1 if i % 2 == 0 else col2
+    col = col1 if i % 2 == 0 else col2
 
-    if columna.button(
-        ejemplo,
-        key=f"sug_btn_{i}"
+    if col.button(
+        pregunta_sugerida,
+        key=f"sug_{i}"
     ):
 
-        st.session_state.chat.append(
-            ("usuario", ejemplo)
-        )
-
-        respuesta, score = buscar_respuesta(
-            ejemplo
-        )
-
-        respuesta_final = (
-            random.choice(introducciones)
-            + "\n\n"
-            + respuesta
-            + "\n\n"
-            + random.choice(continuar)
-        )
-
-        st.session_state.chat.append(
-            ("bot", respuesta_final)
+        st.session_state.input_usuario = (
+            pregunta_sugerida
         )
 
         st.rerun()
 
 # =========================================================
-# MOSTRAR ERRORES
+# ERRORES
 # =========================================================
 
 if errores:
@@ -721,4 +727,4 @@ if errores:
         for e in errores:
 
             st.error(e)
-
+```
