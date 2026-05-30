@@ -552,10 +552,9 @@ if st.session_state.cerrado:
 
     st.stop()
 
-
-   pregunta = st.chat_input(
-     "Escribe una pregunta..."
-  )
+pregunta = st.chat_input(
+     "Escribe una pregunta..."  
+)
 
     # =====================================================
     # SALIR
