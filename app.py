@@ -1,5 +1,6 @@
 # =========================================================
-# CHATBOT HÍBRIDO EDUCATIVO AVANZADO
+# CHATBOT HÍBRIDO EDUCATIVO
+# VERSIÓN MEJORADA VISUALMENTE
 # =========================================================
 
 import streamlit as st
@@ -17,38 +18,86 @@ import math
 st.set_page_config(
     page_title="Chatbot Híbrido IA",
     page_icon="🤖",
-    layout="wide"
+    layout="centered"
 )
 
 # =========================================================
-# ESTILOS
+# ESTILOS VISUALES
 # =========================================================
 
 st.markdown("""
 <style>
 
+html, body, [class*="css"] {
+    font-family: 'Segoe UI', sans-serif;
+}
+
 .main {
-    background-color: #0f172a;
+    background: linear-gradient(
+        180deg,
+        #0f172a 0%,
+        #111827 100%
+    );
+    color: white;
 }
 
-h1, h2, h3 {
+.block-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    max-width: 900px;
+}
+
+h1 {
+    text-align: center;
     color: #38bdf8;
+    font-size: 3rem;
+    margin-bottom: 10px;
 }
 
-.stChatMessage {
+.subtitulo {
+    text-align: center;
+    color: #cbd5e1;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.chat-user {
+    background-color: #1e293b;
+    padding: 15px;
     border-radius: 15px;
-    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.chat-bot {
+    background-color: #0f766e;
+    padding: 15px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+div.stTextInput input {
+    border-radius: 15px;
+    padding: 12px;
+    border: 2px solid #334155;
 }
 
 div.stButton > button {
     width: 100%;
-    border-radius: 12px;
-    height: 45px;
+    border-radius: 15px;
+    height: 50px;
+    font-size: 16px;
     font-weight: bold;
+    background-color: #0ea5e9;
+    color: white;
+    border: none;
 }
 
-textarea {
-    border-radius: 12px !important;
+div.stButton > button:hover {
+    background-color: #0284c7;
+}
+
+.sidebar .sidebar-content {
+    background-color: #111827;
 }
 
 </style>
@@ -58,19 +107,12 @@ textarea {
 # TÍTULO
 # =========================================================
 
-st.title("🤖 Chatbot Híbrido Educativo")
-
 st.markdown("""
-### Funciones del sistema
-
-✅ Respuestas educativas  
-✅ Búsqueda inteligente  
-✅ Coincidencias aproximadas  
-✅ Matemática avanzada  
-✅ Explicación de resultados  
-✅ Funciones científicas  
-✅ Sugerencias automáticas  
-""")
+<h1>🤖 Chatbot Híbrido Educativo</h1>
+<p class="subtitulo">
+Sistema inteligente de preguntas educativas y resolución matemática avanzada
+</p>
+""", unsafe_allow_html=True)
 
 # =========================================================
 # MEMORIA
@@ -146,7 +188,7 @@ preguntas = list(memoria.keys())
 
 with st.sidebar:
 
-    st.header("📚 Información")
+    st.title("📚 Información")
 
     st.success(
         f"Preguntas cargadas: {len(preguntas)}"
@@ -154,21 +196,23 @@ with st.sidebar:
 
     st.markdown("---")
 
-    st.subheader("📖 Temáticas")
+    st.subheader("🧠 Áreas disponibles")
 
     st.write("💻 Programación")
-    st.write("🧠 Inteligencia Artificial")
+    st.write("🤖 Inteligencia Artificial")
     st.write("🌐 Redes")
     st.write("🖥️ Hardware")
     st.write("🔐 Ciberseguridad")
 
     st.markdown("---")
 
-    if st.button("🗑️ Limpiar conversación"):
+    st.info(
+        "También puedes resolver operaciones matemáticas avanzadas."
+    )
+
+    if st.button("🗑️ Reiniciar conversación"):
 
         st.session_state.chat = []
-
-        st.session_state.cerrado = False
 
         st.rerun()
 
@@ -177,17 +221,16 @@ with st.sidebar:
 # =========================================================
 
 introducciones = [
-    "Excelente pregunta.",
-    "Claro, aquí tienes la información.",
-    "Con gusto responderé tu consulta.",
-    "Estoy procesando tu pregunta.",
-    "Encontré información relevante."
+    "Encontré información relacionada con tu consulta.",
+    "Esta es la explicación más adecuada para tu pregunta.",
+    "Puedo ayudarte con la siguiente información.",
+    "Analicé tu pregunta y encontré esta respuesta."
 ]
 
 continuar = [
-    "¿Deseas preguntar algo más?",
-    "¿Puedo ayudarte nuevamente?",
-    "¿Tienes otra consulta?"
+    "¿Te gustaría realizar otra consulta?",
+    "Estoy disponible para ayudarte nuevamente.",
+    "Puedes seguir preguntando si lo deseas."
 ]
 
 # =========================================================
@@ -223,36 +266,36 @@ def respuesta_especial(texto):
 
         return (
             "Estoy funcionando correctamente "
-            "y listo para ayudarte."
+            "y preparado para ayudarte."
         )
 
     if "que puedes hacer" in texto:
 
         return (
             "Puedo responder preguntas educativas "
-            "y resolver operaciones matemáticas."
+            "y resolver operaciones matemáticas avanzadas."
         )
 
     return None
 
 # =========================================================
-# MATEMÁTICAS
+# EXTRAER OPERACIÓN
 # =========================================================
 
 def extraer_operacion(texto):
 
     texto = texto.lower()
 
-    reemplazos = [
+    palabras = [
         "cuanto es",
         "calcula",
         "resuelve",
         "resultado de"
     ]
 
-    for r in reemplazos:
+    for p in palabras:
 
-        texto = texto.replace(r, "")
+        texto = texto.replace(p, "")
 
     return texto.strip()
 
@@ -278,50 +321,21 @@ def convertir_expresion(expr):
 
     expr = expr.replace("^", "**")
 
-    expr = expr.replace(
-        "raiz(",
-        "math.sqrt("
-    )
+    reemplazos = {
+        "raiz(": "math.sqrt(",
+        "sqrt(": "math.sqrt(",
+        "log(": "math.log10(",
+        "ln(": "math.log(",
+        "sen(": "math.sin(math.radians(",
+        "sin(": "math.sin(math.radians(",
+        "cos(": "math.cos(math.radians(",
+        "tan(": "math.tan(math.radians(",
+        "factorial(": "math.factorial("
+    }
 
-    expr = expr.replace(
-        "sqrt(",
-        "math.sqrt("
-    )
+    for k, v in reemplazos.items():
 
-    expr = expr.replace(
-        "log(",
-        "math.log10("
-    )
-
-    expr = expr.replace(
-        "ln(",
-        "math.log("
-    )
-
-    expr = expr.replace(
-        "sen(",
-        "math.sin(math.radians("
-    )
-
-    expr = expr.replace(
-        "sin(",
-        "math.sin(math.radians("
-    )
-
-    expr = expr.replace(
-        "cos(",
-        "math.cos(math.radians("
-    )
-
-    expr = expr.replace(
-        "tan(",
-        "math.tan(math.radians("
-    )
-
-    expr = expr.replace(
-        "factorial(",
-        "math.factorial("
-    )
+        expr = expr.replace(k, v)
 
     expr = expr.replace(
         "pi",
@@ -336,7 +350,7 @@ def convertir_expresion(expr):
     return expr
 
 # =========================================================
-# EXPLICAR OPERACIÓN
+# EXPLICACIÓN MATEMÁTICA
 # =========================================================
 
 def explicar_operacion(expresion):
@@ -362,60 +376,58 @@ def explicar_operacion(expresion):
 
         resultado = eval(expr)
 
-        pasos = []
+        explicacion = []
 
-        pasos.append(
-            f"📌 Operación:\n\n{original}"
+        explicacion.append(
+            f"### 🧮 Operación matemática\n\n"
+            f"`{original}`"
         )
 
-        pasos.append(
-            "\n📖 Desarrollo:"
+        explicacion.append(
+            "\n### 📖 Procedimiento aplicado"
         )
 
         if "(" in original:
 
-            pasos.append(
-                "\n• Primero se resolvieron "
-                "las operaciones dentro "
-                "de los paréntesis."
+            explicacion.append(
+                "\n• Se resolvieron primero "
+                "las operaciones agrupadas "
+                "dentro de paréntesis."
             )
 
         if "^" in original:
 
-            pasos.append(
-                "\n• Se calcularon las potencias."
+            explicacion.append(
+                "\n• Se calcularon las potencias "
+                "utilizando prioridad matemática."
             )
 
-        if (
-            "*" in original
-            or "/" in original
-        ):
+        if "*" in original or "/" in original:
 
-            pasos.append(
-                "\n• Luego se realizaron "
+            explicacion.append(
+                "\n• Posteriormente se realizaron "
                 "las multiplicaciones y divisiones."
             )
 
-        if (
-            "+" in original
-            or "-" in original[1:]
-        ):
+        if "+" in original or "-" in original[1:]:
 
-            pasos.append(
-                "\n• Finalmente se resolvieron "
+            explicacion.append(
+                "\n• Finalmente se efectuaron "
                 "las sumas y restas."
             )
 
         if "raiz" in original:
 
-            pasos.append(
-                "\n• Se identificó una raíz cuadrada."
+            explicacion.append(
+                "\n• La expresión contiene "
+                "una raíz cuadrada."
             )
 
         if "log" in original:
 
-            pasos.append(
-                "\n• Se identificó un logaritmo."
+            explicacion.append(
+                "\n• Se aplicó un logaritmo "
+                "base 10."
             )
 
         if (
@@ -424,35 +436,24 @@ def explicar_operacion(expresion):
             or "tan" in original
         ):
 
-            pasos.append(
-                "\n• Se utilizaron funciones trigonométricas."
+            explicacion.append(
+                "\n• Se utilizaron funciones "
+                "trigonométricas en grados."
             )
 
-        pasos.append(
-            f"\n\n🧮 Resultado:\n\n{resultado}"
+        explicacion.append(
+            f"\n\n### ✅ Resultado obtenido\n\n"
+            f"**{resultado}**"
         )
 
-        pasos.append(
-            "\n✅ La operación fue resuelta correctamente."
-        )
-
-        return "".join(pasos)
+        return "".join(explicacion)
 
     except Exception as e:
 
         return (
-            f"❌ Error matemático:\n\n{e}"
+            f"❌ Ocurrió un error al "
+            f"resolver la operación.\n\n{e}"
         )
-
-# =========================================================
-# RESOLVER OPERACIÓN
-# =========================================================
-
-def resolver_operacion(expresion):
-
-    return explicar_operacion(
-        expresion
-    )
 
 # =========================================================
 # BUSCAR RESPUESTA
@@ -503,90 +504,21 @@ if "chat" not in st.session_state:
 
     st.session_state.chat = []
 
-if "cerrado" not in st.session_state:
-
-    st.session_state.cerrado = False
-
-if "input_usuario" not in st.session_state:
-
-    st.session_state.input_usuario = ""
-
-# =========================================================
-# CERRAR CHAT
-# =========================================================
-
-if st.session_state.cerrado:
-
-    st.warning(
-        "El chatbot fue cerrado correctamente."
-    )
-
-    st.stop()
-
-# =========================================================
-# BOTONES MATEMÁTICOS
-# =========================================================
-
-st.markdown("## 🧮 Herramientas Matemáticas")
-
-fila1 = st.columns(6)
-
-if fila1[0].button("√"):
-    st.session_state.input_usuario += "raiz("
-
-if fila1[1].button("^"):
-    st.session_state.input_usuario += "^"
-
-if fila1[2].button("π"):
-    st.session_state.input_usuario += "pi"
-
-if fila1[3].button("log"):
-    st.session_state.input_usuario += "log("
-
-if fila1[4].button("ln"):
-    st.session_state.input_usuario += "ln("
-
-if fila1[5].button("!"):
-    st.session_state.input_usuario += "factorial("
-
-fila2 = st.columns(6)
-
-if fila2[0].button("sen"):
-    st.session_state.input_usuario += "sen("
-
-if fila2[1].button("cos"):
-    st.session_state.input_usuario += "cos("
-
-if fila2[2].button("tan"):
-    st.session_state.input_usuario += "tan("
-
-if fila2[3].button("("):
-    st.session_state.input_usuario += "("
-
-if fila2[4].button(")"):
-    st.session_state.input_usuario += ")"
-
-if fila2[5].button("%"):
-    st.session_state.input_usuario += "/100"
-
 # =========================================================
 # INPUT
 # =========================================================
 
 pregunta = st.text_input(
-    "💬 Escribe tu pregunta:",
-    value=st.session_state.input_usuario
+    "💬 Escribe tu pregunta o una operación matemática:"
 )
 
-enviar = st.button("📨 Enviar")
+enviar = st.button("Enviar consulta")
 
 # =========================================================
 # PROCESAR MENSAJE
 # =========================================================
 
 if enviar and pregunta:
-
-    st.session_state.input_usuario = ""
 
     texto = pregunta.lower().strip()
 
@@ -598,17 +530,8 @@ if enviar and pregunta:
     if texto in ["salir", "quiero salir"]:
 
         respuesta_final = (
-            "Hasta luego. "
-            "El chatbot se cerrará correctamente."
+            "La conversación fue finalizada correctamente."
         )
-
-        st.session_state.chat.append(
-            ("bot", respuesta_final)
-        )
-
-        st.session_state.cerrado = True
-
-        st.rerun()
 
     # RESPUESTAS ESPECIALES
     elif respuesta_especial(texto):
@@ -622,11 +545,11 @@ if enviar and pregunta:
     # MATEMÁTICAS
     elif es_operacion_matematica(texto):
 
-        respuesta_final = resolver_operacion(
+        respuesta_final = explicar_operacion(
             texto
         )
 
-    # PREGUNTAS NORMALES
+    # RESPUESTAS GENERALES
     else:
 
         respuesta, score = buscar_respuesta(
@@ -653,8 +576,8 @@ if enviar and pregunta:
         else:
 
             respuesta_final = (
-                "No encontré información suficiente. "
-                "Intenta formular la pregunta de otra manera."
+                "No encontré información suficiente "
+                "para responder esa consulta."
             )
 
     st.session_state.chat.append(
@@ -669,49 +592,48 @@ for tipo, mensaje in st.session_state.chat:
 
     if tipo == "usuario":
 
-        with st.chat_message("user"):
-
-            st.markdown(mensaje)
+        st.markdown(
+            f"""
+            <div class="chat-user">
+            <strong>👤 Tú:</strong><br><br>
+            {mensaje}
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
     else:
 
-        with st.chat_message("assistant"):
-
-            st.markdown(mensaje)
+        st.markdown(
+            f"""
+            <div class="chat-bot">
+            <strong>🤖 Chatbot:</strong><br><br>
+            {mensaje}
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
 # =========================================================
-# PREGUNTAS SUGERIDAS
+# SUGERENCIAS
 # =========================================================
 
 st.markdown("---")
 
-st.subheader("💡 Preguntas sugeridas")
+st.subheader("💡 Ejemplos de consultas")
 
-if "sugerencias" not in st.session_state:
+ejemplos = [
+    "¿Qué es Python?",
+    "¿Qué es una red LAN?",
+    "¿Qué es inteligencia artificial?",
+    "cuanto es raiz(144)",
+    "calcula 2^8",
+    "sen(90)"
+]
 
-    st.session_state.sugerencias = random.sample(
-        preguntas,
-        min(8, len(preguntas))
-    )
+for e in ejemplos:
 
-col1, col2 = st.columns(2)
-
-for i, pregunta_sugerida in enumerate(
-    st.session_state.sugerencias
-):
-
-    col = col1 if i % 2 == 0 else col2
-
-    if col.button(
-        pregunta_sugerida,
-        key=f"sug_{i}"
-    ):
-
-        st.session_state.input_usuario = (
-            pregunta_sugerida
-        )
-
-        st.rerun()
+    st.markdown(f"• {e}")
 
 # =========================================================
 # ERRORES
