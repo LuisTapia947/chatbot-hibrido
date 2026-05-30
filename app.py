@@ -1,5 +1,5 @@
 # =========================================================
-# CHATBOT HÍBRIDO EDUCATIVO AVANZADO
+# CHATBOT HÍBRIDO 
 # =========================================================
 
 import streamlit as st
@@ -337,7 +337,7 @@ SCROLL
 st.markdown("""
 
 <div class="titulo-principal">
-🤖 Chatbot Híbrido Educativo
+🤖 Chatbot Híbrido 
 </div>
 
 <div class="subtitulo">
