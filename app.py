@@ -229,112 +229,111 @@ def respuesta_especial(q):
     return None
 
 
+
 # =========================================================
 # OPERACIONES MATEMÁTICAS INTELIGENTES
 # =========================================================
 
+def extraer_operacion(texto):
+
+    texto = texto.lower()
+
+    texto = texto.replace("cuanto es", "")
+    texto = texto.replace("calcula", "")
+    texto = texto.replace("resuelve", "")
+    texto = texto.replace("resultado de", "")
+
+    return texto.strip()
+
+# =========================================================
+# DETECTAR OPERACIÓN
+# =========================================================
+
 def es_operacion_matematica(texto):
+
+    expresion = extraer_operacion(texto)
 
     patron = r'^[0-9\+\-\*\/\.\(\)\ ]+$'
 
     return re.match(
         patron,
-        texto
+        expresion
     )
 
 # =========================================================
-# EXPLICAR OPERACION PASO A PASO
+# EXPLICACIÓN INTELIGENTE
 # =========================================================
 
 def explicar_operacion(expresion):
 
     try:
 
-        expr = expresion.replace(" ", "")
+        expr = extraer_operacion(
+            expresion
+        ).replace(" ", "")
 
-        explicacion = []
+        resultado = eval(expr)
 
-        explicacion.append(
-            f"📌 Operación ingresada:\n\n{expr}"
+        pasos = []
+
+        pasos.append(
+            f"📌 La operación ingresada fue:\n\n{expr}"
         )
 
-        explicacion.append(
-            "\n📖 Desarrollo paso a paso:"
+        pasos.append(
+            "\n📖 Para resolverla se aplicó "
+            "la jerarquía matemática estándar."
         )
-
-        # ============================================
-        # PASO 1
-        # ============================================
 
         if "(" in expr:
 
-            explicacion.append(
-                "\n1️⃣ Primero se resuelven "
+            pasos.append(
+                "\n• Primero se resolvieron "
                 "las operaciones dentro "
                 "de los paréntesis."
             )
 
-        # ============================================
-        # POTENCIAS
-        # ============================================
-
         if "**" in expr:
 
-            explicacion.append(
-                "\n2️⃣ Luego se calculan "
+            pasos.append(
+                "\n• Después se calcularon "
                 "las potencias."
             )
 
-        # ============================================
-        # MULTIPLICACION Y DIVISION
-        # ============================================
-
         if "*" in expr or "/" in expr:
 
-            explicacion.append(
-                "\n3️⃣ Después se realizan "
-                "las multiplicaciones y divisiones "
-                "de izquierda a derecha."
+            pasos.append(
+                "\n• Luego se realizaron "
+                "las multiplicaciones y divisiones."
             )
-
-        # ============================================
-        # SUMAS Y RESTAS
-        # ============================================
 
         if "+" in expr or "-" in expr[1:]:
 
-            explicacion.append(
-                "\n4️⃣ Finalmente se resuelven "
+            pasos.append(
+                "\n• Finalmente se resolvieron "
                 "las sumas y restas."
             )
 
-        # ============================================
-        # RESULTADO
-        # ============================================
-
-        resultado = eval(expr)
-
-        explicacion.append(
-            f"\n🧮 Resultado final:\n\n{resultado}"
+        pasos.append(
+            f"\n\n🧮 El resultado obtenido es:\n\n{resultado}"
         )
 
-        explicacion.append(
-            "\n✅ La operación fue resuelta "
-            "aplicando correctamente la jerarquía "
-            "de operadores matemáticos."
+        pasos.append(
+            "\n✅ La operación fue procesada "
+            "correctamente por el sistema."
         )
 
-        return "".join(explicacion)
+        return "".join(pasos)
 
     except:
 
         return (
-            "❌ Ocurrió un error al resolver "
-            "la operación matemática."
+            "❌ Ocurrió un error al intentar "
+            "resolver la operación matemática."
         )
 
 # =========================================================
-# RESOLVER OPERACION
+# RESOLVER OPERACIÓN
 # =========================================================
 
 def resolver_operacion(expresion):
@@ -342,6 +341,7 @@ def resolver_operacion(expresion):
     return explicar_operacion(
         expresion
     )
+
 
 
 
