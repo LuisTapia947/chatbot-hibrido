@@ -17,109 +17,334 @@ import math
 st.set_page_config(
     page_title="Chatbot Híbrido IA",
     page_icon="🤖",
-    layout="centered"
+    layout="wide",
+    initial_sidebar_state="expanded"
 )
 
 # =========================================================
-# ESTILOS
+# ESTILOS VISUALES MODERNOS
 # =========================================================
 
 st.markdown("""
 <style>
 
+/* ======================================================
+FUENTE Y FONDO GENERAL
+====================================================== */
+
 html, body, [class*="css"] {
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #f5f7fb;
+
+    font-family: 'Inter', sans-serif;
+
+    background:
+    linear-gradient(
+        180deg,
+        #f8fafc 0%,
+        #eef2ff 100%
+    );
 }
 
+/* ======================================================
+CONTENEDOR PRINCIPAL
+====================================================== */
+
 .main {
-    background-color: #f5f7fb;
+
     color: #111827;
 }
 
 .block-container {
-    max-width: 950px;
-    padding-top: 2rem;
+
+    max-width: 1150px;
+
+    padding-top: 1.5rem;
+
     padding-bottom: 2rem;
 }
 
-h1 {
+/* ======================================================
+TÍTULO
+====================================================== */
+
+.titulo-principal {
+
     text-align: center;
-    color: #2563eb;
-    font-size: 3rem;
-    margin-bottom: 5px;
+
+    font-size: 3.5rem;
+
+    font-weight: 800;
+
+    color: #1e3a8a;
+
+    margin-bottom: 10px;
 }
 
 .subtitulo {
+
     text-align: center;
+
     color: #475569;
-    font-size: 1.1rem;
-    margin-bottom: 30px;
+
+    font-size: 1.15rem;
+
+    margin-bottom: 40px;
 }
+
+/* ======================================================
+CHAT USUARIO
+====================================================== */
 
 .chat-user {
-    background-color: #dbeafe;
-    color: #111827;
-    padding: 16px;
-    border-radius: 18px;
-    margin-bottom: 12px;
-    border-left: 5px solid #2563eb;
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb 0%,
+        #3b82f6 100%
+    );
+
+    color: white;
+
+    padding: 18px;
+
+    border-radius: 24px;
+
+    margin-left: 100px;
+
+    margin-bottom: 15px;
+
+    box-shadow:
+    0 5px 18px rgba(37,99,235,0.20);
+
+    animation: aparecer 0.25s ease;
 }
+
+/* ======================================================
+CHAT BOT
+====================================================== */
 
 .chat-bot {
-    background-color: white;
+
+    background: white;
+
     color: #111827;
-    padding: 16px;
-    border-radius: 18px;
+
+    padding: 20px;
+
+    border-radius: 24px;
+
+    margin-right: 100px;
+
     margin-bottom: 18px;
-    border-left: 5px solid #10b981;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+
+    border: 1px solid #e2e8f0;
+
+    box-shadow:
+    0 4px 18px rgba(0,0,0,0.05);
+
+    animation: aparecer 0.25s ease;
 }
+
+/* ======================================================
+ANIMACIÓN
+====================================================== */
+
+@keyframes aparecer {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(10px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0px);
+    }
+}
+
+/* ======================================================
+INPUT
+====================================================== */
 
 div.stTextInput input {
-    border-radius: 14px;
-    border: 2px solid #cbd5e1;
-    padding: 14px;
-    background-color: white;
-    color: black;
+
+    background: white;
+
+    border: 2px solid #dbeafe;
+
+    border-radius: 20px;
+
+    padding: 16px;
+
+    font-size: 16px;
+
+    color: #111827;
+
+    box-shadow:
+    0 2px 12px rgba(0,0,0,0.05);
 }
 
+div.stTextInput input:focus {
+
+    border: 2px solid #2563eb;
+
+    box-shadow:
+    0 0 0 4px rgba(37,99,235,0.15);
+}
+
+/* ======================================================
+BOTONES
+====================================================== */
+
 div.stButton > button {
+
     width: 100%;
-    border-radius: 14px;
-    height: 48px;
+
+    border-radius: 18px;
+
+    height: 52px;
+
     font-size: 15px;
-    font-weight: bold;
-    background-color: #2563eb;
-    color: white;
+
+    font-weight: 700;
+
     border: none;
+
+    color: white;
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb 0%,
+        #1d4ed8 100%
+    );
+
+    box-shadow:
+    0 4px 15px rgba(37,99,235,0.25);
+
+    transition: all 0.2s ease;
 }
 
 div.stButton > button:hover {
-    background-color: #1d4ed8;
+
+    transform: translateY(-2px);
+
+    background:
+    linear-gradient(
+        135deg,
+        #1d4ed8 0%,
+        #1e40af 100%
+    );
 }
 
+/* ======================================================
+SIDEBAR
+====================================================== */
+
+section[data-testid="stSidebar"] {
+
+    background:
+    linear-gradient(
+        180deg,
+        #0f172a 0%,
+        #1e293b 100%
+    );
+}
+
+section[data-testid="stSidebar"] * {
+
+    color: white !important;
+}
+
+/* ======================================================
+TARJETAS
+====================================================== */
+
+.card {
+
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 18px;
+
+    margin-bottom: 18px;
+
+    border: 1px solid #e2e8f0;
+
+    box-shadow:
+    0 3px 10px rgba(0,0,0,0.05);
+}
+
+/* ======================================================
+CÓDIGO
+====================================================== */
+
 .codigo {
-    background-color: #e2e8f0;
-    padding: 10px;
-    border-radius: 10px;
+
+    background: #0f172a;
+
+    color: #f8fafc;
+
+    padding: 16px;
+
+    border-radius: 14px;
+
     font-family: monospace;
-    color: black;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+}
+
+/* ======================================================
+SCROLL
+====================================================== */
+
+::-webkit-scrollbar {
+
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+
+    background: #e2e8f0;
+}
+
+::-webkit-scrollbar-thumb {
+
+    background: #94a3b8;
+
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+
+    background: #64748b;
 }
 
 </style>
 """, unsafe_allow_html=True)
 
 # =========================================================
-# TÍTULO
+# TÍTULO PRINCIPAL
 # =========================================================
 
 st.markdown("""
-<h1>🤖 Chatbot Híbrido Educativo</h1>
 
-<p class="subtitulo">
-Sistema inteligente de preguntas educativas y operaciones matemáticas avanzadas
-</p>
+<div class="titulo-principal">
+🤖 Chatbot Híbrido Educativo
+</div>
+
+<div class="subtitulo">
+Sistema inteligente de búsqueda híbrida,
+preguntas educativas y resolución matemática avanzada
+</div>
+
 """, unsafe_allow_html=True)
 
 # =========================================================
@@ -137,7 +362,7 @@ temas = {
 }
 
 # =========================================================
-# CARGAR ARCHIVOS
+# CARGAR ARCHIVOS TXT
 # =========================================================
 
 archivos = [
@@ -206,12 +431,14 @@ for archivo in archivos:
 preguntas = list(memoria.keys())
 
 # =========================================================
-# SIDEBAR
+# SIDEBAR MODERNO
 # =========================================================
 
 with st.sidebar:
 
-    st.title("📚 Información")
+    st.markdown("""
+    ## 🤖 Panel del Sistema
+    """)
 
     st.success(
         f"Preguntas cargadas: {len(preguntas)}"
@@ -219,41 +446,52 @@ with st.sidebar:
 
     st.markdown("---")
 
-    st.subheader("🧠 Áreas disponibles")
+    st.markdown("""
+    ### 📚 Áreas de conocimiento
 
-    st.write("💻 Programación")
-    st.write("🤖 Inteligencia Artificial")
-    st.write("🌐 Redes")
-    st.write("🖥️ Hardware")
-    st.write("🔐 Ciberseguridad")
+    💻 Programación  
+    🤖 Inteligencia Artificial  
+    🌐 Redes  
+    🖥️ Hardware  
+    🔐 Ciberseguridad  
+    """)
 
     st.markdown("---")
 
-    st.subheader("🧮 Operaciones matemáticas")
+    st.markdown("""
+    ### 🧮 Operaciones Matemáticas
+    """)
 
     st.markdown("""
-Puedes escribir operaciones como:
-""")
+    <div class="codigo">
 
-    st.markdown("""
-<div class="codigo">
-2+5*8<br>
-raiz(144)<br>
-2^8<br>
-log(100)<br>
-ln(20)<br>
-sen(90)<br>
-cos(0)<br>
-tan(45)<br>
-factorial(5)<br>
-pi*2
-</div>
-""", unsafe_allow_html=True)
+    2+5*8
+
+    raiz(144)
+
+    2^8
+
+    log(100)
+
+    ln(20)
+
+    sen(90)
+
+    cos(0)
+
+    tan(45)
+
+    factorial(5)
+
+    pi*2
+
+    </div>
+    """, unsafe_allow_html=True)
 
     st.markdown("---")
 
     st.info(
-        "También puedes escribir preguntas naturales como:\n\n"
+        "También puedes hacer preguntas naturales como:\n\n"
         "• ¿Qué es Python?\n"
         "• ¿Qué es una red LAN?\n"
         "• ¿Qué es inteligencia artificial?"
@@ -266,6 +504,8 @@ pi*2
         st.session_state.tema_actual = None
 
         st.rerun()
+
+
 
 # =========================================================
 # FRASES
@@ -730,10 +970,50 @@ st.subheader("💡 Preguntas sugeridas")
 
 tema_actual = st.session_state.tema_actual
 
-preguntas_sugeridas = random.sample(
-    temas[tema_actual],
-    min(6, len(temas[tema_actual]))
+# =========================================================
+# GUARDAR SUGERENCIAS
+# =========================================================
+
+if "tema_sugerencias" not in st.session_state:
+
+    st.session_state.tema_sugerencias = tema_actual
+
+if "preguntas_sugeridas" not in st.session_state:
+
+    st.session_state.preguntas_sugeridas = (
+        random.sample(
+            temas[tema_actual],
+            min(6, len(temas[tema_actual]))
+        )
+    )
+
+# =========================================================
+# CAMBIAR SOLO SI CAMBIA EL TEMA
+# =========================================================
+
+if (
+    st.session_state.tema_sugerencias
+    != tema_actual
+):
+
+    st.session_state.tema_sugerencias = (
+        tema_actual
+    )
+
+    st.session_state.preguntas_sugeridas = (
+        random.sample(
+            temas[tema_actual],
+            min(6, len(temas[tema_actual]))
+        )
+    )
+
+preguntas_sugeridas = (
+    st.session_state.preguntas_sugeridas
 )
+
+# =========================================================
+# MOSTRAR BOTONES
+# =========================================================
 
 col1, col2 = st.columns(2)
 
@@ -769,6 +1049,8 @@ for i, pregunta_sug in enumerate(
         )
 
         st.rerun()
+
+
 
 # =========================================================
 # ERRORES
