@@ -1,12 +1,19 @@
 # =========================================================
-# CHATBOT HÍBRIDO EDUCATIVO IA
+# CHATBOT HÍBRIDO IA + MATEMÁTICAS + IA SEMÁNTICA
+# STREAMLIT VERSION PROFESIONAL
 # =========================================================
 
 import streamlit as st
 from difflib import get_close_matches
 import random
 import os
+import re
+import numpy as np
 from datetime import datetime
+
+# IA SEMÁNTICA
+from sentence_transformers import SentenceTransformer
+from sklearn.metrics.pairwise import cosine_similarity
 
 # =========================================================
 # CONFIGURACIÓN
@@ -19,7 +26,7 @@ st.set_page_config(
 )
 
 # =========================================================
-# CSS PERSONALIZADO
+# CSS
 # =========================================================
 
 st.markdown("""
@@ -30,12 +37,8 @@ st.markdown("""
 }
 
 h1 {
-    color: #38bdf8;
     text-align: center;
-}
-
-.stChatMessage {
-    border-radius: 15px;
+    color: #38bdf8;
 }
 
 div.stButton > button {
@@ -52,16 +55,17 @@ div.stButton > button {
 # TITULO
 # =========================================================
 
-st.title("🤖 Chatbot Híbrido")
+st.title("🤖 Chatbot Híbrido Educativo")
 
 st.markdown("""
-### Temáticas disponibles
+### Funciones del chatbot
 
-- 💻 Programación
-- 🧠 Inteligencia Artificial
-- 🌐 Redes
-- 🖥️ Hardware
-- 🔐 Ciberseguridad
+✅ Preguntas de conocimiento  
+✅ IA semántica inteligente  
+✅ Resolución matemática  
+✅ Explicación de operaciones  
+✅ Sugerencias automáticas  
+✅ Coincidencias aproximadas  
 """)
 
 # =========================================================
@@ -71,10 +75,12 @@ st.markdown("""
 memoria = {}
 
 # =========================================================
-# RUTA ACTUAL
+# CARGAR TXT
 # =========================================================
 
-carpeta_actual = os.path.dirname(os.path.abspath(__file__))
+carpeta_actual = os.path.dirname(
+    os.path.abspath(__file__)
+)
 
 archivos = [
     "programacion.txt",
@@ -84,71 +90,77 @@ archivos = [
     "ciberseguridad.txt"
 ]
 
-# =========================================================
-# CARGAR ARCHIVOS
-# =========================================================
-
 errores = []
 
 for archivo in archivos:
 
-    ruta = os.path.join(carpeta_actual, archivo)
+    ruta = os.path.join(
+        carpeta_actual,
+        archivo
+    )
 
     try:
 
-        with open(ruta, 'r', encoding='utf-8') as f:
+        with open(
+            ruta,
+            "r",
+            encoding="utf-8"
+        ) as f:
 
             txt = f.read().strip()
 
-        lineas = [l for l in txt.split('\n') if l]
+        lineas = [
+            l for l in txt.split("\n")
+            if l
+        ]
 
-        for numero, l in enumerate(lineas, start=1):
+        for l in lineas:
 
-            try:
+            if "?r:" in l:
 
-                if '?r:' in l:
+                q, r = l.split("?r:")
 
-                    q, r = l.split('?r:')
+                pregunta = q.replace(
+                    "p:",
+                    ""
+                ).strip().lower()
 
-                    pregunta = q.replace(
-                        'p:',
-                        ''
-                    ).strip().lower()
+                respuesta = r.strip()
 
-                    respuesta = r.strip()
-
-                    if pregunta and respuesta:
-
-                        memoria[pregunta] = respuesta
-
-                else:
-
-                    errores.append(
-                        f"Formato incorrecto en {archivo} línea {numero}"
-                    )
-
-            except:
-
-                errores.append(
-                    f"Error procesando {archivo} línea {numero}"
-                )
+                memoria[pregunta] = respuesta
 
     except Exception as e:
 
-        errores.append(f"No se pudo cargar {archivo}")
         errores.append(str(e))
 
 preguntas = list(memoria.keys())
 
 # =========================================================
-# VALIDAR
+# IA SEMÁNTICA
 # =========================================================
 
-if len(preguntas) == 0:
+st.sidebar.header("🧠 IA Semántica")
 
-    st.error("No se cargaron preguntas.")
+with st.spinner("Cargando modelo IA..."):
 
-    st.stop()
+    fragmentos = []
+
+    for p, r in memoria.items():
+
+        fragmentos.append(
+            f"Pregunta: {p}\nRespuesta: {r}"
+        )
+
+    modelo = SentenceTransformer(
+        'paraphrase-multilingual-MiniLM-L12-v2'
+    )
+
+    embeddings = modelo.encode(
+        fragmentos,
+        show_progress_bar=False
+    )
+
+st.sidebar.success("Modelo IA cargado")
 
 # =========================================================
 # SIDEBAR
@@ -156,33 +168,45 @@ if len(preguntas) == 0:
 
 with st.sidebar:
 
-    st.header("📚 Información")
+    st.markdown("---")
 
-    st.success(f"Preguntas cargadas: {len(preguntas)}")
+    st.success(
+        f"Preguntas cargadas: {len(preguntas)}"
+    )
 
-    
+    st.markdown("---")
 
-    if st.button("🗑️ Limpiar conversación"):
+    st.subheader("📚 Temáticas")
+
+    st.write("💻 Programación")
+    st.write("🧠 Inteligencia Artificial")
+    st.write("🌐 Redes")
+    st.write("🖥️ Hardware")
+    st.write("🔐 Ciberseguridad")
+
+    st.markdown("---")
+
+    if st.button("🗑️ Limpiar Chat"):
 
         st.session_state.chat = []
 
         st.rerun()
 
 # =========================================================
-# FRASES NATURALES
+# FRASES
 # =========================================================
 
 introducciones = [
     "Excelente pregunta.",
-    "Claro, aquí tienes la respuesta.",
-    "Con gusto responderé tu consulta.",
-    "Estoy analizando tu pregunta."
+    "Claro, aquí tienes la información.",
+    "Con gusto responderé.",
+    "Estoy procesando tu consulta."
 ]
 
 continuar = [
     "¿Deseas preguntar algo más?",
-    "¿Tienes otra consulta?",
-    "¿Puedo ayudarte nuevamente?"
+    "¿Puedo ayudarte nuevamente?",
+    "¿Tienes otra consulta?"
 ]
 
 # =========================================================
@@ -196,7 +220,7 @@ def respuesta_especial(q):
     if "hora" in q:
 
         return (
-            f"La hora actual aproximada es "
+            f"La hora actual es "
             f"{datetime.now().strftime('%H:%M')}."
         )
 
@@ -211,28 +235,81 @@ def respuesta_especial(q):
 
         return (
             "Soy un chatbot híbrido educativo "
-            "desarrollado en Python."
-        )
-
-    if "como estas" in q:
-
-        return (
-            "Estoy funcionando correctamente "
-            "y listo para ayudarte."
-        )
-
-    if "que puedes hacer" in q:
-
-        return (
-            "Puedo responder preguntas sobre "
-            "programación, inteligencia artificial, "
-            "redes, hardware y ciberseguridad."
+            "desarrollado en Python y Streamlit."
         )
 
     return None
 
 # =========================================================
-# BUSCAR RESPUESTA
+# OPERACIONES MATEMÁTICAS
+# =========================================================
+
+def es_operacion_matematica(texto):
+
+    patron = r'^[0-9\\+\\-\\*\\/\\.\\(\\) ]+$'
+
+    return re.match(
+        patron,
+        texto
+    )
+
+def explicar_operacion(expresion, resultado):
+
+    explicacion = (
+        f"La operación matemática ingresada fue: "
+        f"{expresion}. "
+        f"Después de resolverla paso a paso, "
+        f"el resultado obtenido es {resultado}. "
+        f"El sistema evaluó correctamente los "
+        f"operadores matemáticos y realizó el "
+        f"cálculo respetando el orden de prioridad."
+    )
+
+    return explicacion
+
+def resolver_operacion(expresion):
+
+    try:
+
+        resultado = eval(expresion)
+
+        explicacion = explicar_operacion(
+            expresion,
+            resultado
+        )
+
+        return explicacion
+
+    except:
+
+        return (
+            "Ocurrió un error al resolver "
+            "la operación matemática."
+        )
+
+# =========================================================
+# IA SEMÁNTICA
+# =========================================================
+
+def buscar_semantico(pregunta):
+
+    emb_pregunta = modelo.encode([pregunta])
+
+    similitudes = cosine_similarity(
+        emb_pregunta,
+        embeddings
+    )[0]
+
+    indice = np.argmax(similitudes)
+
+    score = similitudes[indice]
+
+    respuesta = fragmentos[indice]
+
+    return respuesta, score
+
+# =========================================================
+# BÚSQUEDA NORMAL
 # =========================================================
 
 def buscar_respuesta(
@@ -244,12 +321,10 @@ def buscar_respuesta(
         pregunta_usuario.lower().strip()
     )
 
-    # EXACTA
     if pregunta_usuario in memoria:
 
         return memoria[pregunta_usuario], 1.0
 
-    # APROXIMADA
     coincidencias = get_close_matches(
         pregunta_usuario,
         preguntas,
@@ -262,7 +337,8 @@ def buscar_respuesta(
         pregunta_encontrada = coincidencias[0]
 
         similitud = len(
-            set(pregunta_usuario) &
+            set(pregunta_usuario)
+            &
             set(pregunta_encontrada)
         ) / max(
             len(pregunta_usuario),
@@ -277,27 +353,28 @@ def buscar_respuesta(
     return None, 0
 
 # =========================================================
-# SUGERENCIAS
-# =========================================================
-
-def obtener_sugerencias(texto):
-
-    sugerencias = get_close_matches(
-        texto.lower(),
-        preguntas,
-        n=5,
-        cutoff=0.25
-    )
-
-    return sugerencias
-
-# =========================================================
 # SESSION STATE
 # =========================================================
 
 if "chat" not in st.session_state:
 
     st.session_state.chat = []
+
+if "cerrado" not in st.session_state:
+
+    st.session_state.cerrado = False
+
+# =========================================================
+# CERRAR CHAT
+# =========================================================
+
+if st.session_state.cerrado:
+
+    st.warning(
+        "El chatbot fue cerrado correctamente."
+    )
+
+    st.stop()
 
 # =========================================================
 # INPUT CHAT
@@ -308,7 +385,7 @@ pregunta = st.chat_input(
 )
 
 # =========================================================
-# PROCESAR MENSAJE
+# PROCESAR
 # =========================================================
 
 if pregunta:
@@ -317,20 +394,60 @@ if pregunta:
         ("usuario", pregunta)
     )
 
-    especial = respuesta_especial(pregunta)
+    texto = pregunta.lower().strip()
 
-    if especial:
+    # =====================================================
+    # SALIR
+    # =====================================================
+
+    if (
+        texto == "salir"
+        or texto == "quiero salir"
+    ):
 
         respuesta_final = (
-            especial
+            "Hasta luego. "
+            "El chatbot se cerrará correctamente."
+        )
+
+        st.session_state.chat.append(
+            ("bot", respuesta_final)
+        )
+
+        st.session_state.cerrado = True
+
+        st.rerun()
+
+    # =====================================================
+    # RESPUESTAS ESPECIALES
+    # =====================================================
+
+    elif respuesta_especial(texto):
+
+        respuesta_final = (
+            respuesta_especial(texto)
             + "\n\n"
             + random.choice(continuar)
         )
 
+    # =====================================================
+    # OPERACIONES MATEMÁTICAS
+    # =====================================================
+
+    elif es_operacion_matematica(texto):
+
+        respuesta_final = resolver_operacion(
+            texto
+        )
+
+    # =====================================================
+    # BÚSQUEDA NORMAL
+    # =====================================================
+
     else:
 
         respuesta, score = buscar_respuesta(
-            pregunta
+            texto
         )
 
         if respuesta:
@@ -352,23 +469,28 @@ if pregunta:
 
         else:
 
-            respuesta_final = (
-                "No encontré una respuesta exacta."
-            )
+            # =============================================
+            # IA SEMÁNTICA
+            # =============================================
 
-            sugerencias = obtener_sugerencias(
-                pregunta
-            )
+            respuesta_sem,
+            score_sem = buscar_semantico(texto)
 
-            if sugerencias:
+            if score_sem > 0.35:
 
-                respuesta_final += (
-                    "\n\nQuizá quisiste preguntar:\n"
+                respuesta_final = (
+                    "🧠 Respuesta obtenida "
+                    "mediante IA semántica:\n\n"
+                    f"{respuesta_sem}\n\n"
+                    f"Nivel de confianza: "
+                    f"{score_sem:.2f}"
                 )
 
-                for s in sugerencias:
+            else:
 
-                    respuesta_final += f"\n• {s}"
+                respuesta_final = (
+                    "No encontré información suficiente."
+                )
 
     st.session_state.chat.append(
         ("bot", respuesta_final)
@@ -393,19 +515,20 @@ for tipo, mensaje in st.session_state.chat:
             st.markdown(mensaje)
 
 # =========================================================
-# SUGERENCIAS VISUALES
+# SUGERENCIAS FIJAS
 # =========================================================
 
 st.markdown("---")
 
 st.subheader("💡 Preguntas sugeridas")
 
-# GUARDAR SUGERENCIAS SOLO UNA VEZ
 if "sugerencias_fijas" not in st.session_state:
 
-    st.session_state.sugerencias_fijas = random.sample(
-        preguntas,
-        min(8, len(preguntas))
+    st.session_state.sugerencias_fijas = (
+        random.sample(
+            preguntas,
+            min(8, len(preguntas))
+        )
     )
 
 ejemplos = st.session_state.sugerencias_fijas
@@ -418,15 +541,13 @@ for i, ejemplo in enumerate(ejemplos):
 
     if columna.button(
         ejemplo,
-        key=f"sug_btn_{i}"
+        key=f"sug_{i}"
     ):
 
-        # MENSAJE USUARIO
         st.session_state.chat.append(
             ("usuario", ejemplo)
         )
 
-        # BUSCAR RESPUESTA
         respuesta, score = buscar_respuesta(
             ejemplo
         )
@@ -439,20 +560,23 @@ for i, ejemplo in enumerate(ejemplos):
             + random.choice(continuar)
         )
 
-        # MENSAJE BOT
         st.session_state.chat.append(
             ("bot", respuesta_final)
         )
 
         st.rerun()
+
 # =========================================================
 # ERRORES
 # =========================================================
 
 if errores:
 
-    with st.expander("⚠️ Ver errores del sistema"):
+    with st.expander(
+        "⚠️ Ver errores del sistema"
+    ):
 
         for e in errores:
 
             st.error(e)
+
