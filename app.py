@@ -501,7 +501,22 @@ with st.sidebar:
 
         st.session_state.chat = []
 
-        st.session_state.tema_actual = None
+        st.session_state.chat_cerrado = False
+
+        st.session_state.tema_actual = random.choice(
+            list(temas.keys())
+        )
+
+        st.session_state.tema_sugerencias = (
+            st.session_state.tema_actual
+        )
+
+        st.session_state.preguntas_sugeridas = (
+            random.sample(
+                temas[st.session_state.tema_actual],
+                min(6, len(temas[st.session_state.tema_actual]))
+            )
+        )
 
         st.rerun()
 
@@ -591,42 +606,38 @@ def es_operacion_matematica(texto):
 
     expr = extraer_operacion(texto)
 
-    simbolos = [
-        "+",
-        "-",
-        "*",
-        "/",
-        "^",
-        "(",
-        ")"
-    ]
+    # Símbolos matemáticos: solo cuentan si hay también un número
+    simbolos = ["+", "*", "/", "^"]
 
+    # Funciones matemáticas con nombre completo (word boundary)
     funciones = [
-        "raiz",
-        "sqrt",
-        "log",
-        "ln",
-        "sen",
-        "sin",
-        "cos",
-        "tan",
-        "factorial",
-        "pi",
-        "e"
+        r'\braiz\s*\(',
+        r'\bsqrt\s*\(',
+        r'\blog\s*\(',
+        r'\bln\s*\(',
+        r'\bsen\s*\(',
+        r'\bsin\s*\(',
+        r'\bcos\s*\(',
+        r'\btan\s*\(',
+        r'\bfactorial\s*\(',
+        r'\bpi\b',
     ]
 
-    if any(s in expr for s in simbolos):
+    tiene_numero = bool(re.search(r'\d', expr))
 
+    # Símbolo matemático + número = operación
+    if tiene_numero and any(s in expr for s in simbolos):
         return True
 
-    if any(f in expr for f in funciones):
-
+    # Resta: solo si hay número (evita falsos positivos con palabras)
+    if tiene_numero and re.search(r'\d\s*-\s*\d', expr):
         return True
 
-    if re.search(r'\d', expr):
-
+    # Funciones matemáticas explícitas
+    if any(re.search(patron, expr) for patron in funciones):
         return True
 
+    # Solo número suelto no es operación
     return False
 
 # =========================================================
@@ -651,7 +662,11 @@ def convertir_expresion(expr):
         expr
     )
 
+    # Multiplicación implícita: 2pi -> 2*pi
+    expr = re.sub(r'(\d)(pi|e\b)', r'\1*\2', expr)
+
     funciones = {
+        "__builtins__": {},
         "sqrt": math.sqrt,
         "log": math.log10,
         "ln": math.log,
@@ -684,9 +699,11 @@ def explicar_operacion(expresion):
 
         resultado = eval(
             expr,
-            {"__builtins__": {}},
             funciones
         )
+
+        if isinstance(resultado, float) and resultado.is_integer():
+            resultado = int(resultado)
 
         texto = (
             "Para resolver esta expresión "
