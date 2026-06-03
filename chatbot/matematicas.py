@@ -16,6 +16,7 @@ def extraer_operacion(texto):
 
     palabras = [
         "cuanto es",
+        "cuanto da",
         "calcula",
         "resuelve",
         "resultado de",
