@@ -265,8 +265,6 @@ CHAT GENERAL
     margin-bottom: 20px;
 
     animation: subir 0.3s ease-out;
-
-    padding: 0 4px;
 }
 
 /* ======================================================
@@ -274,12 +272,20 @@ MENSAJE USUARIO
 ====================================================== */
 
 .user-wrapper {
+
+    display: flex;
+
     justify-content: flex-end;
+
+    width: 100%;
 }
 
 .chat-user {
-    width: fit-content;
-    max-width: 75%;
+
+    max-width: 70%;
+
+    margin-left: auto;
+
     background:
     linear-gradient(
         135deg,
@@ -288,23 +294,27 @@ MENSAJE USUARIO
     );
 
     color: white;
+
     padding: 14px 18px;
+
     border-radius: 20px 20px 6px 20px;
+
     box-shadow:
-    0 12px 30px rgba(99, 102, 241, 0.30),
-    0 0 20px rgba(99, 102, 241, 0.15);
+    0 8px 20px rgba(99, 102, 241, 0.25);
+
     font-size: 15px;
-    line-height: 1.6;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    transition: all 0.25s ease;
+
+    line-height: 1.7;
+
+    border:
+    1px solid rgba(255,255,255,0.15);
+
+    transition: 0.2s ease;
 }
 
 .chat-user:hover {
+
     transform: translateY(-2px);
-    box-shadow:
-    0 16px 40px rgba(99, 102, 241, 0.40),
-    0 0 30px rgba(99, 102, 241, 0.20);
 }
 
 /* ======================================================
@@ -312,43 +322,62 @@ MENSAJE BOT
 ====================================================== */
 
 .bot-wrapper {
-    justify-content: flex-start;
-}
-.chat-bot {
-    width: fit-content;
-    max-width: 78%;
-    background:
-    linear-gradient(
-        135deg,
-        rgba(255, 255, 255, 0.95) 0%,
-        rgba(255, 255, 255, 0.90) 100%
-    );
 
-    backdrop-filter: blur(20px);
+    width: 100%;
+}
+
+.chat-bot {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    background:
+    rgba(255,255,255,0.95);
+
     color: #0f172a;
-    padding: 16px 18px;
-    border-radius: 20px 20px 20px 6px;
-    border: 1.5px solid rgba(99, 102, 241, 0.15);
+
+    padding: 18px 20px;
+
+    border-radius: 20px;
+
+    border:
+    1px solid rgba(99,102,241,0.15);
+
     box-shadow:
-    0 12px 35px rgba(0, 0, 0, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.5);
-    line-height: 1.7;
+    0 8px 24px rgba(0,0,0,0.08);
+
+    line-height: 1.8;
+
     font-size: 15px;
-    transition: all 0.25s ease;
+
+    margin-bottom: 8px;
+
+    transition: 0.2s ease;
 }
+
 .chat-bot:hover {
-    box-shadow:
-    0 16px 45px rgba(0, 0, 0, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
-    border-color: rgba(99, 102, 241, 0.25);
+
+    border-color:
+    rgba(99,102,241,0.25);
 }
+
+/* ======================================================
+LABELS
+====================================================== */
+
 .chat-label {
+
     font-size: 12px;
+
     font-weight: 700;
+
     margin-bottom: 10px;
-    opacity: 0.9;
-    color: #334155;
+
+    opacity: 0.8;
+
     text-transform: uppercase;
+
     letter-spacing: 0.8px;
 }
 
