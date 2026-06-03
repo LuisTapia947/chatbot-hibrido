@@ -911,7 +911,6 @@ with st.sidebar:
     # =====================================================
 
     st.markdown("""
-
     <div class="sidebar-card">
     <h3 style="
         margin-top:0px;
