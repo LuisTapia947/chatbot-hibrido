@@ -212,8 +212,7 @@ def cargar_conocimiento():
     return (
         memoria,
         preguntas,
-        temas,
-        errores
+        temas
     )
 
 
