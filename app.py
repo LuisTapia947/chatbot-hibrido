@@ -98,16 +98,12 @@ ANIMACIONES
 @keyframes fadein {
 
     from {
-
         opacity: 0;
-
         transform: scale(0.98);
     }
 
     to {
-
         opacity: 1;
-
         transform: scale(1);
     }
 }
@@ -115,16 +111,12 @@ ANIMACIONES
 @keyframes subir {
 
     from {
-
         opacity: 0;
-
         transform: translateY(20px);
     }
 
     to {
-
         opacity: 1;
-
         transform: translateY(0px);
     }
 }
@@ -132,14 +124,12 @@ ANIMACIONES
 @keyframes pulse-glow {
 
     0%, 100% {
-
         box-shadow:
         0 0 20px rgba(99, 102, 241, 0.20),
         0 10px 30px rgba(99, 102, 241, 0.10);
     }
 
     50% {
-
         box-shadow:
         0 0 40px rgba(99, 102, 241, 0.35),
         0 15px 40px rgba(99, 102, 241, 0.15);
@@ -149,12 +139,9 @@ ANIMACIONES
 @keyframes float {
 
     0%, 100% {
-
         transform: translateY(0px);
     }
-
     50% {
-
         transform: translateY(-8px);
     }
 }
@@ -164,7 +151,6 @@ HEADER
 ====================================================== */
 
 .hero {
-
     background:
     linear-gradient(
         135deg,
@@ -172,40 +158,25 @@ HEADER
         rgba(168, 85, 247, 0.10) 50%,
         rgba(59, 130, 246, 0.12) 100%
     );
-
     border: 2px solid rgba(99, 102, 241, 0.25);
-
     border-radius: 32px;
-
     padding: 48px 40px;
-
     margin-bottom: 32px;
-
     box-shadow:
     0 20px 50px rgba(99, 102, 241, 0.12),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
-
     position: relative;
-
     overflow: hidden;
-
     animation: float 4s ease-in-out infinite;
 }
 
 .hero::before {
-
     content: '';
-
     position: absolute;
-
     top: -50%;
-
     right: -20%;
-
     width: 400px;
-
     height: 400px;
-
     background:
     radial-gradient(
         circle,
@@ -214,24 +185,16 @@ HEADER
     );
 
     border-radius: 50%;
-
     z-index: 0;
 }
 
 .hero::after {
-
     content: '';
-
     position: absolute;
-
     bottom: -30%;
-
     left: -10%;
-
     width: 350px;
-
     height: 350px;
-
     background:
     radial-gradient(
         circle,
@@ -247,11 +210,8 @@ HEADER
 .titulo {
 
     text-align: center;
-
     font-size: 3.8rem;
-
     font-weight: 900;
-
     background:
     linear-gradient(
         135deg,
@@ -314,16 +274,12 @@ MENSAJE USUARIO
 ====================================================== */
 
 .user-wrapper {
-
     justify-content: flex-end;
 }
 
 .chat-user {
-
     width: fit-content;
-
     max-width: 75%;
-
     background:
     linear-gradient(
         135deg,
@@ -332,30 +288,20 @@ MENSAJE USUARIO
     );
 
     color: white;
-
     padding: 14px 18px;
-
     border-radius: 20px 20px 6px 20px;
-
     box-shadow:
     0 12px 30px rgba(99, 102, 241, 0.30),
     0 0 20px rgba(99, 102, 241, 0.15);
-
     font-size: 15px;
-
     line-height: 1.6;
-
     border: 1px solid rgba(255, 255, 255, 0.2);
-
     backdrop-filter: blur(10px);
-
     transition: all 0.25s ease;
 }
 
 .chat-user:hover {
-
     transform: translateY(-2px);
-
     box-shadow:
     0 16px 40px rgba(99, 102, 241, 0.40),
     0 0 30px rgba(99, 102, 241, 0.20);
@@ -366,16 +312,11 @@ MENSAJE BOT
 ====================================================== */
 
 .bot-wrapper {
-
     justify-content: flex-start;
 }
-
 .chat-bot {
-
     width: fit-content;
-
     max-width: 78%;
-
     background:
     linear-gradient(
         135deg,
@@ -384,32 +325,21 @@ MENSAJE BOT
     );
 
     backdrop-filter: blur(20px);
-
     color: #0f172a;
-
     padding: 16px 18px;
-
     border-radius: 20px 20px 20px 6px;
-
     border: 1.5px solid rgba(99, 102, 241, 0.15);
-
     box-shadow:
     0 12px 35px rgba(0, 0, 0, 0.12),
     inset 0 1px 0 rgba(255, 255, 255, 0.5);
-
     line-height: 1.7;
-
     font-size: 15px;
-
     transition: all 0.25s ease;
 }
-
 .chat-bot:hover {
-
     box-shadow:
     0 16px 45px rgba(0, 0, 0, 0.18),
     inset 0 1px 0 rgba(255, 255, 255, 0.6);
-
     border-color: rgba(99, 102, 241, 0.25);
 }
 
@@ -447,60 +377,44 @@ section[data-testid="stSidebar"] {
         #f1f5f9 50%,
         #e2e8f0 100%
     );
-
     border-right: 1.5px solid rgba(99, 102, 241, 0.15);
 }
-
 section[data-testid="stSidebar"] * {
-
     color: #0f172a !important;
 }
-
 /* ======================================================
 SIDEBAR TARJETAS
 ====================================================== */
 
 .sidebar-card {
-
     background:
     linear-gradient(
         135deg,
         rgba(99, 102, 241, 0.06) 0%,
         rgba(139, 92, 246, 0.05) 100%
     );
-
     border: 1.5px solid rgba(99, 102, 241, 0.2);
-
     border-radius: 16px;
-
     padding: 18px;
-
     margin-bottom: 18px;
-
     backdrop-filter: blur(8px);
-
     transition: all 0.25s ease;
-
     box-shadow:
     0 6px 20px rgba(0, 0, 0, 0.04),
     inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
 .sidebar-card:hover {
-
     background:
     linear-gradient(
         135deg,
         rgba(99, 102, 241, 0.10) 0%,
         rgba(139, 92, 246, 0.08) 100%
     );
-
     border-color: rgba(99, 102, 241, 0.35);
-
     box-shadow:
     0 10px 28px rgba(99, 102, 241, 0.12),
     inset 0 1px 0 rgba(255, 255, 255, 0.6);
-
     transform: translateY(-2px);
 }
 
@@ -509,183 +423,117 @@ BOTONES
 ====================================================== */
 
 div.stButton > button {
-
     width: 100%;
-
     border-radius: 18px;
-
     min-height: 48px;
-
     font-size: 14px;
-
     font-weight: 700;
-
     letter-spacing: 0.5px;
-
     border: none;
-
     color: white;
-
     background:
     linear-gradient(
         135deg,
         #6366f1 0%,
         #8b5cf6 100%
     );
-
     box-shadow:
     0 8px 25px rgba(99, 102, 241, 0.30);
-
     transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-
     position: relative;
-
     overflow: hidden;
 }
 
 div.stButton > button::before {
-
     content: '';
-
     position: absolute;
-
     top: 50%;
-
     left: 50%;
-
     width: 0;
-
     height: 0;
-
     background: rgba(255, 255, 255, 0.3);
-
     border-radius: 50%;
-
     transform: translate(-50%, -50%);
-
     transition: width 0.6s, height 0.6s;
 }
-
 div.stButton > button:hover {
-
     transform: translateY(-3px) scale(1.02);
-
     box-shadow:
     0 14px 35px rgba(99, 102, 241, 0.45),
     0 0 25px rgba(139, 92, 246, 0.25);
 }
-
 div.stButton > button:active {
-
     transform: translateY(-1px);
 }
 
 /* ======================================================
 CAJA DE CÓDIGO
 ====================================================== */
-
 .codigo {
-
     background:
     linear-gradient(
         180deg,
         #f1f5f9 0%,
         #e2e8f0 100%
     );
-
     color: #0f172a;
-
     padding: 20px 22px;
-
     border-radius: 16px;
-
     font-family: 'Courier New', monospace;
-
     line-height: 1.8;
-
     font-size: 14px;
-
     border: 1px solid rgba(99, 102, 241, 0.15);
-
     overflow-x: auto;
-
     box-shadow:
     0 8px 24px rgba(0, 0, 0, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
-
 /* ======================================================
 CHAT INPUT
 ====================================================== */
-
 [data-testid="stChatInput"] {
-
     position: fixed;
-
     bottom: 16px;
-
     left: 23rem;
-
     right: 2rem;
-
     z-index: 1000;
 }
-
 [data-testid="stChatInput"] > div {
-
     background:
     linear-gradient(
         135deg,
         rgba(255, 255, 255, 0.98) 0%,
         rgba(248, 250, 252, 0.98) 100%
     );
-
     border-radius: 24px;
-
     padding: 8px;
-
     border: 1.5px solid rgba(99, 102, 241, 0.2);
-
     box-shadow:
     0 12px 35px rgba(0, 0, 0, 0.10),
     0 0 25px rgba(99, 102, 241, 0.12),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
-
     backdrop-filter: blur(15px);
 }
 
 [data-testid="stChatInput"] textarea {
-
     border: none !important;
-
     box-shadow: none !important;
-
     font-size: 15px !important;
-
     padding: 12px 18px !important;
-
     font-family: 'Segoe UI', sans-serif !important;
-
     color: #0f172a !important;
-
     background: transparent !important;
 }
-
 [data-testid="stChatInput"] textarea::placeholder {
-
     color: rgba(15, 23, 42, 0.5) !important;
 }
-
 /* ======================================================
 SEPARADORES
 ====================================================== */
 
 hr {
-
     border: none;
-
     height: 2px;
-
     background:
     linear-gradient(
         90deg,
@@ -693,96 +541,57 @@ hr {
         rgba(99, 102, 241, 0.2) 50%,
         transparent 100%
     );
-
     margin-top: 32px;
-
     margin-bottom: 32px;
 }
-
-/* ======================================================
+/* =====================================================
 TÍTULOS Y SUBTÍTULOS
 ====================================================== */
-
 h1, h2, h3 {
-
     color: #0f172a;
-
     font-weight: 800;
-
     letter-spacing: -0.5px;
 }
 
 h2 {
-
     color: #1e293b;
-
     background: transparent;
-
     margin-top: 24px;
-
     margin-bottom: 16px;
 }
 
 h3 {
-
     color: #334155;
-
     font-size: 1.1rem;
-
     margin-top: 18px;
-
     margin-bottom: 12px;
 }
 
-/* ======================================================
-INPUTS Y TEXTAREAS
-====================================================== */
-
 input {
-
     background: rgba(255, 255, 255, 0.98) !important;
-
     border: 1.5px solid rgba(99, 102, 241, 0.25) !important;
-
     border-radius: 12px !important;
-
     color: #0f172a !important;
-
     transition: all 0.25s ease !important;
 }
 
 input:focus {
-
     border-color: rgba(99, 102, 241, 0.6) !important;
-
     box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12) !important;
 }
 
 select {
-
     background: rgba(255, 255, 255, 0.98) !important;
-
     border: 1.5px solid rgba(99, 102, 241, 0.25) !important;
-
     border-radius: 12px !important;
-
     color: #0f172a !important;
-
     padding: 10px 12px !important;
 }
 
-/* ======================================================
-ENLACES
-====================================================== */
-
 a {
-
     color: #4f46e5 !important;
-
     text-decoration: none;
-
     transition: all 0.25s ease;
-
     font-weight: 600;
 }
 
@@ -793,25 +602,14 @@ a:hover {
     text-decoration: underline;
 }
 
-/* ======================================================
-TEXTO GENERAL
-====================================================== */
 
 p {
-
     color: #475569;
-
     line-height: 1.7;
-
     font-size: 15px;
 }
 
-/* ======================================================
-BADGES Y TAGS
-====================================================== */
-
 .badge {
-
     background:
     linear-gradient(
         135deg,
@@ -820,76 +618,48 @@ BADGES Y TAGS
     );
 
     border: 1px solid rgba(99, 102, 241, 0.25);
-
     border-radius: 12px;
-
     padding: 6px 12px;
-
     font-size: 12px;
-
     font-weight: 700;
-
     color: #4f46e5;
-
     display: inline-block;
-
     margin: 4px;
 }
 
-/* ======================================================
-ESTADÍSTICAS
-====================================================== */
-
 .stat-box {
-
     background:
     linear-gradient(
         135deg,
         rgba(99, 102, 241, 0.05) 0%,
         rgba(168, 85, 247, 0.04) 100%
     );
-
     border: 1.5px solid rgba(99, 102, 241, 0.2);
-
     border-radius: 16px;
-
     padding: 20px;
-
     text-align: center;
-
     backdrop-filter: blur(8px);
-
     transition: all 0.3s ease;
-
     box-shadow:
     0 6px 20px rgba(0, 0, 0, 0.03),
     inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
-
 .stat-box:hover {
-
     background:
     linear-gradient(
         135deg,
         rgba(99, 102, 241, 0.08) 0%,
         rgba(168, 85, 247, 0.06) 100%
     );
-
     border-color: rgba(99, 102, 241, 0.3);
-
     transform: translateY(-4px);
-
     box-shadow:
     0 10px 28px rgba(99, 102, 241, 0.10),
     inset 0 1px 0 rgba(255, 255, 255, 0.7);
 }
-
 .stat-value {
-
     font-size: 28px;
-
     font-weight: 900;
-
     background:
     linear-gradient(
         135deg,
@@ -898,94 +668,58 @@ ESTADÍSTICAS
     );
 
     -webkit-background-clip: text;
-
     -webkit-text-fill-color: transparent;
-
     background-clip: text;
-
     margin-bottom: 8px;
 }
-
 .stat-label {
-
     font-size: 13px;
-
     color: #64748b;
-
     font-weight: 700;
-
     text-transform: uppercase;
-
     letter-spacing: 1px;
 }
 
-/* ======================================================
-SUGERENCIAS
-====================================================== */
-
 .sugerencias-box {
-
     background:
     linear-gradient(
         135deg,
         rgba(255, 255, 255, 0.95) 0%,
         rgba(248, 250, 252, 0.95) 100%
     );
-
     border: 1.5px solid rgba(99, 102, 241, 0.15);
-
     border-radius: 24px;
-
     padding: 28px;
-
     margin-top: 24px;
-
     box-shadow:
     0 10px 30px rgba(0, 0, 0, 0.06),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
-
     backdrop-filter: blur(8px);
-
     animation: subir 0.4s ease-out;
 }
 
-/* ======================================================
-SCROLL
-====================================================== */
-
 ::-webkit-scrollbar {
-
     width: 12px;
-
     height: 12px;
 }
-
 ::-webkit-scrollbar-track {
-
     background:
     rgba(99, 102, 241, 0.06);
-
     border-radius: 20px;
 }
-
 ::-webkit-scrollbar-thumb {
-
     background:
     linear-gradient(
         180deg,
         #6366f1 0%,
         #8b5cf6 100%
     );
-
     border-radius: 20px;
-
     border: 3px solid rgba(99, 102, 241, 0.06);
-
     transition: all 0.25s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-
     background:
     linear-gradient(
         180deg,
@@ -994,76 +728,6 @@ SCROLL
     );
 
     box-shadow: 0 0 10px rgba(99, 102, 241, 0.25);
-}
-
-/* ======================================================
-RESPONSIVE
-====================================================== */
-
-@media (max-width: 900px) {
-
-    .chat-user,
-    .chat-bot {
-
-        max-width: 100%;
-    }
-
-    .titulo {
-
-        font-size: 2.8rem;
-    }
-
-    [data-testid="stChatInput"] {
-
-        left: 1rem;
-
-        right: 1rem;
-    }
-
-    .hero {
-
-        padding: 32px 24px;
-    }
-
-    .sugerencias-box {
-
-        padding: 20px;
-    }
-}
-
-@media (max-width: 600px) {
-
-    .titulo {
-
-        font-size: 2rem;
-    }
-
-    .subtitulo {
-
-        font-size: 1rem;
-    }
-
-    .hero {
-
-        padding: 24px 16px;
-
-        border-radius: 20px;
-    }
-
-    .chat-user,
-    .chat-bot {
-
-        max-width: 100%;
-
-        font-size: 14px;
-    }
-
-    div.stButton > button {
-
-        min-height: 44px;
-
-        font-size: 13px;
-    }
 }
 
 </style>
@@ -1124,18 +788,14 @@ if "preguntas_sugeridas" not in st.session_state:
 st.markdown(f"""
 
 <div class="hero">
-
     <div class="titulo">
     🤖 Chatbot Híbrido
     </div>
-
     <div class="subtitulo">
     Sistema educativo inteligente con búsqueda híbrida,
     respuestas dinámicas y resolución matemática avanzada.
     </div>
-
 </div>
-
 """, unsafe_allow_html=True)
 
 # =========================================================
