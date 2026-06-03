@@ -1148,7 +1148,6 @@ st.markdown(
         <div class="titulo">
             🤖 Chatbot Híbrido
         </div>
-
         <div class="subtitulo">
             Sistema educativo inteligente con búsqueda híbrida,
             respuestas dinámicas y resolución matemática avanzada.
