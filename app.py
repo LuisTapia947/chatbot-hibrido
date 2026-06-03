@@ -1142,22 +1142,21 @@ if "preguntas_sugeridas" not in st.session_state:
 # HEADER PRINCIPAL
 # =========================================================
 
-st.markdown(f"""
+st.markdown(
+    """
+    <div class="hero">
+        <div class="titulo">
+            🤖 Chatbot Híbrido
+        </div>
 
-<div class="hero">
-
-    <div class="titulo">
-    🤖 Chatbot Híbrido
+        <div class="subtitulo">
+            Sistema educativo inteligente con búsqueda híbrida,
+            respuestas dinámicas y resolución matemática avanzada.
+        </div>
     </div>
-
-    <div class="subtitulo">
-    Sistema educativo inteligente con búsqueda híbrida,
-    respuestas dinámicas y resolución matemática avanzada.
-    </div>
-
-</div>
-
-""", unsafe_allow_html=True)
+    """,
+    unsafe_allow_html=True
+)
 
 # =========================================================
 # SIDEBAR
