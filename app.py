@@ -270,20 +270,13 @@ CHAT GENERAL
 /* ======================================================
 MENSAJE USUARIO
 ====================================================== */
-
 .user-wrapper {
-
     display: flex;
-
     justify-content: flex-end;
-
     width: 100%;
 }
-
 .chat-user {
-
     max-width: 70%;
-
     margin-left: auto;
 
     background:
@@ -292,99 +285,61 @@ MENSAJE USUARIO
         #6366f1 0%,
         #8b5cf6 100%
     );
-
     color: white;
-
     padding: 14px 18px;
-
     border-radius: 20px 20px 6px 20px;
-
     box-shadow:
     0 8px 20px rgba(99, 102, 241, 0.25);
-
     font-size: 15px;
-
     line-height: 1.7;
-
     border:
     1px solid rgba(255,255,255,0.15);
 
     transition: 0.2s ease;
 }
-
 .chat-user:hover {
-
     transform: translateY(-2px);
 }
 
 /* ======================================================
 MENSAJE BOT
 ====================================================== */
-
 .bot-wrapper {
-
     width: 100%;
 }
-
 .chat-bot {
-
     width: 100%;
-
     box-sizing: border-box;
-
     background:
     rgba(255,255,255,0.95);
-
     color: #0f172a;
-
     padding: 18px 20px;
-
     border-radius: 20px;
-
     border:
     1px solid rgba(99,102,241,0.15);
-
     box-shadow:
     0 8px 24px rgba(0,0,0,0.08);
-
     line-height: 1.8;
-
     font-size: 15px;
-
     margin-bottom: 8px;
-
     transition: 0.2s ease;
 }
-
 .chat-bot:hover {
-
     border-color:
     rgba(99,102,241,0.25);
 }
-
-/* ======================================================
-LABELS
-====================================================== */
-
 .chat-label {
-
     font-size: 12px;
-
     font-weight: 700;
-
     margin-bottom: 10px;
-
     opacity: 0.8;
-
     text-transform: uppercase;
 
     letter-spacing: 0.8px;
 }
-
 /* ======================================================
 SIDEBAR
 ====================================================== */
-
 section[data-testid="stSidebar"] {
     background:
     linear-gradient(
