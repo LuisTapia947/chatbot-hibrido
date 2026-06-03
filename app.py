@@ -66,13 +66,12 @@ body,
     background:
     linear-gradient(
         135deg,
-        #0f172a 0%,
-        #1e293b 25%,
-        #0f172a 50%,
-        #1a1f35 100%
+        #f8fafc 0%,
+        #f1f5f9 50%,
+        #e2e8f0 100%
     );
 
-    color: #f0f4f8;
+    color: #0f172a;
 }
 
 /* ======================================================
@@ -89,12 +88,7 @@ CONTENEDOR PRINCIPAL
 
     animation: fadein 0.35s ease-out;
 
-    background:
-    radial-gradient(
-        circle at 50% 0%,
-        rgba(99, 102, 241, 0.08) 0%,
-        transparent 70%
-    );
+    background: transparent;
 }
 
 /* ======================================================
@@ -279,21 +273,19 @@ HEADER
     position: relative;
 
     z-index: 1;
-
-    text-shadow: 0 2px 20px rgba(99, 102, 241, 0.2);
 }
 
 .subtitulo {
 
     text-align: center;
 
-    color: #cbd5e1;
+    color: #475569;
 
     font-size: 1.15rem;
 
     line-height: 1.8;
 
-    font-weight: 400;
+    font-weight: 500;
 
     position: relative;
 
@@ -433,9 +425,9 @@ ETIQUETAS
 
     margin-bottom: 10px;
 
-    opacity: 0.85;
+    opacity: 0.9;
 
-    color: #cbd5e1;
+    color: #334155;
 
     text-transform: uppercase;
 
@@ -451,17 +443,17 @@ section[data-testid="stSidebar"] {
     background:
     linear-gradient(
         180deg,
-        #0f172a 0%,
-        #1e293b 50%,
-        #0f172a 100%
+        #f8fafc 0%,
+        #f1f5f9 50%,
+        #e2e8f0 100%
     );
 
-    border-right: 1.5px solid rgba(99, 102, 241, 0.1);
+    border-right: 1.5px solid rgba(99, 102, 241, 0.15);
 }
 
 section[data-testid="stSidebar"] * {
 
-    color: #f0f4f8 !important;
+    color: #0f172a !important;
 }
 
 /* ======================================================
@@ -473,11 +465,11 @@ SIDEBAR TARJETAS
     background:
     linear-gradient(
         135deg,
-        rgba(99, 102, 241, 0.12) 0%,
-        rgba(139, 92, 246, 0.08) 100%
+        rgba(99, 102, 241, 0.06) 0%,
+        rgba(139, 92, 246, 0.05) 100%
     );
 
-    border: 1.5px solid rgba(99, 102, 241, 0.15);
+    border: 1.5px solid rgba(99, 102, 241, 0.2);
 
     border-radius: 16px;
 
@@ -485,13 +477,13 @@ SIDEBAR TARJETAS
 
     margin-bottom: 18px;
 
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(8px);
 
     transition: all 0.25s ease;
 
     box-shadow:
-    0 8px 24px rgba(99, 102, 241, 0.10),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    0 6px 20px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
 .sidebar-card:hover {
@@ -499,15 +491,15 @@ SIDEBAR TARJETAS
     background:
     linear-gradient(
         135deg,
-        rgba(99, 102, 241, 0.18) 0%,
-        rgba(139, 92, 246, 0.12) 100%
+        rgba(99, 102, 241, 0.10) 0%,
+        rgba(139, 92, 246, 0.08) 100%
     );
 
-    border-color: rgba(99, 102, 241, 0.25);
+    border-color: rgba(99, 102, 241, 0.35);
 
     box-shadow:
-    0 12px 32px rgba(99, 102, 241, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    0 10px 28px rgba(99, 102, 241, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
 
     transform: translateY(-2px);
 }
@@ -597,11 +589,11 @@ CAJA DE CÓDIGO
     background:
     linear-gradient(
         180deg,
-        rgba(15, 23, 42, 0.95) 0%,
-        rgba(17, 24, 39, 0.95) 100%
+        #f1f5f9 0%,
+        #e2e8f0 100%
     );
 
-    color: #e0e7ff;
+    color: #0f172a;
 
     padding: 20px 22px;
 
@@ -613,13 +605,13 @@ CAJA DE CÓDIGO
 
     font-size: 14px;
 
-    border: 1px solid rgba(99, 102, 241, 0.2);
+    border: 1px solid rgba(99, 102, 241, 0.15);
 
     overflow-x: auto;
 
     box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    0 8px 24px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 /* ======================================================
@@ -645,21 +637,21 @@ CHAT INPUT
     linear-gradient(
         135deg,
         rgba(255, 255, 255, 0.98) 0%,
-        rgba(245, 250, 255, 0.98) 100%
+        rgba(248, 250, 252, 0.98) 100%
     );
 
     border-radius: 24px;
 
     padding: 8px;
 
-    border: 1.5px solid rgba(99, 102, 241, 0.3);
+    border: 1.5px solid rgba(99, 102, 241, 0.2);
 
     box-shadow:
-    0 16px 40px rgba(0, 0, 0, 0.12),
-    0 0 30px rgba(99, 102, 241, 0.15),
+    0 12px 35px rgba(0, 0, 0, 0.10),
+    0 0 25px rgba(99, 102, 241, 0.12),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
 
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(15px);
 }
 
 [data-testid="stChatInput"] textarea {
@@ -681,7 +673,7 @@ CHAT INPUT
 
 [data-testid="stChatInput"] textarea::placeholder {
 
-    color: rgba(15, 23, 42, 0.4) !important;
+    color: rgba(15, 23, 42, 0.5) !important;
 }
 
 /* ======================================================
@@ -698,7 +690,7 @@ hr {
     linear-gradient(
         90deg,
         transparent 0%,
-        rgba(99, 102, 241, 0.3) 50%,
+        rgba(99, 102, 241, 0.2) 50%,
         transparent 100%
     );
 
@@ -713,7 +705,7 @@ TÍTULOS Y SUBTÍTULOS
 
 h1, h2, h3 {
 
-    color: #f0f4f8;
+    color: #0f172a;
 
     font-weight: 800;
 
@@ -722,18 +714,9 @@ h1, h2, h3 {
 
 h2 {
 
-    background:
-    linear-gradient(
-        135deg,
-        #e0e7ff 0%,
-        #c7d2fe 100%
-    );
+    color: #1e293b;
 
-    -webkit-background-clip: text;
-
-    -webkit-text-fill-color: transparent;
-
-    background-clip: text;
+    background: transparent;
 
     margin-top: 24px;
 
@@ -742,7 +725,7 @@ h2 {
 
 h3 {
 
-    color: #cbd5e1;
+    color: #334155;
 
     font-size: 1.1rem;
 
@@ -757,9 +740,9 @@ INPUTS Y TEXTAREAS
 
 input {
 
-    background: rgba(255, 255, 255, 0.95) !important;
+    background: rgba(255, 255, 255, 0.98) !important;
 
-    border: 1.5px solid rgba(99, 102, 241, 0.2) !important;
+    border: 1.5px solid rgba(99, 102, 241, 0.25) !important;
 
     border-radius: 12px !important;
 
@@ -770,20 +753,16 @@ input {
 
 input:focus {
 
-    border-color: rgba(99, 102, 241, 0.5) !important;
+    border-color: rgba(99, 102, 241, 0.6) !important;
 
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1) !important;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12) !important;
 }
-
-/* ======================================================
-SELECTS
-====================================================== */
 
 select {
 
-    background: rgba(255, 255, 255, 0.92) !important;
+    background: rgba(255, 255, 255, 0.98) !important;
 
-    border: 1.5px solid rgba(99, 102, 241, 0.2) !important;
+    border: 1.5px solid rgba(99, 102, 241, 0.25) !important;
 
     border-radius: 12px !important;
 
@@ -798,7 +777,7 @@ ENLACES
 
 a {
 
-    color: #6366f1 !important;
+    color: #4f46e5 !important;
 
     text-decoration: none;
 
@@ -809,7 +788,7 @@ a {
 
 a:hover {
 
-    color: #8b5cf6 !important;
+    color: #6366f1 !important;
 
     text-decoration: underline;
 }
@@ -820,7 +799,7 @@ TEXTO GENERAL
 
 p {
 
-    color: #cbd5e1;
+    color: #475569;
 
     line-height: 1.7;
 
@@ -836,11 +815,11 @@ BADGES Y TAGS
     background:
     linear-gradient(
         135deg,
-        rgba(99, 102, 241, 0.2) 0%,
-        rgba(168, 85, 247, 0.15) 100%
+        rgba(99, 102, 241, 0.12) 0%,
+        rgba(168, 85, 247, 0.10) 100%
     );
 
-    border: 1px solid rgba(99, 102, 241, 0.3);
+    border: 1px solid rgba(99, 102, 241, 0.25);
 
     border-radius: 12px;
 
@@ -850,7 +829,7 @@ BADGES Y TAGS
 
     font-weight: 700;
 
-    color: #e0e7ff;
+    color: #4f46e5;
 
     display: inline-block;
 
@@ -866,11 +845,11 @@ ESTADÍSTICAS
     background:
     linear-gradient(
         135deg,
-        rgba(99, 102, 241, 0.08) 0%,
-        rgba(168, 85, 247, 0.06) 100%
+        rgba(99, 102, 241, 0.05) 0%,
+        rgba(168, 85, 247, 0.04) 100%
     );
 
-    border: 1.5px solid rgba(99, 102, 241, 0.15);
+    border: 1.5px solid rgba(99, 102, 241, 0.2);
 
     border-radius: 16px;
 
@@ -878,13 +857,13 @@ ESTADÍSTICAS
 
     text-align: center;
 
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(8px);
 
     transition: all 0.3s ease;
 
     box-shadow:
-    0 8px 24px rgba(99, 102, 241, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    0 6px 20px rgba(0, 0, 0, 0.03),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 .stat-box:hover {
@@ -892,17 +871,17 @@ ESTADÍSTICAS
     background:
     linear-gradient(
         135deg,
-        rgba(99, 102, 241, 0.12) 0%,
-        rgba(168, 85, 247, 0.10) 100%
+        rgba(99, 102, 241, 0.08) 0%,
+        rgba(168, 85, 247, 0.06) 100%
     );
 
-    border-color: rgba(99, 102, 241, 0.25);
+    border-color: rgba(99, 102, 241, 0.3);
 
     transform: translateY(-4px);
 
     box-shadow:
-    0 12px 35px rgba(99, 102, 241, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    0 10px 28px rgba(99, 102, 241, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
 }
 
 .stat-value {
@@ -931,7 +910,7 @@ ESTADÍSTICAS
 
     font-size: 13px;
 
-    color: #94a3b8;
+    color: #64748b;
 
     font-weight: 700;
 
@@ -949,11 +928,11 @@ SUGERENCIAS
     background:
     linear-gradient(
         135deg,
-        rgba(255, 255, 255, 0.92) 0%,
-        rgba(245, 250, 255, 0.90) 100%
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(248, 250, 252, 0.95) 100%
     );
 
-    border: 1.5px solid rgba(99, 102, 241, 0.2);
+    border: 1.5px solid rgba(99, 102, 241, 0.15);
 
     border-radius: 24px;
 
@@ -962,10 +941,10 @@ SUGERENCIAS
     margin-top: 24px;
 
     box-shadow:
-    0 12px 35px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    0 10px 30px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
 
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(8px);
 
     animation: subir 0.4s ease-out;
 }
@@ -984,7 +963,7 @@ SCROLL
 ::-webkit-scrollbar-track {
 
     background:
-    rgba(99, 102, 241, 0.08);
+    rgba(99, 102, 241, 0.06);
 
     border-radius: 20px;
 }
@@ -1000,7 +979,7 @@ SCROLL
 
     border-radius: 20px;
 
-    border: 3px solid rgba(99, 102, 241, 0.08);
+    border: 3px solid rgba(99, 102, 241, 0.06);
 
     transition: all 0.25s ease;
 }
@@ -1010,11 +989,11 @@ SCROLL
     background:
     linear-gradient(
         180deg,
-        #818cf8 0%,
-        #a78bfa 100%
+        #4f46e5 0%,
+        #7c3aed 100%
     );
 
-    box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.25);
 }
 
 /* ======================================================
@@ -1142,20 +1121,22 @@ if "preguntas_sugeridas" not in st.session_state:
 # HEADER PRINCIPAL
 # =========================================================
 
-st.markdown(
-    """
-    <div class="hero">
-        <div class="titulo">
-            🤖 Chatbot Híbrido
-        </div>
-        <div class="subtitulo">
-            Sistema educativo inteligente con búsqueda híbrida,
-            respuestas dinámicas y resolución matemática avanzada.
-        </div>
+st.markdown(f"""
+
+<div class="hero">
+
+    <div class="titulo">
+    🤖 Chatbot Híbrido
     </div>
-    """,
-    unsafe_allow_html=True
-)
+
+    <div class="subtitulo">
+    Sistema educativo inteligente con búsqueda híbrida,
+    respuestas dinámicas y resolución matemática avanzada.
+    </div>
+
+</div>
+
+""", unsafe_allow_html=True)
 
 # =========================================================
 # SIDEBAR
