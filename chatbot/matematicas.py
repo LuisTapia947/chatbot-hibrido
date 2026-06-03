@@ -251,7 +251,7 @@ def explicar_operacion(expresion):
         pasos = []
 
         pasos.append(
-            "### 🧮 Operación ingresada\n\n"
+            " 🧮 Operación ingresada\n\n"
             f"`{original}`"
         )
 
@@ -413,7 +413,7 @@ def explicar_operacion(expresion):
         )
 
         pasos.append(
-            "\n### ✅ Resultado final"
+            "\n ✅ Resultado final"
         )
 
         pasos.append(
