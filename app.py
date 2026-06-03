@@ -588,11 +588,14 @@ Puedes reiniciar una nueva conversación desde el panel lateral.
 
     else:
 
-        respuesta, score = buscar_respuesta(
-            texto,
-            memoria,
-            preguntas
-        )
+        resultado = buscar_respuesta(
+         texto,
+        memoria,
+        preguntas
+ )
+
+        respuesta = resultado["respuesta"]
+        score = resultado["score"]
 
         if respuesta:
 
@@ -657,11 +660,13 @@ for i, pregunta_sug in enumerate(
             ("usuario", pregunta_sug)
         )
 
-        respuesta, score = buscar_respuesta(
-            pregunta_sug,
-            memoria,
-            preguntas
+        resultado = buscar_respuesta(
+        pregunta_sug,
+        memoria,
+        preguntas
         )
+        respuesta = resultado["respuesta"]
+        score = resultado["score"]
 
         if respuesta:
 
