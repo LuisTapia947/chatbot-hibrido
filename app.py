@@ -963,7 +963,7 @@ pi*2
     """, unsafe_allow_html=True)
 
     # =====================================================
-    # HISTORIAL ESTILO CHATGPT
+    # HISTORIAL ESTILO 
     # =====================================================
 
     st.markdown("""
