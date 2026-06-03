@@ -972,54 +972,92 @@ pi*2
 
     """, unsafe_allow_html=True)
 
-    # =====================================================
-    # HISTORIAL
-    # =====================================================
+   # =====================================================
+# HISTORIAL
+# =====================================================
+
+st.markdown("""
+
+<div style="
+    margin-top:10px;
+    margin-bottom:16px;
+">
+<h3>
+🕘 Historial reciente
+</h3>
+</div>
+
+""", unsafe_allow_html=True)
+
+historiales = obtener_historiales()
+
+if historiales:
+
+    for i, archivo in enumerate(
+        historiales[:10]
+    ):
+
+        info = obtener_info_historial(
+            archivo
+        )
+
+        col1, col2 = st.columns([5,1])
+
+        with col1:
+
+            if st.button(
+                f"📄 {info['fecha']}",
+                key=f"historial_{i}"
+            ):
+
+                chat_cargado = cargar_historial(
+                    archivo
+                )
+
+                st.session_state.chat = (
+                    chat_cargado
+                )
+
+                st.session_state.chat_cerrado = False
+
+                st.rerun()
+
+        with col2:
+
+            if st.button(
+                "❌",
+                key=f"eliminar_{i}"
+            ):
+
+                eliminar_historial(
+                    archivo
+                )
+
+                st.rerun()
+
+else:
 
     st.markdown("""
 
-    <div style="
-        margin-top:10px;
-        margin-bottom:10px;
-    ">
-    <h3>
-    🕘 Historial reciente
-    </h3>
+    <div class="sidebar-card">
+
+    No hay conversaciones guardadas.
+
     </div>
 
     """, unsafe_allow_html=True)
 
-    historiales = obtener_historiales()
+# =====================================================
+# LIMPIAR TODO
+# =====================================================
 
-    if historiales:
+if st.button(
+    "🗑️ Eliminar todos los historiales"
+):
 
-        for archivo in historiales[:8]:
+    limpiar_historiales()
 
-            st.markdown(f"""
-
-            <div class="sidebar-card" style="
-                padding:12px;
-                margin-bottom:10px;
-            ">
-
-            📄 {archivo}
-
-            </div>
-
-            """, unsafe_allow_html=True)
-
-    else:
-
-        st.markdown("""
-
-        <div class="sidebar-card">
-
-        No hay conversaciones guardadas todavía.
-
-        </div>
-
-        """, unsafe_allow_html=True)
-
+    st.rerun()
     # =====================================================
     # BOTON REINICIAR
     # =====================================================
