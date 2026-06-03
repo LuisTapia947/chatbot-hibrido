@@ -342,25 +342,13 @@ MENSAJE BOT
     inset 0 1px 0 rgba(255, 255, 255, 0.6);
     border-color: rgba(99, 102, 241, 0.25);
 }
-
-/* ======================================================
-ETIQUETAS
-====================================================== */
-
 .chat-label {
-
     font-size: 12px;
-
     font-weight: 700;
-
     margin-bottom: 10px;
-
     opacity: 0.9;
-
     color: #334155;
-
     text-transform: uppercase;
-
     letter-spacing: 0.8px;
 }
 
@@ -369,7 +357,6 @@ SIDEBAR
 ====================================================== */
 
 section[data-testid="stSidebar"] {
-
     background:
     linear-gradient(
         180deg,
@@ -403,7 +390,6 @@ SIDEBAR TARJETAS
     0 6px 20px rgba(0, 0, 0, 0.04),
     inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
-
 .sidebar-card:hover {
     background:
     linear-gradient(
@@ -814,30 +800,25 @@ with st.sidebar:
         text-align:center;
         margin-bottom:25px;
     ">
-
     <h1 style="
         margin-bottom:0px;
         font-size:32px;
     ">
     🤖
     </h1>
-
     <h2 style="
         margin-top:5px;
         font-weight:800;
     ">
     Panel del Sistema
     </h2>
-
     <p style="
         opacity:0.8;
         font-size:14px;
     ">
     Chatbot educativo inteligente
     </p>
-
     </div>
-
     """, unsafe_allow_html=True)
 
     # =====================================================
@@ -948,36 +929,23 @@ with st.sidebar:
     st.markdown("""
 
     <div class="sidebar-card">
-
     <h3 style="
         margin-top:0px;
         margin-bottom:18px;
     ">
     🧮 Ejemplos Matemáticos
     </h3>
-
     <div class="codigo">
-
 2+5*8
-
 40-36*5
-
 raiz(144)
-
 2^8
-
 log(100)
-
 sen(90)
-
 factorial(5)
-
 pi*2
-
     </div>
-
     </div>
-
     """, unsafe_allow_html=True)
 
     # =====================================================
