@@ -1,0 +1,284 @@
+# =========================================================
+# MODULO DE CONOCIMIENTO
+# chatbot/conocimiento.py
+# =========================================================
+
+import os
+import re
+from difflib import get_close_matches
+
+# =========================================================
+# TEMAS DISPONIBLES
+# =========================================================
+
+TEMAS_DISPONIBLES = [
+    "programacion",
+    "ia",
+    "redes",
+    "hardware",
+    "ciberseguridad"
+]
+
+# =========================================================
+# LIMPIAR TEXTO
+# =========================================================
+
+def limpiar_texto(texto):
+    texto = texto.lower().strip()
+    
+    # eliminar espacios dobles
+    texto = re.sub(r"\s+", " ", texto)
+    
+    # eliminar símbolos innecesarios
+    texto = re.sub(r"[¿?¡!.,;:]", "", texto)
+    
+    return texto
+
+
+# =========================================================
+# CARGAR CONOCIMIENTO
+# =========================================================
+
+def cargar_conocimiento():
+    memoria = {}
+    
+    temas = {
+        tema: []
+        for tema in TEMAS_DISPONIBLES
+    }
+    
+    # =====================================================
+    # RUTA BASE
+    # =====================================================
+    
+    carpeta_base = os.path.dirname(
+        os.path.dirname(
+            os.path.abspath(__file__)
+        )
+    )
+    
+    carpeta_data = os.path.join(
+        carpeta_base,
+        "data"
+    )
+    
+    # =====================================================
+    # VALIDAR CARPETA
+    # =====================================================
+    
+    if not os.path.exists(carpeta_data):
+        return memoria, [], temas
+    
+    # =====================================================
+    # RECORRER ARCHIVOS
+    # =====================================================
+    
+    for tema in TEMAS_DISPONIBLES:
+        archivo = f"{tema}.txt"
+        
+        ruta = os.path.join(
+            carpeta_data,
+            archivo
+        )
+        
+        # =================================================
+        # VALIDAR ARCHIVO
+        # =================================================
+        
+        if not os.path.exists(ruta):
+            continue
+        
+        try:
+            with open(
+                ruta,
+                "r",
+                encoding="utf-8"
+            ) as f:
+                lineas = f.readlines()
+            
+            # =============================================
+            # PROCESAR LÍNEAS
+            # =============================================
+            
+            for numero, linea in enumerate(lineas, start=1):
+                linea = linea.strip()
+                
+                # ignorar líneas vacías
+                if not linea:
+                    continue
+                
+                # =========================================
+                # FORMATO:
+                # p:pregunta?r:respuesta
+                # =========================================
+                
+                if "?r:" not in linea:
+                    continue
+                
+                try:
+                    pregunta, respuesta = (
+                        linea.split("?r:", 1)
+                    )
+                    
+                    pregunta = (
+                        pregunta
+                        .replace("p:", "")
+                        .strip()
+                    )
+                    
+                    respuesta = (
+                        respuesta.strip()
+                    )
+                    
+                    pregunta_limpia = (
+                        limpiar_texto(
+                            pregunta
+                        )
+                    )
+                    
+                    # =====================================
+                    # VALIDAR DATOS
+                    # =====================================
+                    
+                    if not pregunta_limpia:
+                        continue
+                    
+                    if not respuesta:
+                        continue
+                    
+                    # =====================================
+                    # EVITAR DUPLICADOS
+                    # =====================================
+                    
+                    if pregunta_limpia in memoria:
+                        continue
+                    
+                    # =====================================
+                    # GUARDAR
+                    # =====================================
+                    
+                    memoria[pregunta_limpia] = (
+                        respuesta
+                    )
+                    
+                    temas[tema].append(
+                        pregunta_limpia
+                    )
+                
+                except Exception as e:
+                    pass
+        
+        except Exception as e:
+            pass
+    
+    preguntas = list(
+        memoria.keys()
+    )
+    
+    return (
+        memoria,
+        preguntas,
+        temas
+    )
+
+
+# =========================================================
+# ESTADISTICAS
+# =========================================================
+
+def obtener_estadisticas(memoria, temas):
+    estadisticas = {
+        "total": len(memoria)
+    }
+    
+    for tema in TEMAS_DISPONIBLES:
+        estadisticas[tema] = len(
+            temas.get(tema, [])
+        )
+    
+    return estadisticas
+
+
+# =========================================================
+# BUSCAR RESPUESTA
+# =========================================================
+
+def buscar_respuesta(
+    pregunta_usuario,
+    memoria,
+    preguntas,
+    cutoff=0.55
+):
+    pregunta_usuario = limpiar_texto(
+        pregunta_usuario
+    )
+    
+    # =====================================================
+    # COINCIDENCIA EXACTA
+    # =====================================================
+    
+    if pregunta_usuario in memoria:
+        return {
+            "respuesta":
+            memoria[pregunta_usuario],
+            "score":
+            1.0,
+            "tipo":
+            "exacta",
+            "pregunta":
+            pregunta_usuario
+        }
+    
+    # =====================================================
+    # COINCIDENCIA APROXIMADA
+    # =====================================================
+    
+    coincidencias = get_close_matches(
+        pregunta_usuario,
+        preguntas,
+        n=3,
+        cutoff=cutoff
+    )
+    
+    if coincidencias:
+        mejor = coincidencias[0]
+        
+        palabras_usuario = set(
+            pregunta_usuario.split()
+        )
+        
+        palabras_mejor = set(
+            mejor.split()
+        )
+        
+        similitud = len(
+            palabras_usuario
+            &
+            palabras_mejor
+        ) / max(
+            len(palabras_usuario),
+            len(palabras_mejor)
+        )
+        
+        return {
+            "respuesta":
+            memoria[mejor],
+            "score":
+            similitud,
+            "tipo":
+            "aproximada",
+            "pregunta":
+            mejor
+        }
+    
+    # =====================================================
+    # SIN RESULTADOS
+    # =====================================================
+    
+    return {
+        "respuesta": None,
+        "score": 0,
+        "tipo": "sin_resultado",
+        "pregunta": None
+    }
+
