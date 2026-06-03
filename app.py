@@ -9,7 +9,10 @@ import random
 from chatbot.conocimiento import (
     cargar_conocimiento,
     buscar_respuesta,
-    obtener_estadisticas,
+    obtener_estadisticas
+)
+
+from chatbot.temas import (
     detectar_tema
 )
 
