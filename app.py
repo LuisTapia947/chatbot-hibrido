@@ -1,5 +1,5 @@
 # =========================================================
-# APP PRINCIPAL
+# APP PRINCIPAL 
 # app.py
 # =========================================================
 
@@ -9,7 +9,8 @@ import random
 from chatbot.conocimiento import (
     cargar_conocimiento,
     buscar_respuesta,
-    obtener_estadisticas
+    obtener_estadisticas,
+    detectar_tema
 )
 
 from chatbot.matematicas import (
@@ -20,11 +21,10 @@ from chatbot.matematicas import (
 from chatbot.respuestas import (
     respuesta_especial,
     obtener_intro,
-    obtener_continuacion
-)
-
-from chatbot.temas import (
-    detectar_tema
+    obtener_continuacion,
+    es_comando_salida,
+    mensaje_despedida,
+    mensaje_sin_respuesta
 )
 
 from chatbot.historial import (
@@ -44,14 +44,14 @@ st.set_page_config(
 )
 
 # =========================================================
-# ESTILOS
+# ESTILOS VISUALES
 # =========================================================
 
 st.markdown("""
 <style>
 
 /* ======================================================
-FONDO
+GENERAL
 ====================================================== */
 
 html, body, [class*="css"] {
@@ -74,13 +74,13 @@ CONTENEDOR
 
     max-width: 1200px;
 
-    padding-top: 2rem;
+    padding-top: 1.5rem;
 
     padding-bottom: 8rem;
 }
 
 /* ======================================================
-TÍTULO
+TITULO
 ====================================================== */
 
 .titulo {
@@ -132,6 +132,8 @@ CHAT USUARIO
 
     box-shadow:
     0 6px 18px rgba(37,99,235,0.22);
+
+    animation: aparecer 0.2s ease;
 }
 
 /* ======================================================
@@ -156,6 +158,29 @@ CHAT BOT
 
     box-shadow:
     0 5px 18px rgba(0,0,0,0.05);
+
+    animation: aparecer 0.2s ease;
+}
+
+/* ======================================================
+ANIMACION
+====================================================== */
+
+@keyframes aparecer {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(10px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0px);
+    }
 }
 
 /* ======================================================
@@ -216,7 +241,7 @@ div.stButton > button:hover {
 }
 
 /* ======================================================
-CÓDIGO
+CAJA CODIGO
 ====================================================== */
 
 .codigo {
@@ -232,6 +257,78 @@ CÓDIGO
     font-family: monospace;
 
     line-height: 1.8;
+
+    font-size: 14px;
+}
+
+/* ======================================================
+CHAT INPUT
+====================================================== */
+
+[data-testid="stChatInput"] {
+
+    position: fixed;
+
+    bottom: 15px;
+
+    left: 22rem;
+
+    right: 2rem;
+
+    z-index: 1000;
+}
+
+[data-testid="stChatInput"] textarea {
+
+    border-radius: 18px !important;
+
+    border: 2px solid #dbeafe !important;
+
+    padding: 14px !important;
+
+    box-shadow:
+    0 2px 12px rgba(0,0,0,0.06);
+}
+
+/* ======================================================
+TARJETAS
+====================================================== */
+
+.card {
+
+    background: white;
+
+    padding: 18px;
+
+    border-radius: 18px;
+
+    border: 1px solid #e2e8f0;
+
+    box-shadow:
+    0 4px 14px rgba(0,0,0,0.05);
+
+    margin-bottom: 16px;
+}
+
+/* ======================================================
+SCROLL
+====================================================== */
+
+::-webkit-scrollbar {
+
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+
+    background: #e2e8f0;
+}
+
+::-webkit-scrollbar-thumb {
+
+    background: #94a3b8;
+
+    border-radius: 20px;
 }
 
 </style>
@@ -241,7 +338,7 @@ CÓDIGO
 # CARGAR CONOCIMIENTO
 # =========================================================
 
-memoria, preguntas, temas, errores = (
+memoria, preguntas, temas = (
     cargar_conocimiento()
 )
 
@@ -272,12 +369,6 @@ if "preguntas_usadas" not in st.session_state:
 
     st.session_state.preguntas_usadas = []
 
-if "tema_sugerencias" not in st.session_state:
-
-    st.session_state.tema_sugerencias = (
-        st.session_state.tema_actual
-    )
-
 if "preguntas_sugeridas" not in st.session_state:
 
     disponibles = temas[
@@ -292,7 +383,7 @@ if "preguntas_sugeridas" not in st.session_state:
     )
 
 # =========================================================
-# TÍTULO
+# TITULO
 # =========================================================
 
 st.markdown("""
@@ -315,16 +406,26 @@ with st.sidebar:
 
     st.markdown("## 🤖 Panel del Sistema")
 
-    st.success(
-        f"Preguntas cargadas: "
-        f"{estadisticas['total']}"
-    )
+    st.markdown(f"""
 
-    st.markdown("---")
+<div class="card">
+
+### 📊 Estadísticas
+
+- Total preguntas: {estadisticas['total']}
+- Programación: {estadisticas['programacion']}
+- IA: {estadisticas['ia']}
+- Redes: {estadisticas['redes']}
+- Hardware: {estadisticas['hardware']}
+- Ciberseguridad: {estadisticas['ciberseguridad']}
+
+</div>
+
+""", unsafe_allow_html=True)
+
+    st.markdown("### 📚 Áreas disponibles")
 
     st.markdown("""
-### 📚 Áreas disponibles
-
 💻 Programación  
 🤖 Inteligencia Artificial  
 🌐 Redes  
@@ -334,12 +435,14 @@ with st.sidebar:
 
     st.markdown("---")
 
-    st.markdown("### 🧮 Operaciones Matemáticas")
+    st.markdown("### 🧮 Ejemplos Matemáticos")
 
     st.markdown("""
 <div class="codigo">
 
 2+5*8
+
+40-36*5
 
 raiz(144)
 
@@ -347,13 +450,7 @@ raiz(144)
 
 log(100)
 
-ln(20)
-
 sen(90)
-
-cos(0)
-
-tan(45)
 
 factorial(5)
 
@@ -364,17 +461,7 @@ pi*2
 
     st.markdown("---")
 
-    st.info(
-        "También puedes escribir:\n\n"
-        "• cuanto es 10-40\n"
-        "• calcula raiz(81)\n"
-        "• que es python\n"
-        "• que es una red lan"
-    )
-
-    st.markdown("---")
-
-    st.subheader("🕘 Historial")
+    st.markdown("### 🕘 Historial")
 
     historiales = obtener_historiales()
 
@@ -382,11 +469,15 @@ pi*2
 
         for archivo in historiales[:10]:
 
-            st.caption(archivo)
+            st.markdown(f"""
+<div class="card">
+📄 {archivo}
+</div>
+""", unsafe_allow_html=True)
 
     else:
 
-        st.caption(
+        st.info(
             "Aún no hay conversaciones guardadas."
         )
 
@@ -398,11 +489,11 @@ pi*2
 
         st.session_state.chat_cerrado = False
 
+        st.session_state.preguntas_usadas = []
+
         st.session_state.tema_actual = random.choice(
             list(temas.keys())
         )
-
-        st.session_state.preguntas_usadas = []
 
         disponibles = temas[
             st.session_state.tema_actual
@@ -418,28 +509,20 @@ pi*2
         st.rerun()
 
 # =========================================================
-# CHAT CERRADO
+# CHAT FINALIZADO
 # =========================================================
 
 if st.session_state.chat_cerrado:
 
-    st.markdown("""
+    st.markdown(f"""
 
-    <div class="chat-bot">
+<div class="chat-bot">
 
-    <h2>👋 Sesión finalizada</h2>
+{mensaje_despedida()}
 
-    <p>
-    El chatbot cerró correctamente la conversación.
-    </p>
+</div>
 
-    <p>
-    Puedes iniciar una nueva conversación desde el panel lateral.
-    </p>
-
-    </div>
-
-    """, unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
     st.stop()
 
@@ -474,7 +557,7 @@ for tipo, mensaje in st.session_state.chat:
         )
 
 # =========================================================
-# INPUT ABAJO
+# INPUT
 # =========================================================
 
 pregunta = st.chat_input(
@@ -507,46 +590,12 @@ if pregunta:
     )
 
     # =====================================================
-    # ACTUALIZAR SUGERENCIAS
-    # =====================================================
-
-    disponibles = [
-
-        p for p in temas[tema_detectado]
-
-        if p not in st.session_state.preguntas_usadas
-    ]
-
-    if len(disponibles) < 6:
-
-        st.session_state.preguntas_usadas = []
-
-        disponibles = temas[tema_detectado]
-
-    st.session_state.preguntas_sugeridas = (
-        random.sample(
-            disponibles,
-            min(6, len(disponibles))
-        )
-    )
-
-    # =====================================================
     # SALIR
     # =====================================================
 
-    if texto in ["salir", "quiero salir"]:
+    if es_comando_salida(texto):
 
-        respuesta_final = """
-
-### 👋 Sesión finalizada
-
-El chatbot híbrido educativo ha cerrado correctamente la conversación.
-
-Gracias por utilizar el sistema.
-
-Puedes reiniciar una nueva conversación desde el panel lateral.
-
-        """
+        respuesta_final = mensaje_despedida()
 
         st.session_state.chat.append(
             ("bot", respuesta_final)
@@ -564,16 +613,26 @@ Puedes reiniciar una nueva conversación desde el panel lateral.
     # RESPUESTAS ESPECIALES
     # =====================================================
 
-    elif respuesta_especial(texto):
+    respuesta_esp = respuesta_especial(
+        texto
+    )
+
+    if respuesta_esp:
 
         respuesta_final = (
-            respuesta_especial(texto)
+            respuesta_esp
             + "\n\n"
             + obtener_continuacion()
         )
 
+        st.session_state.chat.append(
+            ("bot", respuesta_final)
+        )
+
+        st.rerun()
+
     # =====================================================
-    # MATEMÁTICAS
+    # MATEMATICAS
     # =====================================================
 
     elif es_operacion_matematica(texto):
@@ -589,12 +648,13 @@ Puedes reiniciar una nueva conversación desde el panel lateral.
     else:
 
         resultado = buscar_respuesta(
-         texto,
-        memoria,
-        preguntas
- )
+            texto,
+            memoria,
+            preguntas
+        )
 
         respuesta = resultado["respuesta"]
+
         score = resultado["score"]
 
         if respuesta:
@@ -617,8 +677,7 @@ Puedes reiniciar una nueva conversación desde el panel lateral.
         else:
 
             respuesta_final = (
-                "No encontré información suficiente "
-                "para responder esa consulta."
+                mensaje_sin_respuesta()
             )
 
     st.session_state.chat.append(
@@ -661,11 +720,13 @@ for i, pregunta_sug in enumerate(
         )
 
         resultado = buscar_respuesta(
-        pregunta_sug,
-        memoria,
-        preguntas
+            pregunta_sug,
+            memoria,
+            preguntas
         )
+
         respuesta = resultado["respuesta"]
+
         score = resultado["score"]
 
         if respuesta:
@@ -678,19 +739,26 @@ for i, pregunta_sug in enumerate(
                 + obtener_continuacion()
             )
 
+            if score < 1:
+
+                respuesta_final += (
+                    f"\n\n🔎 Coincidencia aproximada: "
+                    f"{score*100:.0f}%"
+                )
+
         else:
 
             respuesta_final = (
-                "No encontré información suficiente."
+                mensaje_sin_respuesta()
             )
 
         st.session_state.chat.append(
             ("bot", respuesta_final)
         )
 
-        # ================================================
-        # NUEVAS SUGERENCIAS
-        # ================================================
+        # =================================================
+        # CAMBIAR SUGERENCIAS
+        # =================================================
 
         tema_actual = st.session_state.tema_actual
 
@@ -705,7 +773,9 @@ for i, pregunta_sug in enumerate(
 
             st.session_state.preguntas_usadas = []
 
-            disponibles = temas[tema_actual]
+            disponibles = temas[
+                tema_actual
+            ]
 
         st.session_state.preguntas_sugeridas = (
             random.sample(
@@ -715,17 +785,3 @@ for i, pregunta_sug in enumerate(
         )
 
         st.rerun()
-
-# =========================================================
-# ERRORES
-# =========================================================
-
-if errores:
-
-    with st.expander(
-        "⚠️ Ver errores del sistema"
-    ):
-
-        for e in errores:
-
-            st.error(e)
