@@ -377,21 +377,7 @@ SIDEBAR TARJETAS
     box-shadow:
     0 6px 20px rgba(0, 0, 0, 0.04),
     inset 0 1px 0 rgba(255, 255, 255, 0.5);
-}
-.sidebar-card:hover {
-    background:
-    linear-gradient(
-        135deg,
-        rgba(99, 102, 241, 0.10) 0%,
-        rgba(139, 92, 246, 0.08) 100%
-    );
-    border-color: rgba(99, 102, 241, 0.35);
-    box-shadow:
-    0 10px 28px rgba(99, 102, 241, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
-    transform: translateY(-2px);
-}
-/* ======================================================
+}/* ======================================================
 HISTORIAL CHATGPT
 ====================================================== */
 
@@ -446,6 +432,21 @@ section[data-testid="stSidebar"] {
 
     overflow-y: auto;
 }
+.sidebar-card:hover {
+    background:
+    linear-gradient(
+        135deg,
+        rgba(99, 102, 241, 0.10) 0%,
+        rgba(139, 92, 246, 0.08) 100%
+    );
+    border-color: rgba(99, 102, 241, 0.35);
+    box-shadow:
+    0 10px 28px rgba(99, 102, 241, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    transform: translateY(-2px);
+}
+
+
 
 /* ======================================================
 BOTONES
