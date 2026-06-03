@@ -47,17 +47,19 @@ st.set_page_config(
 )
 
 # =========================================================
-# ESTILOS VISUALES
+# ESTILOS VISUALES MEJORADOS
 # =========================================================
 
 st.markdown("""
 <style>
 
 /* ======================================================
-GENERAL
+FUENTE Y FONDO GLOBAL
 ====================================================== */
 
-html, body, [class*="css"] {
+html,
+body,
+[class*="css"] {
 
     font-family: 'Inter', sans-serif;
 
@@ -67,36 +69,97 @@ html, body, [class*="css"] {
         #f8fafc 0%,
         #eef2ff 100%
     );
+
+    color: #0f172a;
 }
 
 /* ======================================================
-CONTENEDOR
+CONTENEDOR PRINCIPAL
 ====================================================== */
 
 .block-container {
 
-    max-width: 1200px;
+    max-width: 1180px;
 
     padding-top: 1.5rem;
 
-    padding-bottom: 8rem;
+    padding-bottom: 9rem;
+
+    animation: fadein 0.25s ease;
 }
 
 /* ======================================================
-TITULO
+ANIMACIONES
 ====================================================== */
+
+@keyframes fadein {
+
+    from {
+
+        opacity: 0;
+    }
+
+    to {
+
+        opacity: 1;
+    }
+}
+
+@keyframes subir {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(12px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0px);
+    }
+}
+
+/* ======================================================
+HEADER
+====================================================== */
+
+.hero {
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(37,99,235,0.10) 0%,
+        rgba(59,130,246,0.05) 100%
+    );
+
+    border: 1px solid #dbeafe;
+
+    border-radius: 28px;
+
+    padding: 35px;
+
+    margin-bottom: 30px;
+
+    box-shadow:
+    0 10px 30px rgba(37,99,235,0.08);
+}
 
 .titulo {
 
     text-align: center;
 
-    font-size: 3.4rem;
+    font-size: 3.5rem;
 
     font-weight: 800;
 
     color: #1e3a8a;
 
     margin-bottom: 10px;
+
+    letter-spacing: -1px;
 }
 
 .subtitulo {
@@ -107,14 +170,38 @@ TITULO
 
     font-size: 1.1rem;
 
-    margin-bottom: 35px;
+    line-height: 1.7;
 }
 
 /* ======================================================
-CHAT USUARIO
+CHAT GENERAL
 ====================================================== */
 
+.chat-wrapper {
+
+    display: flex;
+
+    width: 100%;
+
+    margin-bottom: 18px;
+
+    animation: subir 0.22s ease;
+}
+
+/* ======================================================
+MENSAJE USUARIO
+====================================================== */
+
+.user-wrapper {
+
+    justify-content: flex-end;
+}
+
 .chat-user {
+
+    width: fit-content;
+
+    max-width: 75%;
 
     background:
     linear-gradient(
@@ -125,65 +212,68 @@ CHAT USUARIO
 
     color: white;
 
-    padding: 18px;
+    padding: 18px 20px;
 
-    border-radius: 24px;
-
-    margin-left: 120px;
-
-    margin-bottom: 16px;
+    border-radius: 24px 24px 8px 24px;
 
     box-shadow:
-    0 6px 18px rgba(37,99,235,0.22);
+    0 8px 24px rgba(37,99,235,0.25);
 
-    animation: aparecer 0.2s ease;
+    font-size: 15px;
+
+    line-height: 1.7;
+
+    border: 1px solid rgba(255,255,255,0.15);
 }
 
 /* ======================================================
-CHAT BOT
+MENSAJE BOT
 ====================================================== */
+
+.bot-wrapper {
+
+    justify-content: flex-start;
+}
 
 .chat-bot {
 
-    background: white;
+    width: fit-content;
+
+    max-width: 78%;
+
+    background: rgba(255,255,255,0.90);
+
+    backdrop-filter: blur(10px);
 
     color: #111827;
 
-    padding: 20px;
+    padding: 20px 22px;
 
-    border-radius: 24px;
-
-    margin-right: 120px;
-
-    margin-bottom: 18px;
+    border-radius: 24px 24px 24px 8px;
 
     border: 1px solid #e2e8f0;
 
     box-shadow:
-    0 5px 18px rgba(0,0,0,0.05);
+    0 8px 24px rgba(15,23,42,0.06);
 
-    animation: aparecer 0.2s ease;
+    line-height: 1.8;
+
+    font-size: 15px;
 }
 
 /* ======================================================
-ANIMACION
+ETIQUETAS
 ====================================================== */
 
-@keyframes aparecer {
+.chat-label {
 
-    from {
+    font-size: 13px;
 
-        opacity: 0;
+    font-weight: 700;
 
-        transform: translateY(10px);
-    }
+    margin-bottom: 10px;
 
-    to {
-
-        opacity: 1;
-
-        transform: translateY(0px);
-    }
+    opacity: 0.9;
 }
 
 /* ======================================================
@@ -198,11 +288,35 @@ section[data-testid="stSidebar"] {
         #0f172a 0%,
         #1e293b 100%
     );
+
+    border-right:
+    1px solid rgba(255,255,255,0.08);
 }
 
 section[data-testid="stSidebar"] * {
 
     color: white !important;
+}
+
+/* ======================================================
+SIDEBAR TARJETAS
+====================================================== */
+
+.sidebar-card {
+
+    background:
+    rgba(255,255,255,0.08);
+
+    border:
+    1px solid rgba(255,255,255,0.10);
+
+    border-radius: 18px;
+
+    padding: 16px;
+
+    margin-bottom: 16px;
+
+    backdrop-filter: blur(6px);
 }
 
 /* ======================================================
@@ -215,11 +329,11 @@ div.stButton > button {
 
     border-radius: 16px;
 
-    min-height: 55px;
+    min-height: 54px;
 
     font-size: 14px;
 
-    font-weight: 600;
+    font-weight: 700;
 
     border: none;
 
@@ -233,35 +347,47 @@ div.stButton > button {
     );
 
     box-shadow:
-    0 4px 15px rgba(37,99,235,0.25);
+    0 6px 18px rgba(37,99,235,0.22);
 
-    transition: 0.2s;
+    transition: all 0.18s ease;
 }
 
 div.stButton > button:hover {
 
     transform: translateY(-2px);
+
+    box-shadow:
+    0 10px 24px rgba(37,99,235,0.30);
 }
 
 /* ======================================================
-CAJA CODIGO
+CAJA DE CÓDIGO
 ====================================================== */
 
 .codigo {
 
-    background: #0f172a;
+    background:
+    linear-gradient(
+        180deg,
+        #0f172a 0%,
+        #111827 100%
+    );
 
     color: #f8fafc;
 
-    padding: 16px;
+    padding: 18px;
 
-    border-radius: 14px;
+    border-radius: 18px;
 
     font-family: monospace;
 
-    line-height: 1.8;
+    line-height: 2;
 
     font-size: 14px;
+
+    border: 1px solid rgba(255,255,255,0.06);
+
+    overflow-x: auto;
 }
 
 /* ======================================================
@@ -272,45 +398,87 @@ CHAT INPUT
 
     position: fixed;
 
-    bottom: 15px;
+    bottom: 16px;
 
-    left: 22rem;
+    left: 23rem;
 
     right: 2rem;
 
     z-index: 1000;
 }
 
-[data-testid="stChatInput"] textarea {
-
-    border-radius: 18px !important;
-
-    border: 2px solid #dbeafe !important;
-
-    padding: 14px !important;
-
-    box-shadow:
-    0 2px 12px rgba(0,0,0,0.06);
-}
-
-/* ======================================================
-TARJETAS
-====================================================== */
-
-.card {
+[data-testid="stChatInput"] > div {
 
     background: white;
 
-    padding: 18px;
+    border-radius: 22px;
 
-    border-radius: 18px;
+    padding: 6px;
 
-    border: 1px solid #e2e8f0;
+    border: 1px solid #dbeafe;
 
     box-shadow:
-    0 4px 14px rgba(0,0,0,0.05);
+    0 10px 30px rgba(15,23,42,0.10);
+}
 
-    margin-bottom: 16px;
+[data-testid="stChatInput"] textarea {
+
+    border: none !important;
+
+    box-shadow: none !important;
+
+    font-size: 15px !important;
+
+    padding: 14px !important;
+}
+
+/* ======================================================
+SEPARADORES
+====================================================== */
+
+hr {
+
+    border: none;
+
+    height: 1px;
+
+    background: #dbeafe;
+
+    margin-top: 30px;
+
+    margin-bottom: 30px;
+}
+
+/* ======================================================
+SUBTITULOS
+====================================================== */
+
+h2, h3 {
+
+    color: #1e293b;
+
+    font-weight: 700;
+}
+
+/* ======================================================
+SUGERENCIAS
+====================================================== */
+
+.sugerencias-box {
+
+    background:
+    rgba(255,255,255,0.75);
+
+    border: 1px solid #dbeafe;
+
+    border-radius: 24px;
+
+    padding: 24px;
+
+    margin-top: 20px;
+
+    box-shadow:
+    0 6px 20px rgba(0,0,0,0.04);
 }
 
 /* ======================================================
@@ -332,6 +500,41 @@ SCROLL
     background: #94a3b8;
 
     border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+
+    background: #64748b;
+}
+
+/* ======================================================
+RESPONSIVE
+====================================================== */
+
+@media (max-width: 900px) {
+
+    .chat-user,
+    .chat-bot {
+
+        max-width: 100%;
+    }
+
+    .titulo {
+
+        font-size: 2.5rem;
+    }
+
+    [data-testid="stChatInput"] {
+
+        left: 1rem;
+
+        right: 1rem;
+    }
+
+    .hero {
+
+        padding: 25px;
+    }
 }
 
 </style>
@@ -386,17 +589,22 @@ if "preguntas_sugeridas" not in st.session_state:
     )
 
 # =========================================================
-# TITULO
+# HEADER PRINCIPAL
 # =========================================================
 
-st.markdown("""
+st.markdown(f"""
 
-<div class="titulo">
-🤖 Chatbot Híbrido
-</div>
+<div class="hero">
 
-<div class="subtitulo">
-Sistema educativo inteligente con búsqueda híbrida y resolución matemática avanzada
+    <div class="titulo">
+    🤖 Chatbot Híbrido
+    </div>
+
+    <div class="subtitulo">
+    Sistema educativo inteligente con búsqueda híbrida,
+    respuestas dinámicas y resolución matemática avanzada.
+    </div>
+
 </div>
 
 """, unsafe_allow_html=True)
@@ -407,41 +615,159 @@ Sistema educativo inteligente con búsqueda híbrida y resolución matemática a
 
 with st.sidebar:
 
-    st.markdown("## 🤖 Panel del Sistema")
+    # =====================================================
+    # TITULO SIDEBAR
+    # =====================================================
+
+    st.markdown("""
+
+    <div style="
+        text-align:center;
+        margin-bottom:25px;
+    ">
+
+    <h1 style="
+        margin-bottom:0px;
+        font-size:32px;
+    ">
+    🤖
+    </h1>
+
+    <h2 style="
+        margin-top:5px;
+        font-weight:800;
+    ">
+    Panel del Sistema
+    </h2>
+
+    <p style="
+        opacity:0.8;
+        font-size:14px;
+    ">
+    Chatbot educativo inteligente
+    </p>
+
+    </div>
+
+    """, unsafe_allow_html=True)
+
+    # =====================================================
+    # ESTADISTICAS
+    # =====================================================
 
     st.markdown(f"""
 
-<div class="card">
+    <div class="sidebar-card">
 
-### 📊 Estadísticas
+    <h3 style="
+        margin-top:0px;
+        margin-bottom:18px;
+    ">
+    📊 Estadísticas
+    </h3>
 
-- Total preguntas: {estadisticas['total']}
-- Programación: {estadisticas['programacion']}
-- IA: {estadisticas['ia']}
-- Redes: {estadisticas['redes']}
-- Hardware: {estadisticas['hardware']}
-- Ciberseguridad: {estadisticas['ciberseguridad']}
+    <div style="
+        display:flex;
+        justify-content:space-between;
+        margin-bottom:10px;
+    ">
+        <span>Total preguntas</span>
+        <strong>{estadisticas['total']}</strong>
+    </div>
 
-</div>
+    <div style="
+        display:flex;
+        justify-content:space-between;
+        margin-bottom:10px;
+    ">
+        <span>💻 Programación</span>
+        <strong>{estadisticas['programacion']}</strong>
+    </div>
 
-""", unsafe_allow_html=True)
+    <div style="
+        display:flex;
+        justify-content:space-between;
+        margin-bottom:10px;
+    ">
+        <span>🤖 IA</span>
+        <strong>{estadisticas['ia']}</strong>
+    </div>
 
-    st.markdown("### 📚 Áreas disponibles")
+    <div style="
+        display:flex;
+        justify-content:space-between;
+        margin-bottom:10px;
+    ">
+        <span>🌐 Redes</span>
+        <strong>{estadisticas['redes']}</strong>
+    </div>
+
+    <div style="
+        display:flex;
+        justify-content:space-between;
+        margin-bottom:10px;
+    ">
+        <span>🖥️ Hardware</span>
+        <strong>{estadisticas['hardware']}</strong>
+    </div>
+
+    <div style="
+        display:flex;
+        justify-content:space-between;
+    ">
+        <span>🔐 Ciberseguridad</span>
+        <strong>{estadisticas['ciberseguridad']}</strong>
+    </div>
+
+    </div>
+
+    """, unsafe_allow_html=True)
+
+    # =====================================================
+    # AREAS
+    # =====================================================
 
     st.markdown("""
-💻 Programación  
-🤖 Inteligencia Artificial  
-🌐 Redes  
-🖥️ Hardware  
-🔐 Ciberseguridad
-""")
 
-    st.markdown("---")
+    <div class="sidebar-card">
 
-    st.markdown("### 🧮 Ejemplos Matemáticos")
+    <h3 style="
+        margin-top:0px;
+        margin-bottom:18px;
+    ">
+    📚 Áreas disponibles
+    </h3>
+
+    <div style="line-height:2; font-size:15px;">
+
+    💻 Programación<br>
+    🤖 Inteligencia Artificial<br>
+    🌐 Redes<br>
+    🖥️ Hardware<br>
+    🔐 Ciberseguridad
+
+    </div>
+
+    </div>
+
+    """, unsafe_allow_html=True)
+
+    # =====================================================
+    # EJEMPLOS MATEMATICOS
+    # =====================================================
 
     st.markdown("""
-<div class="codigo">
+
+    <div class="sidebar-card">
+
+    <h3 style="
+        margin-top:0px;
+        margin-bottom:18px;
+    ">
+    🧮 Ejemplos Matemáticos
+    </h3>
+
+    <div class="codigo">
 
 2+5*8
 
@@ -459,32 +785,102 @@ factorial(5)
 
 pi*2
 
-</div>
-""", unsafe_allow_html=True)
+    </div>
 
-    st.markdown("---")
+    </div>
 
-    st.markdown("### 🕘 Historial")
+    """, unsafe_allow_html=True)
+
+    # =====================================================
+    # AYUDA
+    # =====================================================
+
+    st.markdown("""
+
+    <div class="sidebar-card">
+
+    <h3 style="
+        margin-top:0px;
+        margin-bottom:16px;
+    ">
+    💡 Ejemplos de preguntas
+    </h3>
+
+    <div style="
+        line-height:1.9;
+        font-size:14px;
+        opacity:0.92;
+    ">
+
+    • ¿Qué es Python?<br>
+
+    • ¿Qué es una red LAN?<br>
+
+    • ¿Qué es inteligencia artificial?<br>
+
+    • calcula 25*8+4<br>
+
+    • raiz(625)
+
+    </div>
+
+    </div>
+
+    """, unsafe_allow_html=True)
+
+    # =====================================================
+    # HISTORIAL
+    # =====================================================
+
+    st.markdown("""
+
+    <div style="
+        margin-top:10px;
+        margin-bottom:10px;
+    ">
+    <h3>
+    🕘 Historial reciente
+    </h3>
+    </div>
+
+    """, unsafe_allow_html=True)
 
     historiales = obtener_historiales()
 
     if historiales:
 
-        for archivo in historiales[:10]:
+        for archivo in historiales[:8]:
 
             st.markdown(f"""
-<div class="card">
-📄 {archivo}
-</div>
-""", unsafe_allow_html=True)
+
+            <div class="sidebar-card" style="
+                padding:12px;
+                margin-bottom:10px;
+            ">
+
+            📄 {archivo}
+
+            </div>
+
+            """, unsafe_allow_html=True)
 
     else:
 
-        st.info(
-            "Aún no hay conversaciones guardadas."
-        )
+        st.markdown("""
 
-    st.markdown("---")
+        <div class="sidebar-card">
+
+        No hay conversaciones guardadas todavía.
+
+        </div>
+
+        """, unsafe_allow_html=True)
+
+    # =====================================================
+    # BOTON REINICIAR
+    # =====================================================
+
+    st.markdown("<br>", unsafe_allow_html=True)
 
     if st.button("🗑️ Reiniciar conversación"):
 
