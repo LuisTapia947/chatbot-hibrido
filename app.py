@@ -32,7 +32,11 @@ from chatbot.respuestas import (
 
 from chatbot.historial import (
     guardar_chat,
-    obtener_historiales
+    obtener_historiales,
+    cargar_historial,
+    obtener_info_historial,
+    eliminar_historial,
+    limpiar_historiales
 )
 
 # =========================================================
