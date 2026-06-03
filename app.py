@@ -391,6 +391,61 @@ SIDEBAR TARJETAS
     inset 0 1px 0 rgba(255, 255, 255, 0.6);
     transform: translateY(-2px);
 }
+/* ======================================================
+HISTORIAL CHATGPT
+====================================================== */
+
+section[data-testid="stSidebar"] .stButton button {
+
+    background: transparent !important;
+
+    border: 1px solid transparent !important;
+
+    box-shadow: none !important;
+
+    text-align: left !important;
+
+    justify-content: flex-start !important;
+
+    padding: 12px 14px !important;
+
+    border-radius: 14px !important;
+
+    color: #e2e8f0 !important;
+
+    font-weight: 500 !important;
+
+    transition: all 0.2s ease !important;
+}
+
+section[data-testid="stSidebar"] .stButton button:hover {
+
+    background:
+    rgba(255,255,255,0.06) !important;
+
+    border:
+    1px solid rgba(255,255,255,0.08) !important;
+
+    transform: none !important;
+}
+
+/* =========================================
+BOTONES PEQUEÑOS
+========================================= */
+
+section[data-testid="stSidebar"] .stButton button p {
+
+    font-size: 14px !important;
+}
+
+/* =========================================
+SCROLL SIDEBAR
+========================================= */
+
+section[data-testid="stSidebar"] {
+
+    overflow-y: auto;
+}
 
 /* ======================================================
 BOTONES
@@ -972,19 +1027,24 @@ pi*2
 
     """, unsafe_allow_html=True)
 
-   # =====================================================
-# HISTORIAL
+# =====================================================
+# HISTORIAL ESTILO CHATGPT
 # =====================================================
 
 st.markdown("""
 
 <div style="
     margin-top:10px;
-    margin-bottom:16px;
+    margin-bottom:14px;
 ">
-<h3>
-🕘 Historial reciente
+
+<h3 style="
+    font-size:18px;
+    font-weight:700;
+">
+🕘 Conversaciones
 </h3>
+
 </div>
 
 """, unsafe_allow_html=True)
@@ -994,39 +1054,64 @@ historiales = obtener_historiales()
 if historiales:
 
     for i, archivo in enumerate(
-        historiales[:10]
+        historiales[:15]
     ):
 
         info = obtener_info_historial(
             archivo
         )
 
-        col1, col2 = st.columns([5,1])
+        nombre = archivo.replace(
+            ".json",
+            ""
+        )
+
+        nombre = nombre.replace(
+            "chat_",
+            ""
+        )
+
+        col1, col2 = st.columns(
+            [8,1]
+        )
+
+        # =============================================
+        # BOTON CARGAR CHAT
+        # =============================================
 
         with col1:
 
             if st.button(
-                f"📄 {info['fecha']}",
-                key=f"historial_{i}"
+                f"💬 {nombre}",
+                key=f"chat_{i}",
+                use_container_width=True
             ):
 
-                chat_cargado = cargar_historial(
-                    archivo
+                chat_cargado = (
+                    cargar_historial(
+                        archivo
+                    )
                 )
 
                 st.session_state.chat = (
                     chat_cargado
                 )
 
-                st.session_state.chat_cerrado = False
+                st.session_state.chat_cerrado = (
+                    False
+                )
 
                 st.rerun()
+
+        # =============================================
+        # ELIMINAR
+        # =============================================
 
         with col2:
 
             if st.button(
-                "❌",
-                key=f"eliminar_{i}"
+                "🗑",
+                key=f"delete_{i}"
             ):
 
                 eliminar_historial(
@@ -1034,6 +1119,26 @@ if historiales:
                 )
 
                 st.rerun()
+
+        # =============================================
+        # INFO
+        # =============================================
+
+        st.markdown(f"""
+
+        <div style="
+            font-size:11px;
+            opacity:0.65;
+            margin-top:-6px;
+            margin-bottom:14px;
+            padding-left:4px;
+        ">
+
+        {info['total']} mensajes
+
+        </div>
+
+        """, unsafe_allow_html=True)
 
 else:
 
@@ -1046,6 +1151,34 @@ else:
     </div>
 
     """, unsafe_allow_html=True)
+
+# =====================================================
+# BOTONES INFERIORES
+# =====================================================
+
+st.markdown("<br>", unsafe_allow_html=True)
+
+if st.button(
+    "➕ Nueva conversación",
+    use_container_width=True
+):
+
+    st.session_state.chat = []
+
+    st.session_state.chat_cerrado = False
+
+    st.session_state.preguntas_usadas = []
+
+    st.rerun()
+
+if st.button(
+    "🗑️ Eliminar historiales",
+    use_container_width=True
+):
+
+    limpiar_historiales()
+
+    st.rerun()
 
 # =====================================================
 # LIMPIAR TODO
