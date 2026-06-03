@@ -183,7 +183,7 @@ def mensaje_despedida():
 
     return """
 
-### 👋 Sesión finalizada
+ 👋 Sesión finalizada
 
 El chatbot híbrido educativo cerró la conversación correctamente.
 
