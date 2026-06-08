@@ -396,7 +396,7 @@ section[data-testid="stSidebar"] {
     transform: translateY(-2px);
 }
 /* ======================================================
-BOTONES
+BOTONES PRINCIPALES (área de chat)
 ====================================================== */
 
 div.stButton > button {
@@ -407,7 +407,7 @@ div.stButton > button {
     font-weight: 700;
     letter-spacing: 0.5px;
     border: none;
-    color: white;
+    color: white !important;
     background:
     linear-gradient(
         135deg,
@@ -419,6 +419,11 @@ div.stButton > button {
     transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
     position: relative;
     overflow: hidden;
+}
+
+/* CORRECCIÓN: forzar texto blanco dentro de botones principales */
+div.stButton > button p {
+    color: white !important;
 }
 
 div.stButton > button::before {
@@ -1106,17 +1111,12 @@ pi*2
 
         st.rerun()
 
+    # CORRECCIÓN: antes había dos botones que hacían lo mismo
+    # ("Eliminar historiales" y "Eliminar todos los historiales")
+    # Se unifica en uno solo con nombre claro y ancho completo
     if st.button(
-        "🗑️ Eliminar historiales",
+        "🗑️ Eliminar historial",
         use_container_width=True
-    ):
-
-        limpiar_historiales()
-
-        st.rerun()
-
-    if st.button(
-        "🗑️ Eliminar todos los historiales"
     ):
 
         limpiar_historiales()
@@ -1125,7 +1125,10 @@ pi*2
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    if st.button("🗑️ Reiniciar conversación"):
+    if st.button(
+        "🔄 Reiniciar conversación",
+        use_container_width=True
+    ):
 
         st.session_state.chat = []
 
@@ -1188,15 +1191,16 @@ for tipo, mensaje in st.session_state.chat:
 
     else:
 
-        st.markdown(
-            f"""
-            <div class="chat-bot">
-            <strong>🤖 Chatbot:</strong><br><br>
-            {mensaje}
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+        # CORRECCIÓN: las respuestas del bot se renderizan
+        # con st.markdown nativo para que el formato
+        # markdown (##, **, backticks) funcione correctamente
+        # y no aparezca el </div> literal en pantalla
+        with st.container():
+            st.markdown(
+                f"**🤖 Chatbot:**",
+                unsafe_allow_html=False
+            )
+            st.markdown(mensaje)
 
 # =========================================================
 # INPUT
