@@ -401,17 +401,24 @@ def explicar_operacion(expresion):
                     valor     = eval(contenido_eval, funciones)
                     valor_txt = formatear_numero(valor)
 
-                    # Solo agregar paso si NO es una función especial ya explicada
-                    if not any(
+                   es_numero_simple = re.fullmatch(
+                          r'\s*-?\d+(\.\d+)?\s*',
+                                  contenido
+                   )
+
+                   if (
+                      not es_numero_simple
+                      and not any(
                         re.search(r'\b' + fn + r'\s*$',
-                                  expresion_actual[:expresion_actual.index(grupo)])
+                        expresion_actual[:expresion_actual.index(grupo)])
                         for fn in ["sqrt", "sin", "cos", "tan", "log", "ln", "factorial"]
                         if grupo in expresion_actual
-                    ):
-                        pasos.append(
-                            f"📌 **Paso — Subexpresión entre paréntesis**\n\n"
-                            f"`({contenido})` → se resuelve primero por jerarquía\n\n"
-                            f"`{contenido}` = **{valor_txt}**"
+                         )
+                         ):
+                         pasos.append(
+                         f"📌 **Paso — Subexpresión entre paréntesis**\n\n"
+                         f"`({contenido})` → se resuelve primero por jerarquía\n\n"
+                         f"`{contenido}` = **{valor_txt}**"
                         )
 
                     expresion_actual = expresion_actual.replace(
