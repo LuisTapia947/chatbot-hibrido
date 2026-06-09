@@ -1117,15 +1117,12 @@ pi*2
     ):
 
         st.session_state.chat = []
-
         st.session_state.chat_cerrado = False
-
         st.session_state.preguntas_usadas = []
 
-         guardar_chat(
+        guardar_chat(
             st.session_state.chat
         )
-
 
         st.rerun()
 
