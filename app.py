@@ -1344,6 +1344,11 @@ if pregunta:
     st.session_state.chat.append(
         ("bot", respuesta_final)
     )
+    
+    guardar_chat(
+    st.session_state.chat
+    )
+
 
     st.rerun()
 
