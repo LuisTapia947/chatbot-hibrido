@@ -313,7 +313,63 @@ def explicar_operacion(expresion):
         expresion_actual = original
 
         # =================================================
-        # PASO A PASO: PARÉNTESIS
+        # PASO A PASO: FUNCIONES ESPECIALES PRIMERO
+        # (se resuelven antes que los paréntesis generales)
+        # =================================================
+
+        DESCRIPCIONES = {
+            "raiz":      "Raíz cuadrada: se busca el número que multiplicado por sí mismo da {arg}",
+            "sqrt":      "Raíz cuadrada: se busca el número que multiplicado por sí mismo da {arg}",
+            "log":       "Logaritmo base 10: ¿a qué potencia hay que elevar 10 para obtener {arg}?",
+            "ln":        "Logaritmo natural: ¿a qué potencia hay que elevar e (≈2.718) para obtener {arg}?",
+            "sen":       "Seno: razón trigonométrica del ángulo {arg}°",
+            "sin":       "Seno: razón trigonométrica del ángulo {arg}°",
+            "cos":       "Coseno: razón trigonométrica del ángulo {arg}°",
+            "tan":       "Tangente: razón trigonométrica del ángulo {arg}°",
+            "factorial": "Factorial: se multiplica {arg} × ({arg}-1) × ({arg}-2) × ... × 1",
+        }
+
+        funciones_especiales = [
+            ("raiz",      r'raiz\((.*?)\)'),
+            ("log",       r'log\((.*?)\)'),
+            ("ln",        r'ln\((.*?)\)'),
+            ("sen",       r'sen\((.*?)\)'),
+            ("cos",       r'cos\((.*?)\)'),
+            ("tan",       r'tan\((.*?)\)'),
+            ("factorial", r'factorial\((.*?)\)'),
+        ]
+
+        for nombre, patron in funciones_especiales:
+
+            encontrados = re.findall(patron, original)
+
+            for argumento in encontrados:
+
+                try:
+
+                    operacion      = f"{nombre}({argumento})"
+                    operacion_eval = (
+                        operacion
+                        .replace("^", "**")
+                        .replace("raiz", "sqrt")
+                        .replace("sen",  "sin")
+                    )
+
+                    resultado  = eval(operacion_eval, funciones)
+                    res_txt    = formatear_numero(resultado)
+                    descripcion = DESCRIPCIONES.get(nombre, "").format(arg=argumento)
+
+                    pasos.append(
+                        f"📌 **Paso — {nombre.capitalize()}**\n\n"
+                        f"> {descripcion}\n\n"
+                        f"`{operacion}` = **{res_txt}**"
+                    )
+
+                except:
+                    pass
+
+        # =================================================
+        # PASO A PASO: PARÉNTESIS ANIDADOS
         # =================================================
 
         while "(" in expresion_actual:
@@ -330,19 +386,33 @@ def explicar_operacion(expresion):
 
             for grupo in coincidencias:
 
-                contenido = grupo[1:-1]
+                contenido      = grupo[1:-1]
+                contenido_eval = contenido.replace("^", "**")
+
+                # Si ya fue explicado como función especial, solo sustituir
+                es_funcion = re.match(
+                    r'^(sqrt|sin|cos|tan|log|ln|factorial)\s*\(',
+                    expresion_actual[:expresion_actual.index(grupo)]
+                    if grupo in expresion_actual else ""
+                )
 
                 try:
 
-                    contenido_eval = contenido.replace("^", "**")
-
-                    valor = eval(contenido_eval, funciones)
-
+                    valor     = eval(contenido_eval, funciones)
                     valor_txt = formatear_numero(valor)
 
-                    pasos.append(
-                        f"📌 `{contenido}` = **{valor_txt}**"
-                    )
+                    # Solo agregar paso si NO es una función especial ya explicada
+                    if not any(
+                        re.search(r'\b' + fn + r'\s*$',
+                                  expresion_actual[:expresion_actual.index(grupo)])
+                        for fn in ["sqrt", "sin", "cos", "tan", "log", "ln", "factorial"]
+                        if grupo in expresion_actual
+                    ):
+                        pasos.append(
+                            f"📌 **Paso — Subexpresión entre paréntesis**\n\n"
+                            f"`({contenido})` → se resuelve primero por jerarquía\n\n"
+                            f"`{contenido}` = **{valor_txt}**"
+                        )
 
                     expresion_actual = expresion_actual.replace(
                         grupo, valor_txt, 1
@@ -370,59 +440,109 @@ def explicar_operacion(expresion):
             resultado = float(base) ** float(exponente)
 
             pasos.append(
-                f"📌 `{base}^{exponente}` = **{formatear_numero(resultado)}**"
+                f"📌 **Paso — Potencia**\n\n"
+                f"> Se multiplica {base} por sí mismo {exponente} veces\n\n"
+                f"`{base}^{exponente}` = **{formatear_numero(resultado)}**"
             )
 
         # =================================================
-        # PASO A PASO: FUNCIONES ESPECIALES
+        # PASO A PASO: JERARQUÍA ARITMÉTICA
+        # Explica el orden en que se resuelve la expresión
         # =================================================
 
-        funciones_especiales = [
-            ("raiz",      r'raiz\((.*?)\)'),
-            ("log",       r'log\((.*?)\)'),
-            ("ln",        r'ln\((.*?)\)'),
-            ("sen",       r'sen\((.*?)\)'),
-            ("cos",       r'cos\((.*?)\)'),
-            ("tan",       r'tan\((.*?)\)'),
-            ("factorial", r'factorial\((.*?)\)'),
-        ]
+        tiene_mult_div = bool(re.search(r'[\*\/]', expr))
+        tiene_suma_res  = bool(re.search(r'(?<!\*\*)\d\s*[\+\-]\s*\d', expr))
 
-        for nombre, patron in funciones_especiales:
+        if tiene_mult_div and tiene_suma_res:
 
-            encontrados = re.findall(patron, original)
+            pasos.append(
+                "📋 **Jerarquía de operaciones**\n\n"
+                "> Por orden de operaciones: primero `×` y `÷`, luego `+` y `−`"
+            )
 
-            for valor in encontrados:
+            # Resolver solo multiplicaciones/divisiones como paso intermedio
+            expr_intermedio = expr
+            partes = re.split(r'(\d+\.?\d*\s*[\*\/]\s*\d+\.?\d*)', expr_intermedio)
 
-                try:
+            for parte in partes:
 
-                    operacion = f"{nombre}({valor})"
+                parte_limpia = parte.strip()
 
-                    operacion_eval = (
-                        operacion
-                        .replace("^", "**")
-                        .replace("raiz", "sqrt")
-                        .replace("sen", "sin")
-                    )
+                if re.match(r'^\d+\.?\d*\s*[\*\/]\s*\d+\.?\d*$', parte_limpia):
 
-                    resultado = eval(operacion_eval, funciones)
+                    try:
 
-                    pasos.append(
-                        f"📌 `{operacion}` = **{formatear_numero(resultado)}**"
-                    )
+                        val     = eval(parte_limpia, funciones)
+                        val_txt = formatear_numero(val)
+                        simbolo = "×" if "*" in parte_limpia else "÷"
+                        nums    = re.split(r'[\*\/]', parte_limpia)
 
-                except:
-                    pass
+                        pasos.append(
+                            f"📌 **Paso — {'Multiplicación' if simbolo == '×' else 'División'}**\n\n"
+                            f"`{nums[0].strip()} {simbolo} {nums[1].strip()}` = **{val_txt}**"
+                        )
+
+                    except:
+                        pass
+
+        elif tiene_mult_div:
+
+            partes = re.split(r'(\d+\.?\d*\s*[\*\/]\s*\d+\.?\d*)', expr)
+
+            for parte in partes:
+
+                parte_limpia = parte.strip()
+
+                if re.match(r'^\d+\.?\d*\s*[\*\/]\s*\d+\.?\d*$', parte_limpia):
+
+                    try:
+
+                        val     = eval(parte_limpia, funciones)
+                        val_txt = formatear_numero(val)
+                        simbolo = "×" if "*" in parte_limpia else "÷"
+                        nums    = re.split(r'[\*\/]', parte_limpia)
+
+                        pasos.append(
+                            f"📌 **Paso — {'Multiplicación' if simbolo == '×' else 'División'}**\n\n"
+                            f"`{nums[0].strip()} {simbolo} {nums[1].strip()}` = **{val_txt}**"
+                        )
+
+                    except:
+                        pass
+
+        elif tiene_suma_res:
+
+            partes = re.split(r'(\d+\.?\d*\s*[\+\-]\s*\d+\.?\d*)', expr)
+
+            for parte in partes:
+
+                parte_limpia = parte.strip()
+
+                if re.match(r'^\d+\.?\d*\s*[\+\-]\s*\d+\.?\d*$', parte_limpia):
+
+                    try:
+
+                        val     = eval(parte_limpia, funciones)
+                        val_txt = formatear_numero(val)
+                        simbolo = "+" if "+" in parte_limpia else "−"
+                        nums    = re.split(r'[\+\-]', parte_limpia)
+
+                        pasos.append(
+                            f"📌 **Paso — {'Suma' if simbolo == '+' else 'Resta'}**\n\n"
+                            f"`{nums[0].strip()} {simbolo} {nums[1].strip()}` = **{val_txt}**"
+                        )
+
+                    except:
+                        pass
 
         # =================================================
         # RESULTADO FINAL
         # =================================================
 
         resultado_final = eval(expr, funciones)
-
         resultado_final = formatear_numero(resultado_final)
 
         pasos.append("\n✅ **Resultado final**")
-
         pasos.append(f"## {resultado_final}")
 
         return "\n\n".join(pasos)
