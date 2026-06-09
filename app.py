@@ -1122,6 +1122,11 @@ pi*2
 
         st.session_state.preguntas_usadas = []
 
+         guardar_chat(
+            st.session_state.chat
+        )
+
+
         st.rerun()
 
     # CORRECCIÓN: antes había dos botones que hacían lo mismo
