@@ -354,9 +354,23 @@ section[data-testid="stSidebar"] .stButton button {
     justify-content: flex-start !important;
     padding: 12px 14px !important;
     border-radius: 14px !important;
-    color: #e2e8f0 !important;
-    font-weight: 500 !important;
+    color: #1e293b !important;
+    font-weight: 600 !important;
     transition: all 0.2s ease !important;
+}
+
+section[data-testid="stSidebar"] .stButton button p {
+    color: #1e293b !important;
+}
+
+section[data-testid="stSidebar"] .stButton button:hover {
+    background: rgba(99, 102, 241, 0.10) !important;
+    border: 1px solid rgba(99, 102, 241, 0.25) !important;
+    color: #4f46e5 !important;
+}
+
+section[data-testid="stSidebar"] .stButton button:hover p {
+    color: #4f46e5 !important;
 }
 
 section[data-testid="stSidebar"] .stButton button:hover {
