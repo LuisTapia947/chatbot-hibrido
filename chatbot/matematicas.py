@@ -7,6 +7,68 @@ import math
 import re
 
 # =========================================================
+# FRASES DE INTRODUCCIÓN A ELIMINAR
+# =========================================================
+
+FRASES_PREFIJO = [
+    "por favor calcula",
+    "por favor resuelve",
+    "puedes calcular",
+    "puedes resolver",
+    "puedes decirme cuanto es",
+    "puedes decirme cuanto da",
+    "dime cuanto es",
+    "dime cuanto da",
+    "dime el resultado de",
+    "cuanto da la operacion",
+    "cuanto da la",
+    "cuanto es el resultado de",
+    "cual es el resultado de",
+    "cuál es el resultado de",
+    "cual es el valor de",
+    "cuál es el valor de",
+    "resultado de la operacion",
+    "resultado de",
+    "cuanto es",
+    "cuanto da",
+    "calcula",
+    "resuelve",
+    "cuál es",
+    "cual es",
+    "opera",
+    "evalua",
+    "evalúa",
+    "haz la operacion",
+    "haz la operación",
+]
+
+# =========================================================
+# PALABRAS DE RELLENO A ELIMINAR (DESPUÉS DE LAS FRASES)
+# =========================================================
+
+PALABRAS_RELLENO = [
+    "operacion",
+    "operación",
+    "siguiente",
+    "esto",
+    "esta",
+    "valor",
+    "numero",
+    "número",
+    "siguiente",
+    "por",
+    "favor",
+    "por favor",
+    "dime",
+    "puedes",
+    "el",
+    "la",
+    "de",
+    "lo",
+    "que",
+]
+
+# =========================================================
 # EXTRAER OPERACIÓN
 # =========================================================
 
@@ -14,25 +76,67 @@ def extraer_operacion(texto):
 
     texto = texto.lower().strip()
 
-    palabras = [
-        "cuanto es",
-        "cuanto da",
-        "calcula",
-        "resuelve",
-        "resultado de",
-        "cuál es",
-        "cual es",
-        "cuanto da la"
-    ]
+    # =====================================================
+    # ELIMINAR SIGNOS DE PUNTUACIÓN Y CARACTERES EXTRAÑOS
+    # =====================================================
 
-    for palabra in palabras:
+    texto = re.sub(r'[¿?¡!,;:\.]', '', texto)
 
-        texto = texto.replace(
-            palabra,
-            ""
-        )
+    # =====================================================
+    # ORDENAR FRASES DE MÁS LARGA A MÁS CORTA
+    # para evitar que "cuanto es" elimine parte de
+    # "cuanto es el resultado de" antes de que esta se evalúe
+    # =====================================================
 
-    return texto.strip()
+    frases_ordenadas = sorted(
+        FRASES_PREFIJO,
+        key=len,
+        reverse=True
+    )
+
+    for frase in frases_ordenadas:
+
+        if texto.startswith(frase):
+            texto = texto[len(frase):]
+            break
+
+        texto = texto.replace(frase, "")
+
+    # =====================================================
+    # ELIMINAR PALABRAS DE RELLENO QUE QUEDAN SUELTAS
+    # Solo al inicio del texto para no tocar la expresión
+    # =====================================================
+
+    palabras_relleno_ordenadas = sorted(
+        PALABRAS_RELLENO,
+        key=len,
+        reverse=True
+    )
+
+    cambio = True
+
+    while cambio:
+
+        cambio = False
+
+        for palabra in palabras_relleno_ordenadas:
+
+            patron = r'^\s*' + re.escape(palabra) + r'\s+'
+
+            nuevo = re.sub(patron, '', texto)
+
+            if nuevo != texto:
+
+                texto = nuevo
+                cambio = True
+
+    # =====================================================
+    # LIMPIAR ESPACIOS DOBLES Y RESIDUOS FINALES
+    # =====================================================
+
+    texto = re.sub(r'\s+', ' ', texto).strip()
+
+    return texto
 
 # =========================================================
 # DETECTAR OPERACIÓN MATEMÁTICA
@@ -40,30 +144,33 @@ def extraer_operacion(texto):
 
 def es_operacion_matematica(texto):
 
-    expr = extraer_operacion(
-        texto
-    )
+    expr = extraer_operacion(texto)
 
     # =====================================================
-    # SÍMBOLOS
+    # DESCARTAR TEXTOS QUE SON CLARAMENTE LENGUAJE NATURAL
+    # Si después de extraer queda algo sin números ni
+    # funciones matemáticas, no es una operación
+    # =====================================================
+
+    if not expr:
+        return False
+
+    # =====================================================
+    # SÍMBOLOS MATEMÁTICOS
     # =====================================================
 
     simbolos = [
         "+",
-        "-",
         "*",
         "/",
         "^",
-        "(",
-        ")"
     ]
 
     # =====================================================
-    # FUNCIONES
+    # PATRONES DE FUNCIONES MATEMÁTICAS
     # =====================================================
 
-    funciones = [
-
+    patrones_funciones = [
         r'\braiz\s*\(',
         r'\bsqrt\s*\(',
         r'\blog\s*\(',
@@ -74,51 +181,44 @@ def es_operacion_matematica(texto):
         r'\btan\s*\(',
         r'\bfactorial\s*\(',
         r'\bpi\b',
-        r'\be\b'
+        r'\be\b',
     ]
 
-    tiene_numero = bool(
-        re.search(r'\d', expr)
-    )
+    tiene_numero = bool(re.search(r'\d', expr))
 
     # =====================================================
-    # OPERADORES
+    # REGLA 1: número + operador aritmético básico
     # =====================================================
 
-    if (
-        tiene_numero
-        and any(
-            s in expr
-            for s in simbolos
-        )
-    ):
-
+    if tiene_numero and any(s in expr for s in simbolos):
         return True
 
     # =====================================================
-    # RESTA
+    # REGLA 2: resta explícita entre dos números
+    # (separada para evitar falsos positivos con guiones)
     # =====================================================
 
-    if (
-        tiene_numero
-        and re.search(
-            r'\d\s*-\s*\d',
-            expr
-        )
-    ):
-
+    if tiene_numero and re.search(r'\d\s*-\s*\d', expr):
         return True
 
     # =====================================================
-    # FUNCIONES
+    # REGLA 3: paréntesis con número adentro
     # =====================================================
 
-    if any(
-        re.search(patron, expr)
-        for patron in funciones
-    ):
-
+    if tiene_numero and re.search(r'\(\s*\d', expr):
         return True
+
+    # =====================================================
+    # REGLA 4: función matemática reconocida
+    # =====================================================
+
+    if any(re.search(patron, expr) for patron in patrones_funciones):
+        return True
+
+    # =====================================================
+    # REGLA 5: expresión que es solo un número
+    # (ej: el usuario escribe "25" solo — no es operación)
+    # =====================================================
 
     return False
 
@@ -134,78 +234,44 @@ def convertir_expresion(expr):
     # POTENCIAS
     # =====================================================
 
-    expr = expr.replace(
-        "^",
-        "**"
-    )
+    expr = expr.replace("^", "**")
 
     # =====================================================
     # RAÍZ
     # =====================================================
 
-    expr = re.sub(
-        r'raiz\(',
-        'sqrt(',
-        expr
-    )
+    expr = re.sub(r'raiz\(', 'sqrt(', expr)
 
     # =====================================================
     # SENO
     # =====================================================
 
-    expr = re.sub(
-        r'sen\(',
-        'sin(',
-        expr
-    )
+    expr = re.sub(r'sen\(', 'sin(', expr)
 
     # =====================================================
-    # MULTIPLICACIÓN IMPLÍCITA
+    # MULTIPLICACIÓN IMPLÍCITA: 2pi → 2*pi, 3e → 3*e
     # =====================================================
 
-    expr = re.sub(
-        r'(\d)(pi|e\b)',
-        r'\1*\2',
-        expr
-    )
+    expr = re.sub(r'(\d)(pi|e\b)', r'\1*\2', expr)
 
     # =====================================================
-    # FUNCIONES DISPONIBLES
+    # FUNCIONES DISPONIBLES PARA eval()
     # =====================================================
 
     funciones = {
 
         "__builtins__": {},
 
-        "sqrt": math.sqrt,
-
-        "log": math.log10,
-
-        "ln": math.log,
-
-        "sin": lambda x:
-        math.sin(
-            math.radians(x)
-        ),
-
-        "cos": lambda x:
-        math.cos(
-            math.radians(x)
-        ),
-
-        "tan": lambda x:
-        math.tan(
-            math.radians(x)
-        ),
-
-        "factorial":
-        math.factorial,
-
-        "pi": math.pi,
-
-        "e": math.e,
-
-        "abs": abs
+        "sqrt":     math.sqrt,
+        "log":      math.log10,
+        "ln":       math.log,
+        "sin":      lambda x: math.sin(math.radians(x)),
+        "cos":      lambda x: math.cos(math.radians(x)),
+        "tan":      lambda x: math.tan(math.radians(x)),
+        "factorial": math.factorial,
+        "pi":       math.pi,
+        "e":        math.e,
+        "abs":      abs,
     }
 
     return expr, funciones
@@ -216,18 +282,10 @@ def convertir_expresion(expr):
 
 def formatear_numero(valor):
 
-    if (
-        isinstance(valor, float)
-        and valor.is_integer()
-    ):
+    if isinstance(valor, float) and valor.is_integer():
+        return str(int(valor))
 
-        return str(
-            int(valor)
-        )
-
-    return str(
-        round(valor, 6)
-    )
+    return str(round(valor, 6))
 
 # =========================================================
 # EXPLICAR OPERACIÓN PASO A PASO
@@ -238,28 +296,24 @@ def explicar_operacion(expresion):
     try:
 
         # =================================================
-        # EXPRESIÓN ORIGINAL
+        # EXPRESIÓN ORIGINAL LIMPIA
         # =================================================
 
-        original = extraer_operacion(
-            expresion
-        )
+        original = extraer_operacion(expresion)
 
-        expr, funciones = convertir_expresion(
-            original
-        )
+        expr, funciones = convertir_expresion(original)
 
         pasos = []
 
         pasos.append(
-            " 🧮 Operación ingresada\n\n"
+            "🧮 **Operación ingresada**\n\n"
             f"`{original}`"
         )
 
         expresion_actual = original
 
         # =================================================
-        # PARÉNTESIS
+        # PASO A PASO: PARÉNTESIS
         # =================================================
 
         while "(" in expresion_actual:
@@ -270,7 +324,6 @@ def explicar_operacion(expresion):
             )
 
             if not coincidencias:
-
                 break
 
             hubo_cambio = False
@@ -281,46 +334,30 @@ def explicar_operacion(expresion):
 
                 try:
 
-                    contenido_eval = (
-                        contenido
-                        .replace("^", "**")
-                    )
+                    contenido_eval = contenido.replace("^", "**")
 
-                    valor = eval(
-                        contenido_eval,
-                        funciones
-                    )
+                    valor = eval(contenido_eval, funciones)
 
-                    valor_txt = (
-                        formatear_numero(
-                            valor
-                        )
-                    )
+                    valor_txt = formatear_numero(valor)
 
                     pasos.append(
-                        f"📌 {contenido} = {valor_txt}"
+                        f"📌 `{contenido}` = **{valor_txt}**"
                     )
 
-                    expresion_actual = (
-                        expresion_actual.replace(
-                            grupo,
-                            valor_txt,
-                            1
-                        )
+                    expresion_actual = expresion_actual.replace(
+                        grupo, valor_txt, 1
                     )
 
                     hubo_cambio = True
 
                 except:
-
                     pass
 
             if not hubo_cambio:
-
                 break
 
         # =================================================
-        # POTENCIAS
+        # PASO A PASO: POTENCIAS
         # =================================================
 
         coincidencias_pot = re.findall(
@@ -330,52 +367,35 @@ def explicar_operacion(expresion):
 
         for base, exponente in coincidencias_pot:
 
-            resultado = (
-                float(base)
-                **
-                float(exponente)
-            )
+            resultado = float(base) ** float(exponente)
 
             pasos.append(
-                f"📌 {base}^{exponente} = "
-                f"{formatear_numero(resultado)}"
+                f"📌 `{base}^{exponente}` = **{formatear_numero(resultado)}**"
             )
 
         # =================================================
-        # FUNCIONES ESPECIALES
+        # PASO A PASO: FUNCIONES ESPECIALES
         # =================================================
 
         funciones_especiales = [
-
-            ("raiz", r'raiz\((.*?)\)'),
-
-            ("log", r'log\((.*?)\)'),
-
-            ("ln", r'ln\((.*?)\)'),
-
-            ("sen", r'sen\((.*?)\)'),
-
-            ("cos", r'cos\((.*?)\)'),
-
-            ("tan", r'tan\((.*?)\)'),
-
-            ("factorial", r'factorial\((.*?)\)')
+            ("raiz",      r'raiz\((.*?)\)'),
+            ("log",       r'log\((.*?)\)'),
+            ("ln",        r'ln\((.*?)\)'),
+            ("sen",       r'sen\((.*?)\)'),
+            ("cos",       r'cos\((.*?)\)'),
+            ("tan",       r'tan\((.*?)\)'),
+            ("factorial", r'factorial\((.*?)\)'),
         ]
 
         for nombre, patron in funciones_especiales:
 
-            encontrados = re.findall(
-                patron,
-                original
-            )
+            encontrados = re.findall(patron, original)
 
             for valor in encontrados:
 
                 try:
 
-                    operacion = (
-                        f"{nombre}({valor})"
-                    )
+                    operacion = f"{nombre}({valor})"
 
                     operacion_eval = (
                         operacion
@@ -384,51 +404,32 @@ def explicar_operacion(expresion):
                         .replace("sen", "sin")
                     )
 
-                    resultado = eval(
-                        operacion_eval,
-                        funciones
-                    )
+                    resultado = eval(operacion_eval, funciones)
 
                     pasos.append(
-                        f"📌 {operacion} = "
-                        f"{formatear_numero(resultado)}"
+                        f"📌 `{operacion}` = **{formatear_numero(resultado)}**"
                     )
 
                 except:
-
                     pass
 
         # =================================================
         # RESULTADO FINAL
         # =================================================
 
-        resultado_final = eval(
-            expr,
-            funciones
-        )
+        resultado_final = eval(expr, funciones)
 
-        resultado_final = (
-            formatear_numero(
-                resultado_final
-            )
-        )
+        resultado_final = formatear_numero(resultado_final)
 
-        pasos.append(
-            "\n ✅ Resultado final"
-        )
+        pasos.append("\n✅ **Resultado final**")
 
-        pasos.append(
-            f"## {resultado_final}"
-        )
+        pasos.append(f"## {resultado_final}")
 
-        return "\n\n".join(
-            pasos
-        )
+        return "\n\n".join(pasos)
 
     except Exception as e:
 
         return (
-            "❌ No fue posible resolver "
-            "la operación matemática.\n\n"
-            f"Detalle del error: {e}"
+            "❌ No fue posible resolver la operación matemática.\n\n"
+            f"Detalle del error: `{e}`"
         )
