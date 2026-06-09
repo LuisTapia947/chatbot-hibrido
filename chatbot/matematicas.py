@@ -463,13 +463,15 @@ def explicar_operacion(expresion):
                 f"`{base}^{exponente}` = **{formatear_numero(resultado)}**"
             )
 
-        # =================================================
+               # =================================================
         # PASO A PASO: JERARQUÍA ARITMÉTICA
         # Explica el orden en que se resuelve la expresión
         # =================================================
 
         tiene_mult_div = bool(re.search(r'[\*\/]', expr))
-        tiene_suma_res  = bool(re.search(r'(?<!\*\*)\d\s*[\+\-]\s*\d', expr))
+        tiene_suma_res = bool(
+            re.search(r'(?<!\*\*)\d+\.?\d*\s*[\+\-]\s*\d+\.?\d*', expr)
+        )
 
         if tiene_mult_div and tiene_suma_res:
 
@@ -478,47 +480,105 @@ def explicar_operacion(expresion):
                 "> Por orden de operaciones: primero `×` y `÷`, luego `+` y `−`"
             )
 
-            # Resolver solo multiplicaciones/divisiones como paso intermedio
-            expr_intermedio = expr
-            partes = re.split(r'(\d+\.?\d*\s*[\*\/]\s*\d+\.?\d*)', expr_intermedio)
+            expr_simplificada = expr
+
+            # =========================================
+            # Multiplicaciones y divisiones
+            # =========================================
+
+            partes = re.split(
+                r'(\d+\.?\d*\s*[\*\/]\s*\d+\.?\d*)',
+                expr
+            )
 
             for parte in partes:
 
                 parte_limpia = parte.strip()
 
-                if re.match(r'^\d+\.?\d*\s*[\*\/]\s*\d+\.?\d*$', parte_limpia):
+                if re.match(
+                    r'^\d+\.?\d*\s*[\*\/]\s*\d+\.?\d*$',
+                    parte_limpia
+                ):
 
                     try:
 
-                        val     = eval(parte_limpia, funciones)
+                        val = eval(parte_limpia, funciones)
                         val_txt = formatear_numero(val)
+
                         simbolo = "×" if "*" in parte_limpia else "÷"
-                        nums    = re.split(r'[\*\/]', parte_limpia)
+                        nums = re.split(r'[\*\/]', parte_limpia)
 
                         pasos.append(
                             f"📌 **Paso — {'Multiplicación' if simbolo == '×' else 'División'}**\n\n"
                             f"`{nums[0].strip()} {simbolo} {nums[1].strip()}` = **{val_txt}**"
                         )
 
+                        expr_simplificada = expr_simplificada.replace(
+                            parte_limpia,
+                            val_txt,
+                            1
+                        )
+
                     except:
                         pass
 
+            # =========================================
+            # Suma o resta final
+            # =========================================
+
+            try:
+
+                if re.search(
+                    r'\d+\.?\d*\s*[\+\-]\s*\d+\.?\d*',
+                    expr_simplificada
+                ):
+
+                    resultado_final_operacion = eval(
+                        expr_simplificada,
+                        funciones
+                    )
+
+                    simbolo = "+" if "+" in expr_simplificada else "−"
+
+                    if simbolo == "+":
+                        nums = expr_simplificada.split("+")
+                    else:
+                        nums = expr_simplificada.split("-")
+
+                    if len(nums) == 2:
+
+                        pasos.append(
+                            f"📌 **Paso — {'Suma' if simbolo == '+' else 'Resta'}**\n\n"
+                            f"`{nums[0].strip()} {simbolo} {nums[1].strip()}` = "
+                            f"**{formatear_numero(resultado_final_operacion)}**"
+                        )
+
+            except:
+                pass
+
         elif tiene_mult_div:
 
-            partes = re.split(r'(\d+\.?\d*\s*[\*\/]\s*\d+\.?\d*)', expr)
+            partes = re.split(
+                r'(\d+\.?\d*\s*[\*\/]\s*\d+\.?\d*)',
+                expr
+            )
 
             for parte in partes:
 
                 parte_limpia = parte.strip()
 
-                if re.match(r'^\d+\.?\d*\s*[\*\/]\s*\d+\.?\d*$', parte_limpia):
+                if re.match(
+                    r'^\d+\.?\d*\s*[\*\/]\s*\d+\.?\d*$',
+                    parte_limpia
+                ):
 
                     try:
 
-                        val     = eval(parte_limpia, funciones)
+                        val = eval(parte_limpia, funciones)
                         val_txt = formatear_numero(val)
+
                         simbolo = "×" if "*" in parte_limpia else "÷"
-                        nums    = re.split(r'[\*\/]', parte_limpia)
+                        nums = re.split(r'[\*\/]', parte_limpia)
 
                         pasos.append(
                             f"📌 **Paso — {'Multiplicación' if simbolo == '×' else 'División'}**\n\n"
@@ -530,20 +590,27 @@ def explicar_operacion(expresion):
 
         elif tiene_suma_res:
 
-            partes = re.split(r'(\d+\.?\d*\s*[\+\-]\s*\d+\.?\d*)', expr)
+            partes = re.split(
+                r'(\d+\.?\d*\s*[\+\-]\s*\d+\.?\d*)',
+                expr
+            )
 
             for parte in partes:
 
                 parte_limpia = parte.strip()
 
-                if re.match(r'^\d+\.?\d*\s*[\+\-]\s*\d+\.?\d*$', parte_limpia):
+                if re.match(
+                    r'^\d+\.?\d*\s*[\+\-]\s*\d+\.?\d*$',
+                    parte_limpia
+                ):
 
                     try:
 
-                        val     = eval(parte_limpia, funciones)
+                        val = eval(parte_limpia, funciones)
                         val_txt = formatear_numero(val)
+
                         simbolo = "+" if "+" in parte_limpia else "−"
-                        nums    = re.split(r'[\+\-]', parte_limpia)
+                        nums = re.split(r'[\+\-]', parte_limpia)
 
                         pasos.append(
                             f"📌 **Paso — {'Suma' if simbolo == '+' else 'Resta'}**\n\n"
@@ -552,8 +619,6 @@ def explicar_operacion(expresion):
 
                     except:
                         pass
-                if not hubo_cambio:
-                 break
         # =================================================
         # RESULTADO FINAL
         # =================================================
