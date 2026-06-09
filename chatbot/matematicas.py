@@ -368,70 +368,92 @@ def explicar_operacion(expresion):
                 except:
                     pass
 
-        # =================================================
-        # PASO A PASO: PARÉNTESIS ANIDADOS
-        # =================================================
+     # =================================================
+# PASO A PASO: PARÉNTESIS ANIDADOS
+# =================================================
 
-        while "(" in expresion_actual:
+while "(" in expresion_actual:
 
-            coincidencias = re.findall(
-                r'\([^()]+\)',
-                expresion_actual
+    coincidencias = re.findall(
+        r'\([^()]+\)',
+        expresion_actual
+    )
+
+    if not coincidencias:
+        break
+
+    hubo_cambio = False
+
+    for grupo in coincidencias:
+
+        contenido = grupo[1:-1]
+        contenido_eval = contenido.replace("^", "**")
+
+        try:
+
+            valor = eval(contenido_eval, funciones)
+            valor_txt = formatear_numero(valor)
+
+            # =========================================
+            # Detectar si el contenido es solo un número
+            # Ej: (625), (10), (-3), (3.14)
+            # =========================================
+
+            es_numero_simple = bool(
+                re.fullmatch(
+                    r'\s*-?\d+(\.\d+)?\s*',
+                    contenido
+                )
             )
 
-            if not coincidencias:
-                break
+            # =========================================
+            # Detectar si pertenece a una función
+            # ya explicada (raiz, log, sen, etc.)
+            # =========================================
 
-            hubo_cambio = False
-
-            for grupo in coincidencias:
-
-                contenido      = grupo[1:-1]
-                contenido_eval = contenido.replace("^", "**")
-
-                # Si ya fue explicado como función especial, solo sustituir
-                es_funcion = re.match(
-                    r'^(sqrt|sin|cos|tan|log|ln|factorial)\s*\(',
+            es_funcion_especial = any(
+                re.search(
+                    r'\b' + fn + r'\s*$',
                     expresion_actual[:expresion_actual.index(grupo)]
-                    if grupo in expresion_actual else ""
+                )
+                for fn in [
+                    "sqrt",
+                    "sin",
+                    "cos",
+                    "tan",
+                    "log",
+                    "ln",
+                    "factorial"
+                ]
+                if grupo in expresion_actual
+            )
+
+            # =========================================
+            # Solo mostrar paso si realmente existe una
+            # expresión matemática dentro del paréntesis
+            # =========================================
+
+            if not es_numero_simple and not es_funcion_especial:
+
+                pasos.append(
+                    f"📌 **Paso — Subexpresión entre paréntesis**\n\n"
+                    f"`({contenido})` → se resuelve primero por jerarquía\n\n"
+                    f"`{contenido}` = **{valor_txt}**"
                 )
 
-                try:
+            expresion_actual = expresion_actual.replace(
+                grupo,
+                valor_txt,
+                1
+            )
 
-                    valor     = eval(contenido_eval, funciones)
-                    valor_txt = formatear_numero(valor)
+            hubo_cambio = True
 
-                   es_numero_simple = re.fullmatch(
-                          r'\s*-?\d+(\.\d+)?\s*',
-                                  contenido
-                   )
+        except:
+            pass
 
-                   if (
-                      not es_numero_simple
-                      and not any(
-                        re.search(r'\b' + fn + r'\s*$',
-                        expresion_actual[:expresion_actual.index(grupo)])
-                        for fn in ["sqrt", "sin", "cos", "tan", "log", "ln", "factorial"]
-                        if grupo in expresion_actual
-                         )
-                         ):
-                         pasos.append(
-                         f"📌 **Paso — Subexpresión entre paréntesis**\n\n"
-                         f"`({contenido})` → se resuelve primero por jerarquía\n\n"
-                         f"`{contenido}` = **{valor_txt}**"
-                        )
-
-                    expresion_actual = expresion_actual.replace(
-                        grupo, valor_txt, 1
-                    )
-
-                    hubo_cambio = True
-
-                except:
-                    pass
-
-            if not hubo_cambio:
-                break
+    if not hubo_cambio:
+        break
 
         # =================================================
         # PASO A PASO: POTENCIAS
