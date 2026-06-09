@@ -563,7 +563,8 @@ while "(" in expresion_actual:
 
                     except:
                         pass
-
+                if not hubo_cambio:
+                 break
         # =================================================
         # RESULTADO FINAL
         # =================================================
