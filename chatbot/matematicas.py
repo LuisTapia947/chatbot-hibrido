@@ -21,7 +21,8 @@ def extraer_operacion(texto):
         "resuelve",
         "resultado de",
         "cuál es",
-        "cual es"
+        "cual es",
+        "cuanto da la"
     ]
 
     for palabra in palabras:
