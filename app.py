@@ -768,15 +768,14 @@ if "preguntas_sugeridas" not in st.session_state:
 # HEADER PRINCIPAL
 # =========================================================
 
-st.markdown(f"""
-
+st.markdown("""
 <div class="hero">
     <div class="titulo">
-    🤖 Chatbot Híbrido
+    🎓 MentorIA
     </div>
     <div class="subtitulo">
-    Sistema educativo inteligente con búsqueda híbrida,
-    respuestas dinámicas y resolución matemática avanzada.
+    Plataforma inteligente de apoyo académico con búsqueda híbrida,
+    análisis documental y resolución matemática avanzada.
     </div>
 </div>
 """, unsafe_allow_html=True)
