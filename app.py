@@ -468,26 +468,34 @@ BOTONES SECUNDARIOS (preguntas sugeridas)
 
 div.stButton > button[kind="secondary"],
 div.stButton > button[data-testid="baseButton-secondary"] {
-    width: auto;
-    min-height: 32px;
-    padding: 0.35rem 0.7rem;
+    width: auto !important;
+    max-width: 100%;
+    min-height: 22px;
+    padding: 0.15rem 0.5rem;
     border-radius: 999px;
-    font-size: 0.9rem;
+    font-size: 0.78rem;
     font-weight: 600;
     letter-spacing: 0;
+    line-height: 1.2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     color: #4f46e5 !important;
     background: transparent;
     border: 1px solid rgba(99, 102, 241, 0.18);
     box-shadow: none;
-    text-align: left;
-    justify-content: flex-start;
-    margin-bottom: 0.35rem;
+    text-align: center;
+    margin-bottom: 0.2rem;
 }
 
 div.stButton > button[kind="secondary"] p,
 div.stButton > button[data-testid="baseButton-secondary"] p {
     color: #4f46e5 !important;
-    font-size: 0.9rem !important;
+    font-size: 0.78rem !important;
+    margin: 0;
 }
 
 div.stButton > button[kind="secondary"]:hover,
@@ -796,7 +804,7 @@ if "preguntas_sugeridas" not in st.session_state:
     st.session_state.preguntas_sugeridas = (
         random.sample(
             disponibles,
-            min(6, len(disponibles))
+            min(3, len(disponibles))
         )
     )
 
@@ -1198,7 +1206,7 @@ pi*2
         st.session_state.preguntas_sugeridas = (
             random.sample(
                 disponibles,
-                min(6, len(disponibles))
+                min(3, len(disponibles))
             )
         )
 
@@ -1394,23 +1402,21 @@ if pregunta:
 
 st.markdown("---")
 st.markdown(
-    "<div style='margin-top: 0.3rem; margin-bottom: 0.45rem; color: #64748b; font-size: 0.85rem; font-weight: 700;'>💡 Preguntas sugeridas</div>",
+    "<div style='margin-top: 0.15rem; margin-bottom: 0.25rem; color: #64748b; font-size: 0.74rem; font-weight: 700;'>💡 Sugerencias rápidas</div>",
     unsafe_allow_html=True,
 )
 
 preguntas_sugeridas = (
-    st.session_state.preguntas_sugeridas
+    st.session_state.preguntas_sugeridas[:3]
 )
 
-col1, col2 = st.columns(2)
+cols = st.columns(min(3, len(preguntas_sugeridas)))
 
 for i, pregunta_sug in enumerate(
     preguntas_sugeridas
 ):
 
-    col = col1 if i % 2 == 0 else col2
-
-    with col:
+    with cols[i]:
         if st.button(
             pregunta_sug,
             key=f"sugerencia_{i}",
