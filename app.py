@@ -463,6 +463,42 @@ div.stButton > button:active {
 }
 
 /* ======================================================
+BOTONES SECUNDARIOS (preguntas sugeridas)
+====================================================== */
+
+div.stButton > button[kind="secondary"],
+div.stButton > button[data-testid="baseButton-secondary"] {
+    width: auto;
+    min-height: 32px;
+    padding: 0.35rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    color: #4f46e5 !important;
+    background: transparent;
+    border: 1px solid rgba(99, 102, 241, 0.18);
+    box-shadow: none;
+    text-align: left;
+    justify-content: flex-start;
+    margin-bottom: 0.35rem;
+}
+
+div.stButton > button[kind="secondary"] p,
+div.stButton > button[data-testid="baseButton-secondary"] p {
+    color: #4f46e5 !important;
+    font-size: 0.9rem !important;
+}
+
+div.stButton > button[kind="secondary"]:hover,
+div.stButton > button[data-testid="baseButton-secondary"]:hover {
+    transform: none;
+    box-shadow: none;
+    background: rgba(99, 102, 241, 0.08);
+    border-color: rgba(99, 102, 241, 0.3);
+}
+
+/* ======================================================
 CAJA DE CÓDIGO
 ====================================================== */
 .codigo {
@@ -1357,8 +1393,10 @@ if pregunta:
 # =========================================================
 
 st.markdown("---")
-
-st.subheader("💡 Preguntas sugeridas")
+st.markdown(
+    "<div style='margin-top: 0.3rem; margin-bottom: 0.45rem; color: #64748b; font-size: 0.85rem; font-weight: 700;'>💡 Preguntas sugeridas</div>",
+    unsafe_allow_html=True,
+)
 
 preguntas_sugeridas = (
     st.session_state.preguntas_sugeridas
@@ -1372,82 +1410,84 @@ for i, pregunta_sug in enumerate(
 
     col = col1 if i % 2 == 0 else col2
 
-    if col.button(
-        pregunta_sug,
-        key=f"sugerencia_{i}"
-    ):
-
-        st.session_state.preguntas_usadas.append(
-            pregunta_sug
-        )
-
-        st.session_state.chat.append(
-            ("usuario", pregunta_sug)
-        )
-
-        resultado = buscar_respuesta(
+    with col:
+        if st.button(
             pregunta_sug,
-            memoria,
-            preguntas
-        )
-
-        respuesta = resultado["respuesta"]
-
-        score = resultado["score"]
-
-        if respuesta:
-
-            respuesta_final = (
-                obtener_intro()
-                + "\n\n"
-                + respuesta
-                + "\n\n"
-                + obtener_continuacion()
+            key=f"sugerencia_{i}",
+            type="secondary",
+            use_container_width=False,
+        ):
+            st.session_state.preguntas_usadas.append(
+                pregunta_sug
             )
 
-            if score < 1:
+            st.session_state.chat.append(
+                ("usuario", pregunta_sug)
+            )
 
-                respuesta_final += (
-                    f"\n\n🔎 Coincidencia aproximada: "
-                    f"{score*100:.0f}%"
+            resultado = buscar_respuesta(
+                pregunta_sug,
+                memoria,
+                preguntas
+            )
+
+            respuesta = resultado["respuesta"]
+
+            score = resultado["score"]
+
+            if respuesta:
+
+                respuesta_final = (
+                    obtener_intro()
+                    + "\n\n"
+                    + respuesta
+                    + "\n\n"
+                    + obtener_continuacion()
                 )
 
-        else:
+                if score < 1:
 
-            respuesta_final = (
-                mensaje_sin_respuesta()
+                    respuesta_final += (
+                        f"\n\n🔎 Coincidencia aproximada: "
+                        f"{score*100:.0f}%"
+                    )
+
+            else:
+
+                respuesta_final = (
+                    mensaje_sin_respuesta()
+                )
+
+            st.session_state.chat.append(
+                ("bot", respuesta_final)
             )
 
-        st.session_state.chat.append(
-            ("bot", respuesta_final)
-        )
+            # =================================================
+            # CAMBIAR SUGERENCIAS
+            # =================================================
 
-        # =================================================
-        # CAMBIAR SUGERENCIAS
-        # =================================================
+            tema_actual = st.session_state.tema_actual
 
-        tema_actual = st.session_state.tema_actual
+            disponibles = [
 
-        disponibles = [
+                p for p in temas[tema_actual]
 
-            p for p in temas[tema_actual]
-
-            if p not in st.session_state.preguntas_usadas
-        ]
-
-        if len(disponibles) < 6:
-
-            st.session_state.preguntas_usadas = []
-
-            disponibles = temas[
-                tema_actual
+                if p not in st.session_state.preguntas_usadas
             ]
 
-        st.session_state.preguntas_sugeridas = (
-            random.sample(
-                disponibles,
-                min(6, len(disponibles))
-            )
-        )
+            if len(disponibles) < 6:
 
-        st.rerun()
+                st.session_state.preguntas_usadas = []
+
+                disponibles = temas[
+                    tema_actual
+                ]
+
+            st.session_state.preguntas_sugeridas = (
+                random.sample(
+                    disponibles,
+                    min(6, len(disponibles))
+                )
+            )
+
+            st.rerun()
