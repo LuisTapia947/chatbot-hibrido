@@ -1262,6 +1262,97 @@ for tipo, mensaje in st.session_state.chat:
             st.markdown(mensaje)
 
 # =========================================================
+# PREGUNTAS SUGERIDAS (encima del input)
+# =========================================================
+
+st.markdown(
+    "<div style='margin-top: 0.2rem; margin-bottom: 0.15rem; color: #64748b; font-size: 0.72rem; font-weight: 700;'>💡 Sugerencias rápidas</div>",
+    unsafe_allow_html=True,
+)
+
+preguntas_sugeridas = (
+    st.session_state.preguntas_sugeridas[:3]
+)
+
+cols = st.columns(min(3, len(preguntas_sugeridas)))
+
+for i, pregunta_sug in enumerate(
+    preguntas_sugeridas
+):
+
+    with cols[i]:
+        if st.button(
+            pregunta_sug,
+            key=f"sugerencia_{i}",
+            type="secondary",
+            use_container_width=False,
+        ):
+            st.session_state.preguntas_usadas.append(
+                pregunta_sug
+            )
+
+            st.session_state.chat.append(
+                ("usuario", pregunta_sug)
+            )
+
+            resultado = buscar_respuesta(
+                pregunta_sug,
+                memoria,
+                preguntas
+            )
+
+            respuesta = resultado["respuesta"]
+
+            score = resultado["score"]
+
+            if respuesta:
+
+                respuesta_final = (
+                    obtener_intro()
+                    + "\n\n"
+                    + respuesta
+                    + "\n\n"
+                    + obtener_continuacion()
+                )
+
+                if score < 1:
+
+                    respuesta_final += (
+                        f"\n\n🔎 Coincidencia aproximada: "
+                        f"{score*100:.0f}%"
+                    )
+
+            else:
+
+                respuesta_final = (
+                    mensaje_sin_respuesta()
+                )
+
+            st.session_state.chat.append(
+                ("bot", respuesta_final)
+            )
+
+            tema_actual = st.session_state.tema_actual
+
+            disponibles = [
+                p for p in temas[tema_actual]
+                if p not in st.session_state.preguntas_usadas
+            ]
+
+            if len(disponibles) < 6:
+                st.session_state.preguntas_usadas = []
+                disponibles = temas[tema_actual]
+
+            st.session_state.preguntas_sugeridas = (
+                random.sample(
+                    disponibles,
+                    min(3, len(disponibles))
+                )
+            )
+
+            st.rerun()
+
+# =========================================================
 # INPUT
 # =========================================================
 
@@ -1396,104 +1487,3 @@ if pregunta:
 
     st.rerun()
 
-# =========================================================
-# PREGUNTAS SUGERIDAS
-# =========================================================
-
-st.markdown("---")
-st.markdown(
-    "<div style='margin-top: 0.15rem; margin-bottom: 0.25rem; color: #64748b; font-size: 0.74rem; font-weight: 700;'>💡 Sugerencias rápidas</div>",
-    unsafe_allow_html=True,
-)
-
-preguntas_sugeridas = (
-    st.session_state.preguntas_sugeridas[:3]
-)
-
-cols = st.columns(min(3, len(preguntas_sugeridas)))
-
-for i, pregunta_sug in enumerate(
-    preguntas_sugeridas
-):
-
-    with cols[i]:
-        if st.button(
-            pregunta_sug,
-            key=f"sugerencia_{i}",
-            type="secondary",
-            use_container_width=False,
-        ):
-            st.session_state.preguntas_usadas.append(
-                pregunta_sug
-            )
-
-            st.session_state.chat.append(
-                ("usuario", pregunta_sug)
-            )
-
-            resultado = buscar_respuesta(
-                pregunta_sug,
-                memoria,
-                preguntas
-            )
-
-            respuesta = resultado["respuesta"]
-
-            score = resultado["score"]
-
-            if respuesta:
-
-                respuesta_final = (
-                    obtener_intro()
-                    + "\n\n"
-                    + respuesta
-                    + "\n\n"
-                    + obtener_continuacion()
-                )
-
-                if score < 1:
-
-                    respuesta_final += (
-                        f"\n\n🔎 Coincidencia aproximada: "
-                        f"{score*100:.0f}%"
-                    )
-
-            else:
-
-                respuesta_final = (
-                    mensaje_sin_respuesta()
-                )
-
-            st.session_state.chat.append(
-                ("bot", respuesta_final)
-            )
-
-            # =================================================
-            # CAMBIAR SUGERENCIAS
-            # =================================================
-
-            tema_actual = st.session_state.tema_actual
-
-            disponibles = [
-
-                p for p in temas[tema_actual]
-
-                if p not in st.session_state.preguntas_usadas
-            ]
-
-            if len(disponibles) < 6:
-
-                st.session_state.preguntas_usadas = []
-
-                disponibles = temas[
-                    tema_actual
-                ]
-
-            st.session_state.preguntas_sugeridas = (
-                random.sample(
-                    disponibles,
-                    min(6, len(disponibles))
-                )
-            )
-
-            st.rerun()
